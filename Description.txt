@@ -1,0 +1,5 @@
+Server : 
+    Created package.json using yarn init
+    App.js : 
+        require expressjs by installing it using yarn add expressjs
+        
