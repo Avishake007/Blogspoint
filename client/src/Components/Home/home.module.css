@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Average&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@500&display=swap');
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.container{
+    background: black;
+    height: 100vh;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+.part{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.clippath{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: #0e0e0e;
+    clip-path: polygon(0 0, 29% 0, 100% 100%, 68% 100%);
+}
+.first{
+    z-index: 1;
+    line-height: 4vw;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    text-transform: uppercase;
+    font-family: 'Asap', sans-serif;;
+}
+.first p:nth-child(1){
+    font-size: 4vw;
+}
+.first p:nth-child(2){
+    font-size: 7vw;
+    font-weight: bold;
+    font-family: 'Archivo', sans-serif;
+    animation: change_color 2s infinite ;
+    
+}
+@keyframes change_color {
+    0%{
+        color: #65BCED;
+    }
+    25%{
+        color: #3893C7;
+    }
+    50%{
+        color: #4E819D;
+    }
+    75%{
+        color: #7AB9DC;
+    }
+    100%{
+        color: #65BCED;
+
+    }
+}
+.first p:nth-child(3){
+    width: 100%;
+    font-size: 1.5vw;
+    text-align: right;
+}
+.second{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+svg{
+    height: 80%;
+    width: 100%;
+}

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Autour+One&display=swap');
+.container{
+    background: black;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.container p{
+    color: white;
+    font-family: 'Autour One', cursive;
+    font-size: 3vw;
+}
+.about_section{
+    
+    width: 32%;
+    margin-bottom: 43px;
+    height: 71%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border-radius: 58px; */
+    /* box-shadow: 7px 6px 8px #353434; */
+
+}
+.about_section img{
+    height: 25%;
+    margin-top: 23px;
+    z-index: 1;
+}
+.info{
+    background: #1d1d1d;
+    height: 80%;
+    width: 100%;
+    /* margin-left: 39px; */
+    margin-top: -40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.detail label{
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #b3b1b1;
+}
+.detail p{
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.2vw;
+    margin-left: 19px;
+}
+.detail{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

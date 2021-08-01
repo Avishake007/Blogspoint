@@ -1,0 +1,83 @@
+import React,{useContext, useState} from 'react';
+import styles from './login.module.css';
+import loginSvg from './login.png';
+import {useHistory} from "react-router-dom";
+
+import {UserContext} from "../../App"
+const Login=()=>{
+
+  const {state,dispatch}=useContext(UserContext);
+  const history=useHistory();
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const userLogin=async(e)=>{
+    e.preventDefault();
+    const res=await fetch('/signin',{
+    method:"POST",
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      email,password
+    })
+  });
+  const data=res.json();
+  if(res.status===400|| !data){
+    window.alert("Invalid Credentials")
+  }
+  else{
+    dispatch({type:'USER',payload:true})
+    window.alert("Login Successful");
+    history.push('/');
+  }
+}
+  return(
+    <>
+     <div className={`${styles.container_login}`}>
+       <div className={`${styles.form_outer}`}>
+      <div className={`${styles.form_inner}`}>
+        <p className={`${styles.reg}`}>Login</p>
+        <div className={`${styles.formpng}`}>
+        <div className={`${styles.form_inner_inner}`}>
+    <form action="login" method="POST"> 
+  <div className={`${styles.form_row}`}>
+      <i className={`fa fa-user ${styles.fa_user}`} aria-hidden="true"></i>
+    
+    <div className={`${styles.col}`}>
+      <input type="email" className={`${styles.form_control}`}
+      value={email}
+      onChange={(e)=>setEmail(e.target.value)}
+      placeholder="Enter your email" name="email"/>
+    </div> 
+  </div>
+    <div className={`${styles.form_row}`}>
+        <i className={`fa fa-lock ${styles.fa_lock}`} aria-hidden="true"></i>
+  <div className={`${styles.col}`}>
+      <input type="password" className={`${styles.form_control}`} 
+      value={password}
+      onChange={(e)=>setPassword(e.target.value)}
+      placeholder="Enter your password" name="password"/>
+    </div>
+    </div>
+  <div className={`${styles.form_check}`}>
+    <input type="checkbox" className={`${styles.form_check_input}`} id="exampleCheck1"/>
+    <label className={`${styles.form_check_label}`} htmlFor="exampleCheck1">Remember Me</label>
+  </div>
+  <div className={`${styles.btner}`}>
+  <button type="submit" className={`btn btn-danger ${styles.login}`}
+  onClick={userLogin}
+  >LogIn</button>
+ </div>
+  </form>
+  </div>
+  <div className={`${styles.form_inner_inner}`}>
+    <img className={`${styles.login_png}`} src={loginSvg} alt="login_photo"/>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+    </>
+  )
+}
+export default Login;

@@ -1,0 +1,175 @@
+.container_login{
+    color: #1ce1bd;
+    display: flex;
+    width: 100%;
+    font-size: 4rem;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    /* height: 84vh; */
+    background: black;
+}
+.form_outer{
+    height: 94%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.form_inner{
+    width: 60%;
+    color: white;
+    /* height: 94%; */
+    /* font-weight: bold; */
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    background: #1c1c1d;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* box-shadow: 5px 6px 14px grey; */
+}
+form{
+    height: 68%;
+}
+.formpng{
+    display: flex;
+}
+.login_png{
+    height: 100%;
+    width: 100%;
+}
+p{
+    font-size: 26px;
+}
+.fa_user,.fa_lock{
+    font-size: 40%;
+}
+.form_row{
+    display: flex;
+    background: #2d2929;
+    margin-bottom: 22px;
+    justify-content: center;
+    align-items: center;
+    height: 11%;
+}
+.email{
+    widows: 60%;
+}
+.form_inner_inner{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+.formpng .form_inner_inner{
+    margin-top: 55px;
+}
+.stu_prof{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    background: #2d2929;
+}
+.stu_prof option{
+    height: 100%;
+    font-size: 14px;
+    width: 100%;
+}
+input[type=text],input[type=number],input[type=email],input[type=password]{
+    /* background: #2d2929; */
+    font-size: 14px;
+    background: transparent;
+    outline: none;
+    border: 0;
+}
+input[type=text]{
+    width: 100%;
+}
+.col{
+    width: 100%;
+    display: flex;
+}
+/* button{
+    background: #da1919 !important;
+    outline: none;
+    /* border: 0; */
+    /* border-radius: 19px !important;
+    color: #f1f1f1 !important;
+    font-size: 17px !important;
+    font-weight: 3000 !important;
+    border: 1px solid black !important; */
+/* }
+button:hover{
+    opacity: 0.8;
+}  */
+.form_check{
+    margin-bottom: 7px;
+    color: #d6c0c0;
+    display: flex;
+    align-items: center;
+
+}
+.btner{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+input[type=number]:focus,input[type=email]:focus,input[type=password]:focus,input[type=text]:focus{
+    background: #2d2929;
+    color: white;
+    opacity: 0.8;
+    outline: none;
+    border: 0;
+}
+.form_check_label{
+    font-size: 23px;
+}
+/* ::placeholder{
+    /* color:lightblue !important; */
+    /* opacity:1 !important; */
+/* } */ 
+i{
+    font-size: 25px;
+    margin-right: 14px;
+    color: #9da4a4;
+}
+.form_control{
+    height: 100%;
+    font-size: 30%;
+    width: 100%;
+}
+.form_check_input{
+    height: 1vw;
+    width: 2vw;
+}
+.reg{
+    font-weight: bold;
+    text-align: center;
+    font-size: 3vw;
+}
+.login{
+    width: 7vw;
+    height: 3vw;
+    font-size: 1vw;
+}
+.login:hover{
+    background-position: left bottom;
+}
+@media only screen and (max-width: 700px) {
+    .formpng {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .formpng .form_inner_inner{
+        margin-top: 0px;
+    }
+    .login {
+        width: 114px;
+        height: 37px;
+    }
+  }
