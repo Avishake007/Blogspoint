@@ -1,7 +1,22 @@
-import React,{useContext, useState} from 'react';
+/*
+  This is a Login Page
+  Here we check whether a particular user is authenticate or not
+*/
+import React,{useContext, useEffect, useState} from 'react';
+
+//CSS of Login Page
 import styles from './login.module.css';
+
+
 import loginSvg from './login.png';
-import {useHistory} from "react-router-dom";
+import {Link,useHistory} from "react-router-dom";
+
+//React Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Loader from '../Loader/loader';
+
 
 import {UserContext} from "../../App"
 const Login=()=>{
@@ -10,6 +25,7 @@ const Login=()=>{
   const history=useHistory();
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const [loader,setLoader]=useState(true);
   const userLogin=async(e)=>{
     e.preventDefault();
     const res=await fetch('/signin',{
@@ -20,19 +36,30 @@ const Login=()=>{
     body:JSON.stringify({
       email,password
     })
-  });
-  const data=res.json();
-  if(res.status===400|| !data){
-    window.alert("Invalid Credentials")
+    });
+    const data=res.json();
+    if(res.status===400|| !data){
+      setTimeout(toast.error("Invalid Credentials ",{
+        position: "top-center",
+      }),3000);
+    }
+    else{
+      dispatch({type:'USER',payload:true})
+      setTimeout(toast.success("Login Successful",{
+        position: "top-center",
+      }),3000);
+      history.push('/');
+    }
   }
-  else{
-    dispatch({type:'USER',payload:true})
-    window.alert("Login Successful");
-    history.push('/');
-  }
-}
+    useEffect(()=>{
+      setLoader(false);
+    },[])
+    if(loader)
+    return <Loader/>
+
   return(
     <>
+    <ToastContainer/>
      <div className={`${styles.container_login}`}>
        <div className={`${styles.form_outer}`}>
       <div className={`${styles.form_inner}`}>
@@ -66,8 +93,16 @@ const Login=()=>{
   <div className={`${styles.btner}`}>
   <button type="submit" className={`btn btn-danger ${styles.login}`}
   onClick={userLogin}
-  >LogIn</button>
+  >LogIn
+  </button>
+ <div className={`${styles.no_account}`}>
+   Don't have an account ?
+   <Link style={{    marginLeft: "14px",cursor: "pointer",color: "#faa855"}} to="/signup">
+    Register
+    </Link>
  </div>
+ </div>
+ 
   </form>
   </div>
   <div className={`${styles.form_inner_inner}`}>

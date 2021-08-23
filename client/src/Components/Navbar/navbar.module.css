@@ -8,12 +8,7 @@
     height: 10vh;
 }
 .logo{
-    position: absolute;
-    top: 9px;
-    left: 2px;
-    z-index: 2;
-    height: 52px;
-    width: 15rem;
+    height: 59px;
 }
 .navbar{
     height: 100%;
@@ -23,32 +18,12 @@
     justify-content: flex-end;
     align-items: center;
 }
-.navbar .nav_link{
-    color: white;
-    /* background: black; */
-    font-family: 'Average', serif;
-    font-size: 1.5vw;
-    text-decoration: none;
-    width: 6.5vw;
-    text-align: center;
+.navlink{
+    font-size: 20px;
+    margin-right: 14px;
     display: flex;
     justify-content: center;
-    margin-right: 54px;
-    margin-top: 2px;
-    cursor: pointer;
-    border-radius: 24px;
-    background: linear-gradient(to right, white 50%, black 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all 0.2s ease-out;
 }
-.navbar .nav_link:hover{
-   background-position: left bottom;
-    padding: 1px;
-    /* height: 4vh; */
-    /* text-align: center; */
-    /* background: white; */
-    color: black;
-    
-    /* border: 2px solid white; */
+.navlink:hover{
+    opacity: 0.7;
 }

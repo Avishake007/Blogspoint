@@ -1,14 +1,30 @@
+/*
+    This is about Page
+    This Page contains all the details of the user
+*/
 import React, { useEffect, useState } from 'react';
+
+//User default pic
 import defaultpic from './defaultpic.png';
+
+
+//About Css
 import styles from './about.module.css';
+
+//
 import {useHistory} from 'react-router-dom';
 
+//Importing the Loader Page
+import Loader from '../Loader/loader';
 
 const About=()=>{
 
     const history=useHistory();
     const [userData,setUserData]=useState({});
-    const callAboutPage= async()=>{
+    const [loader,setLoader]=useState(true);
+
+    //Checking for user authentication 
+    const userAuthenticate= async()=>{
         try{
             const res=await fetch('/about',{
             method:"GET",
@@ -29,16 +45,24 @@ const About=()=>{
         setUserData(data);
       
     }
+
+    //If user not authenticate then redirect to signin page
         catch(err){
            
             console.log(err);
             history.push('/signin');
         }
     }
+
+
     useEffect(()=>{
-        callAboutPage();
+        userAuthenticate();
+        setLoader(false);
     },[]);
-    console.log(userData);
+    
+    //Loader section
+    if(loader)
+    return <Loader/>
     return(
         <>
             <div className={`${styles.container}`}>
@@ -67,7 +91,7 @@ const About=()=>{
                             <p>{userData.city}</p>
                         </div>
                         <div className={`${styles.detail}`}>
-                            <label htmlFor="stuorprof">Student/Profession : </label>
+                            <label htmlFor="stuorprof">Student/Professional : </label>
                             <p>{userData.stuprof}</p>
                         </div>
                         <div className={`${styles.detail}`}>

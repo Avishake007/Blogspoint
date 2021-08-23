@@ -35,14 +35,17 @@
   }
   
   .writeInput {
-    font-size: 30px;
-    border: none;
-    padding: 20px;
-    width: 70vw;
+    font-size: 18px;
+    background: #1d1d1c;
+    height: 52px;
+    width: 75% !important;
+    color:white;
   }
-  
+  .writeInput::first-letter,.writeText::first-letter{
+    text-transform: capitalize;
+  }
   .writeInput::placeholder {
-    color: rgb(189, 185, 185);
+    color: rgb(196, 146, 146);
     font-weight: 400;
   }
   
@@ -51,13 +54,18 @@
   }
   
   .writeText {
-    width: 70vw;
-    height: 100vh;
+    /* text-transform: capitalize; */
+    color: white;
+    height: 83vh;
+    /* height: 100vh; */
     font-family: inherit;
     font-size: 20px;
     background: #3e3a3a;
-  }
-  
+    border: none;
+    padding: 20px;
+    width: 70vw;
+}
+
   .writeSubmit {
     position: absolute;
     top: 20px;
@@ -72,3 +80,4 @@
     display: flex;
     align-items: center;
   }
+  
