@@ -1,3 +1,5 @@
+//404 Error page
+
 import React from 'react';
 import './errorpage.css';
 import {NavLink} from 'react-router-dom';

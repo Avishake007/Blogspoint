@@ -42,7 +42,7 @@ router.post('/signup', async (req,res)=>{
     // console.log(name);
     // res.send(req.body);
     if(!username || !name || !state || !city || !stuprof || !email || !password || !confirmpassword){
-        return res.status(422).json({error:"Sorry"});
+        return res.status(422).json({error:"Please fill all the fields"});
     }
     try{
         
@@ -118,13 +118,12 @@ router.post('/create',async(req,res)=>{
     try {
         const post = await new Post(req.body);
         post.save();
-
         res.status(200).json('Post saved successfully');
     } catch (error) {
         res.status(500).json(error);
     }
 });
-router.post('/update',async (request, response) => {
+router.post('/update/:id',async (request, response) => {
     try {
         const post = await Post.findById(request.params.id);
         
@@ -135,7 +134,7 @@ router.post('/update',async (request, response) => {
         response.status(500).json(error);
     }
 });
-router.post('/delete',async (request, response) => {
+router.delete('/delete/:id',async (request, response) => {
 try {
     const post = await Post.findById(request.params.id);
     
@@ -147,4 +146,32 @@ try {
     }
 
 });
+
+router.get('/post/:id', async (request, response) => {
+    try {
+        const post = await Post.findById(request.params.id);
+
+        response.status(200).json(post);
+    } catch (error) {
+        response.status(500).json(error)
+    }
+});
+router.get('/posts',async(request,response)=>{
+    let username = request.query.username;
+    let category = request.query.category;
+    let posts;
+    try {
+        if(username) 
+            posts = await Post.find({ username: username });
+        else if (category) 
+            posts = await Post.find({ categories: category });
+        else 
+            posts = await Post.find({});
+
+            console.log('Hoe', posts)
+        response.status(200).json(posts);
+    } catch (error) {
+        response.status(500).json(error)
+    }
+})
 module.exports=router;

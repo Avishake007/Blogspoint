@@ -82,3 +82,61 @@ svg{
     height: 80%;
     width: 100%;
 }
+.post{
+    height: 100px;
+    background: #434040;
+    padding: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+.searchbox{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+.searchbox input{
+    width: 50%;
+    margin-right: 14px;
+    border-radius: 15px;
+    background: #6f6565;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 6px;
+}
+.searchbox svg{
+    height: 31px;
+    width: 30px;
+    fill: white;
+    cursor: pointer;
+}
+.searchbox input::placeholder{
+    color:orange;
+}
+.username{
+    height: 24%;
+    color: lightblue;
+}
+.title{
+    color: rgb(41, 202, 9);
+    font-weight: bold;
+    font-size: 18px;
+
+}
+.upper{
+    display: flex;
+    justify-content: space-between;
+}
+.description{
+    height: 60%;
+    color: white;
+}
+.allPosts{
+    background: #000000;
+    height:100%;
+    width:100%;
+    padding:18px;
+}
+.allPosts p{
+    color: white;
+}

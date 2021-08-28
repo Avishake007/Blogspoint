@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext ,useState,useEffect} from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
@@ -6,78 +6,86 @@ import {UserContext} from "../../App";
 import Logo from './logo.png';
 const Navbar=()=>{
   const {state,dispatch}=useContext(UserContext);
-  const home=()=>{
-    document.getElementById("home").style.background="white";
-    document.getElementById("home").style.color="black";
-
-    document.getElementById("about").style.background="black";
-    document.getElementById("about").style.color="white";
+  const [flag,setFlag]=useState(false);
+const callAboutPage= async()=>{
+      try{
+          const res=await fetch('/about',{
+          method:"GET",
+          headers:{
+              // Accept:"application/json",
+              'Content-Type':'application/json'
+          },
+      });
+      // console.log(res.json());
+      if(!res.status===200)
+      {
+          const error=new Error(res.error);
+          throw error;
+      }
+      const data=await res.json();
+      console.log(data);
+      setFlag(true);
     
-    document.getElementById("login").style.background="black";
-    document.getElementById("login").style.color="white";
-
-    document.getElementById("register").style.background="black";
-    document.getElementById("register").style.color="white";
   }
-  const about=()=>{
-    document.getElementById("home").style.background="black";
-    document.getElementById("home").style.color="white";
-
-    document.getElementById("about").style.background="white";
-    document.getElementById("about").style.color="black";
-
-    document.getElementById("login").style.background="black";
-    document.getElementById("login").style.color="white";
-
-    document.getElementById("register").style.background="black";
-    document.getElementById("register").style.color="white";
+      catch(err){
+         
+          console.log(err);
+          // history.push('/signin');
+      }
   }
-  const login=()=>{
-    document.getElementById("home").style.background="black";
-    document.getElementById("home").style.color="white";
-
-    document.getElementById("about").style.background="black";
-    document.getElementById("about").style.color="white";
-    
-    document.getElementById("login").style.background="white";
-    document.getElementById("login").style.color="black";
-
-    document.getElementById("register").style.background="black";
-    document.getElementById("register").style.color="white";
-  }
-  const register=()=>{
-    document.getElementById("home").style.background="black";
-    document.getElementById("home").style.color="white";
-
-    document.getElementById("about").style.background="black";
-    document.getElementById("about").style.color="white";
-
-    document.getElementById("login").style.background="black";
-    document.getElementById("login").style.color="white";
-
-    document.getElementById("register").style.background="white";
-    document.getElementById("register").style.color="black";
-  }
+  useEffect(()=>{
+    callAboutPage();
+},[]);
   const Toggle=()=>{
-    if(state){
+    if(state||flag){
       return(
         <>
-        <img src={Logo} className={`${styles.logo}`} alt="" />
-        <NavLink className={`navbar ${styles.nav_link}`} id="home" to="/">Home</NavLink>
-        <NavLink className={`navbar ${styles.nav_link}`} id="about"  to="../about">About</NavLink>
-      <NavLink className={`navbar ${styles.nav_link}`} id="logout"  to="../logout">Logout</NavLink>
+         <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
+      <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarText">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item active">
+      <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className={`nav-link ${styles.navlink}`} id="about"  to="../about">About</NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className={`nav-link ${styles.navlink}`} id="write" to="../write">Write</NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className={`nav-link ${styles.navlink}`} id="logout"  to="../logout">Logout</NavLink>
+      </li>
+    </ul>
+   
+  </div>  
+        
+        
+      
       </>
       );
     }
     else{
       return(
         <>
-        <img src={Logo} className={`${styles.logo}`} alt="" />
-        <NavLink className={`navbar ${styles.nav_link}`} id="home" to="/">Home</NavLink>
-        <NavLink className={`navbar ${styles.nav_link}`} id="about"  to="../about">About</NavLink>
-        <NavLink className={`navbar ${styles.nav_link}`} id="write" to="../write">Write</NavLink>
-      <NavLink className={`navbar ${styles.nav_link}`} id="login"  to="../signin">Login</NavLink>
-      <NavLink className={`navbar ${styles.nav_link}`} id="register"  to="../signup">Register</NavLink>
+       
+  <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
+  <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarText">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item active">
+      <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className={`nav-link ${styles.navlink}`} id="about"  to="../about">About</NavLink>
+      </li>
+      <li className="nav-item">
+      <NavLink className={`nav-link ${styles.navlink}`} id="login"  to="../signin">Login</NavLink>
+      </li>
+      <li className="nav-item">
+    <NavLink  className={`nav-link ${styles.navlink}`} id="register"  to="../signup">Register</NavLink> 
+      </li>
+    </ul>
+   
+  </div>  
       </>
       );
     }
@@ -86,12 +94,12 @@ const Navbar=()=>{
     <>
      <div className={`${styles.container2}`}>
         <header>
-            <div className={`${styles.navbar}`}>
-            
+            {/* <div className={`${styles.navbar}`}> */}
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{zIndex: "4"}}>
             
             
             <Toggle/>
-            </div>
+            </nav>
         </header>
         </div>
     </>
