@@ -41,7 +41,10 @@ const callAboutPage= async()=>{
       return(
         <>
          <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
-      <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarText">
+         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+      <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
       <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
@@ -69,7 +72,10 @@ const callAboutPage= async()=>{
         <>
        
   <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
-  <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarText">
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+  <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
       <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>

@@ -29,6 +29,7 @@ const About=()=>{
     const [fliterPosts,setFilterPosts]=useState([]);
     const [noOfBlogs,setNoOfBlogs]=useState(0);
     const { search } = useLocation();
+    console.log(search)
     //Checking for user authentication 
     const userAuthenticate= async()=>{
         try{
@@ -49,6 +50,7 @@ const About=()=>{
         const data=await res.json();
         // console.log(data);
         setUserData(data);
+        
       
     }
 
@@ -62,33 +64,37 @@ const About=()=>{
 
     const filterByUsername=(username)=>{
         var curr_username=username;
-  
+        var count=0;
         posts.filter((post)=>{
-            console.log(post.username===curr_username)
+            console.log(post.username==curr_username)
            
-            if(post.username===curr_username){
-                setNoOfBlogs(noOfBlogs+1);
+            if(post.username==curr_username){
+                count+=1;
+                console.log(noOfBlogs)
             }
         })
+        setNoOfBlogs(count);
         console.log(fliterPosts);
         
     }
+   
     useEffect(()=>{
-        userAuthenticate();
         const fetchData = async () => { 
-            let data = await getAllPosts(); // params in url
+            let data = await getAllPosts(search); // params in url
             setPosts(data);
             
         }
+        userAuthenticate();
+       
         fetchData();
-        
-    },[]);
-    useEffect(()=>{
         filterByUsername(userData.username);
-       console.log(posts)
-        console.log(fliterPosts)
         setLoader(false);
-    },[])
+        console.log(posts)
+         console.log(fliterPosts)
+       
+        
+    },[search]);
+    
     
     // console.log(posts)
     //Loader section

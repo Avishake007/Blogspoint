@@ -24,6 +24,7 @@ const Logout=()=>{
             setTimeout(toast.success("Successfully Logout",{
                 position: "top-center",
               }),3000);
+              window.location.reload(false);
             history.push('/signin',{replace:false});
             if(!res.status===200){
                 const error=new Error(res.error);
