@@ -37,7 +37,7 @@ const Home=()=>{
     //Function to filter by username
     const filterByUsername=(e)=>{
         var curr_username=e.target.value+'';
-    //    console.log(curr_username[0])
+  
         setFilterPosts(all_posts.filter((post)=>{
             console.log(post.username.substring(0,curr_username.length)===curr_username)
            

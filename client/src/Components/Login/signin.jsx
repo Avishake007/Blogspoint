@@ -43,6 +43,12 @@ const Login=()=>{
         position: "top-center",
       }),3000);
     }
+    else if(email===""||password==="")
+    {
+      setTimeout(toast.error("Please fill the required fields",{
+        position: "top-center",
+      }),3000);
+    }
     else{
       dispatch({type:'USER',payload:true})
       setTimeout(toast.success("Login Successful",{

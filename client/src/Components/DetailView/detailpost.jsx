@@ -80,7 +80,7 @@ const DetailView=({match})=>{
         history.push('/')
     }
 
-    
+
     if(loader)
     return <Loader/>
     return(
