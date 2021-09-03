@@ -74,3 +74,8 @@ g #circle5{
     }
 }
 
+@media only screen and (max-width: 700px) {
+    .register_png{
+        display: none;
+    }
+}

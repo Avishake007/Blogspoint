@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 .container{
     height: 90vh;
     background: #3f3d3d;
@@ -9,11 +10,11 @@
     justify-content: space-between;
 }
 .first_inner_container label{
-    color: #14f214;
+    color: #76ff76;
     margin-right: 14px;
 }
 .first_inner_container p{
-    color: #e6d41a;;
+    color: #fff698;
 }
 .second_inner_container{
     display: flex;
@@ -25,32 +26,48 @@
     margin-right: 14px;
 }
 .second_inner_container p{
-    color: #49b3ea;
+    color: #96fdde;
+    font-family: 'Arvo', serif;
+    font-size: 48px;
+    font-weight: normal;
 }
 .title,.edit_update{
     display: flex;
 }
 .third_inner_container{
     height: 71vh;
-    background: #635f5f;
-    border: 2px solid black;
+    background: transparent;
+    border: 2px solid transparent;
     color: white;
     padding: 14px;
+    width: 100%;
+    font-size: 20px;
     /* text-transform: capitalize; */
 }
 .third_inner_container::first-letter{
     text-transform:capitalize;
 }
-.edit_update svg{
-    height: 29px;
+.edit_update a svg{
+    height: 50px;
     fill: #76b8ef;
     margin-right: 14px;
     cursor: pointer;
 }
-.edit_update svg:nth-child(2){
-    height: 29px;
+.delete svg path{
+    /* height: 29px; */
     fill: #de5050;
     
  
     cursor: pointer;
+}
+.edit_update a svg:hover{
+    opacity: 0.8;
+}
+@media only screen and (max-width: 750px) {
+    .first_inner_container{
+        flex-direction: column;
+    }
+    .second_inner_container{
+        flex-direction: column;
+    }
 }
