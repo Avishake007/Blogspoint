@@ -10,7 +10,7 @@ import Blogger from './blogger';
 import { getAllPosts } from '../crud/crud';
 
 //Search Icon
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,NavLink } from 'react-router-dom';
 import Loader from '../Loader/loader';
 
 const Home=()=>{
@@ -59,12 +59,18 @@ const Home=()=>{
         <div className={`${styles.container}`}>
         
         <div className={`${styles.part}`}>
-        <div className={`${styles.clippath}`}></div>
+        {/* <div className={`${styles.clippath}`}></div> */}
         <div className={`${styles.first}`}>
-        
-            <p>WELCOME TO</p>
+            <p>Lorem ipsum dolor sit</p>
+            {/* <p>WELCOME TO</p>
             <p>Blogspoint</p>
-            <p>The best place for bloggers</p>
+            <p>The best place for bloggers</p> */}
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio velit iure quibusdam iste mollitia. Aliquam quisquam, pariatur sint nulla assumenda labore!</p>
+            <div className={`${styles.signin_signup}`}>
+            <Link className={` ${styles.signup}`} to="../signup">Register</Link>
+                OR
+            <Link className={`${styles.signin}`} to="../signin">Login</Link>
+            </div>
         </div>
         <div className={`${styles.second}`}>
             <Blogger/>
@@ -76,10 +82,6 @@ const Home=()=>{
             <p>Posts so far : </p>
             <div className={`${styles.searchbox}`}>
                 <input type="search" name="search" id="search" placeholder="Search by username..." onChange={filterByUsername}/>
-                {/* <HiSearch/> */}
-                {
-
-                }
             </div>
         {
                 posts.length ? posts.map(post => (

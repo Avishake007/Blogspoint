@@ -2,7 +2,7 @@ import React from 'react';
 import './register.css'
 const Register=()=>{
     return(
-<svg width="455" height="352" viewBox="0 0 455 352" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg className="register_png" width="455" height="352" viewBox="0 0 455 352" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="undraw_fill_form_re_cwyf 1" clip-path="url(#clip0)">
 <g id="Group 47">
 <g id="Group 43">

@@ -4,7 +4,8 @@ import Registersvg from './register.jsx';
 //React Toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BsFillCircleFill } from 'react-icons/bs'
+import { TiTick } from 'react-icons/ti'
+import { VscChromeClose } from 'react-icons/vsc';
 import {Link,useHistory} from 'react-router-dom';
 const Signup=()=>{
   const history=useHistory();
@@ -168,10 +169,10 @@ const Signup=()=>{
   onChange={handlePassword}
      placeholder="Enter your password" name="password" required/>
      {
-     (format===true)&&<div style={{fontSize: "15px",color:"green"}}><BsFillCircleFill/></div>
+     (format===true)&&<div style={{fontSize: "15px",color:"green"}}><TiTick/></div>
       }
       {
-     (format===false)&&<div style={{fontSize: "15px",color:"red"}}><BsFillCircleFill/></div>
+     (format===false)&&<div style={{fontSize: "15px",color:"red"}}><VscChromeClose/></div>
       }
    </div>
    
@@ -187,10 +188,10 @@ const Signup=()=>{
      placeholder="Confirm your password" name="confirmpassword" required/>
    </div>
    {
-     (confirmPassword===true)&&<div style={{fontSize: "15px",color:"green"}}><BsFillCircleFill/></div>
+     (confirmPassword===true)&&<div style={{fontSize: "15px",color:"green"}}><TiTick/></div>
       }
       {
-     (confirmPassword===false)&&<div style={{fontSize: "15px",color:"red"}}><BsFillCircleFill/></div>
+     (confirmPassword===false)&&<div style={{fontSize: "15px",color:"red"}}><VscChromeClose/></div>
       }
    </div>
  <div className={`${styles.btner}`}>

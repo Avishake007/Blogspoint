@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Average&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Asap:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@1,800&display=swap');
 *{
     padding: 0px;
     margin: 0px;
@@ -35,20 +36,57 @@
     justify-content: center;
     align-items: center;
     color:white;
-    text-transform: uppercase;
-    font-family: 'Asap', sans-serif;;
+    padding: 60px;
+    /* text-transform: uppercase; */
+    /* font-family: 'Asap', sans-serif;; */
 }
+
 .first p:nth-child(1){
+   
     font-size: 4vw;
+    font-family: 'JetBrains Mono', monospace;
 }
 .first p:nth-child(2){
-    font-size: 7vw;
-    font-weight: bold;
+    /* font-size: 7vw; */
+    /* font-weight: bold; */
+    font-size: 23px;
+    line-height: 27px;
     font-family: 'Archivo', sans-serif;
-    animation: change_color 2s infinite ;
+    /* animation: change_color 2s infinite ; */
+    
+} 
+.signin_signup{
+    width: 100%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+.signup,.signin{
+    color: #07f9dd;
+    border: 2px solid;
+    width: 18%;
+    height: 46px;
+    font-size: 18px;
+    margin-right: 22px;
+    margin-left: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 28px;
+    outline: none;
+    transition: all 1s ease-in-out;
+}
+.signup:hover,.signin:hover{
+    background: #07f9dd;
+    color: black;
     
 }
-@keyframes change_color {
+/* @keyframes change_color {
     0%{
         color: #65BCED;
     }
@@ -65,12 +103,12 @@
         color: #65BCED;
 
     }
-}
-.first p:nth-child(3){
+} */
+/* .first p:nth-child(3){
     width: 100%;
     font-size: 1.5vw;
     text-align: right;
-}
+} */
 .second{
     width: 50%;
     height: 100%;

@@ -152,16 +152,38 @@ i{
 }
 
 @media only screen and (max-width: 700px) {
+    .form_inner{
+        width: 87%;
+    }
     .formpng {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
     }
     .formpng .form_inner_inner{
-        margin-top: 0px;
+        width: 100%;
     }
-    .login {
-        width: 114px;
-        height: 37px;
+    .form_check_input{
+        height: 14px;
+        margin-right: 14px;
+    }
+    .form_inner_inner:last-child{
+        display: none;
+    }
+    .form_check{
+        display: flex;
+        align-items: baseline;
+    }
+    .btner{
+        align-items: center;
+    }
+    .login{
+        font-size: 14px;
+        height: 31px;
+    width: 70px;
+
+    }
+    .login_png {
+        display: none;
     }
   }

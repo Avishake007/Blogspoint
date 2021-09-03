@@ -111,6 +111,7 @@ router.get('/about',authenticate,(req,res)=>{
 router.get('/logout',(req,res)=>{
     console.log("Logout");
     res.clearCookie('jwtoken',{path:'/'});
+    
     res.status(200).send("Logout")
 });
 
@@ -156,6 +157,21 @@ router.get('/post/:id', async (request, response) => {
         response.status(500).json(error)
     }
 });
+router.get('/post/:username',async(request,response)=>{
+    let posts;
+    console.log("oo")
+    try{
+        // if(request.params.username){
+        //     posts=await Post.find({username : requestusername});
+        // }
+        // response.status(200).json(posts);
+        // console.log("po")
+        console.log(request+"   pop")
+    }
+    catch(error){
+        response.status(500).json(error)
+    }
+})
 router.get('/posts',async(request,response)=>{
     let username = request.query.username;
     let category = request.query.category;

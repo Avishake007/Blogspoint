@@ -113,7 +113,7 @@ const Write=()=>{
             placeholder="Tell your story..."
             type="text"
             value={post.description}
-           
+            
             onChange={handleInputs}
             name="description"
             autoFocus="off"

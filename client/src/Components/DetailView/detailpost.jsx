@@ -100,21 +100,37 @@ const DetailView=({match})=>{
             </div>
             <div className={`${styles.second_inner_container}`}>
                 <div className={`${styles.title}`}>
-                <label htmlFor="title">Title : </label>
+              
                 <p>{post.title}</p>
                 </div>
                 {
                 (flag==true)&&(userData.username===post.username)&&<div className={`${styles.edit_update}`}>
                     <Link to={`/update/${post._id}`}><AiFillEdit/></Link>
                     
-                    <MdDelete onClick={()=>deleteBlog()}/>
+                    <Link to="/" className={`${styles.delete}`}><MdDelete  onClick={()=>deleteBlog()}/></Link>
                </div>
                 }
             </div>
            
-            <div className={`${styles.third_inner_container}`}>
-                <p>{post.description}</p>
-            </div>
+            {/* <div className=> */}
+            <textarea
+            className={`${styles.third_inner_container}`}
+            type="text"
+            value={post.description}
+           
+            name="description"
+           
+          />
+                {/* <p>{
+                    for(var i=0;i<post.description.length;i++){
+
+                    }
+
+                }</p>
+                {
+                    console.log(post.description)
+                } */}
+            {/* </div> */}
         </div>
         </>
     )

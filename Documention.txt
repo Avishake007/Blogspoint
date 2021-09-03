@@ -1,0 +1,29 @@
+User Login
+    Problems :
+	Password is visible in the database which harms the privacy of a user
+    Solution
+	Used bcryptJs for hashing the password(12 rounds) which takes almost an year to decrypt
+    Problem:
+	Connecting the frontend with backend
+    Solution:
+	Used proxy server which makes the client server thinks it is in his own server
+    Problem :
+	Storing the details of the user into the database through forntend
+    Solution:
+	Using fetch or axios to get access to the post or get method in the backend
+    Problem :
+	Provide User Authentication
+    Solution :
+	JWT with cookies is used to provide user authentication
+     Problem :
+ 	Deletion of user cookies after Logout
+     Solution:
+	UserContext and delete coookies are used for that matter
+Post:
+
+	
+
+
+
+    
+

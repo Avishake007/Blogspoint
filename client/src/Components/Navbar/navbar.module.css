@@ -1,5 +1,5 @@
 .container2{
-    background: black;
+    /* background: black; */
     /* position: absolute; */
     width: 100%;
 }
@@ -18,12 +18,28 @@
     justify-content: flex-end;
     align-items: center;
 }
+.nav_item{
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+
+}
 .navlink{
     font-size: 20px;
     margin-right: 14px;
     display: flex;
     justify-content: center;
+    width: 100%;
+    
+    border-radius: 18px;
+    
+    transition: all 1s ease-in-out;
 }
 .navlink:hover{
     opacity: 0.7;
+    background: White;
+    border:2px solid white;
+    color:black !important; 
+    
 }

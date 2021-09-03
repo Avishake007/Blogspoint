@@ -13,12 +13,21 @@ export const createPost = async (post) => {
 export const getAllPosts = async (param) => {
     try {
         let response = await axios.get(`/posts${param}`);
+       
         return response.data;
     } catch (error) {
         console.log('Error while calling getPosts API ', error)
     }
 }
-
+export const getPostByUsername=async (username)=>{
+    try {
+        let response = await axios.get(`/post/${username}`);
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.log('Error while calling getPost API ', error);
+    }
+}
 //Function to get a post according to user id 
 export const getPost = async (id) => {
     try {

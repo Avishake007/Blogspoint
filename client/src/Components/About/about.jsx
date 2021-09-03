@@ -12,7 +12,7 @@ import defaultpic from './defaultpic.png';
 import styles from './about.module.css';
 
 //Function to get all posts
-import { getAllPosts } from '../crud/crud';
+import { getPostByUsername } from '../crud/crud';
 
 //
 import {useHistory,useLocation} from 'react-router-dom';
@@ -28,8 +28,8 @@ const About=()=>{
     const [loader,setLoader]=useState(true);
     const [fliterPosts,setFilterPosts]=useState([]);
     const [noOfBlogs,setNoOfBlogs]=useState(0);
-    const { search } = useLocation();
-    console.log(search)
+   
+    // console.log(search)
     //Checking for user authentication 
     const userAuthenticate= async()=>{
         try{
@@ -50,7 +50,7 @@ const About=()=>{
         const data=await res.json();
         // console.log(data);
         setUserData(data);
-        
+   
       
     }
 
@@ -63,6 +63,7 @@ const About=()=>{
     }
 
     const filterByUsername=(username)=>{
+      
         var curr_username=username;
         var count=0;
         posts.filter((post)=>{
@@ -70,6 +71,7 @@ const About=()=>{
            
             if(post.username==curr_username){
                 count+=1;
+              
                 console.log(noOfBlogs)
             }
         })
@@ -79,21 +81,28 @@ const About=()=>{
     }
    
     useEffect(()=>{
-        const fetchData = async () => { 
-            let data = await getAllPosts(search); // params in url
-            setPosts(data);
+        userAuthenticate();
+        const fetchData = async (username) => { 
+            let data = await getPostByUsername(username); // params in url
+            console.log(data)
+            // setNoOfBlogs(data.length);
+           
+          
+            console.log(userData)
+       
+            // filterByUsername(userData.username);
+            setLoader(false);
+            
             
         }
-        userAuthenticate();
+        fetchData(userData.username);
+        
        
-        fetchData();
-        filterByUsername(userData.username);
-        setLoader(false);
         console.log(posts)
          console.log(fliterPosts)
        
         
-    },[search]);
+    },[]);
     
     
     // console.log(posts)

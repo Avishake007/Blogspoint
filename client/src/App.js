@@ -21,7 +21,7 @@ function App() {
   const [state,dispatch]=useReducer(reducer,initialState);
     return (
      
-    <div>
+    <div style={{background:"black"}}>
       <UserContext.Provider value={{state,dispatch}}>
       <Navbar/>
       <Switch>

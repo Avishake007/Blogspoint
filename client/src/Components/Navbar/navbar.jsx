@@ -49,13 +49,13 @@ const callAboutPage= async()=>{
       <li className="nav-item active">
       <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="about"  to="../about">About</NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="write" to="../write">Write</NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="logout"  to="../logout">Logout</NavLink>
       </li>
     </ul>
@@ -77,16 +77,16 @@ const callAboutPage= async()=>{
   </button>
   <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
-      <li className="nav-item active">
-      <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
+      <li className={`nav-item active ${styles.nav_item}`}>
+      <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home</NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="about"  to="../about">About</NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="login"  to="../signin">Login</NavLink>
       </li>
-      <li className="nav-item">
+      <li className={`nav-item ${styles.nav_item}`}>
     <NavLink  className={`nav-link ${styles.navlink}`} id="register"  to="../signup">Register</NavLink> 
       </li>
     </ul>
@@ -101,7 +101,7 @@ const callAboutPage= async()=>{
      <div className={`${styles.container2}`}>
         <header>
             {/* <div className={`${styles.navbar}`}> */}
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{zIndex: "4"}}>
+            <nav className="navbar navbar-expand-lg navbar-dark " style={{zIndex: "4"}}>
             
             
             <Toggle/>
