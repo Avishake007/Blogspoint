@@ -10,6 +10,10 @@
 .logo{
     height: 59px;
 }
+a svg{
+    width: 38px;
+    height: 54px;
+}
 .navbar{
     height: 100%;
     width:100%;
@@ -30,7 +34,8 @@
     margin-right: 14px;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100px;
+    height: 50px;
     
     border-radius: 18px;
     

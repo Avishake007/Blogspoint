@@ -5,7 +5,7 @@ import styles from './home.module.css';
 
 //Blogger svg image
 import Blogger from './blogger';
-
+import BloggerBro from './bloggerbro'
 //Function to get all posts
 import { getAllPosts } from '../crud/crud';
 
@@ -20,9 +20,44 @@ const Home=()=>{
     const [loader,setLoader]=useState(false);
     const [fliterPosts,setFilterPosts]=useState([]);
     const { search } = useLocation();
+    
     const [all_posts,setAuto_posts]=useState([]);
+    const [authenticate,setAuthenticate]=useState(false);
 
-
+    //Checking for user authentication
+    const userAuthenticate= async()=>{
+        try{
+            const res=await fetch('/about',{
+            method:"GET",
+            headers:{
+                // Accept:"application/json",
+                'Content-Type':'application/json'
+            },
+        });
+        // console.log(res.json());
+        if(!res.status===200)
+        {
+            const error=new Error(res.error);
+            setAuthenticate(false);
+            throw error;
+        }
+        const data=await res.json();
+        
+        setAuthenticate(true);
+      
+    }
+        catch(err){
+           
+            console.log(err);
+            setAuthenticate(false);
+            // history.push('/signin');
+        }
+    }
+  
+  
+    useEffect(()=>{
+      userAuthenticate();
+  },[]);
     useEffect(() => {
         const fetchData = async () => { 
             let data = await getAllPosts(search); // params in url
@@ -57,20 +92,26 @@ const Home=()=>{
     return(
         <>
         <div className={`${styles.container}`}>
-        
+        {/* <div className={`${styles.clippath}`}></div>
+        <div className={`${styles.clippath2}`}></div> */}
         <div className={`${styles.part}`}>
-        {/* <div className={`${styles.clippath}`}></div> */}
+      
         <div className={`${styles.first}`}>
             <p>Lorem ipsum dolor sit</p>
             {/* <p>WELCOME TO</p>
             <p>Blogspoint</p>
             <p>The best place for bloggers</p> */}
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio velit iure quibusdam iste mollitia. Aliquam quisquam, pariatur sint nulla assumenda labore!</p>
-            <div className={`${styles.signin_signup}`}>
-            <Link className={` ${styles.signup}`} to="../signup">Register</Link>
-                OR
-            <Link className={`${styles.signin}`} to="../signin">Login</Link>
-            </div>
+            {
+                (authenticate==false)&&<div className={`${styles.signin_signup}`}>
+                <Link className={` ${styles.signup}`} to="../signup">Register</Link>
+                    OR
+                <Link className={`${styles.signin}`} to="../signin">Login</Link>
+                </div>
+            }
+            {
+                (authenticate==true)&&<Link className={`${styles.get_started}`} to="../write">Get Started</Link>
+            }
         </div>
         <div className={`${styles.second}`}>
             <Blogger/>
@@ -78,8 +119,16 @@ const Home=()=>{
         </div>
         
         </div>
+
         <div className={`${styles.allPosts}`}>
+            <div className={`${styles.blogger}`}>
+            <BloggerBro/>
+            </div>
+            <div className={`${styles.outer_cover}`}>
             <p>Posts so far : </p>
+            <div className={`${styles.inner_}`}>
+                <div className={`${styles.inner_cover}`}>
+           
             <div className={`${styles.searchbox}`}>
                 <input type="search" name="search" id="search" placeholder="Search by username..." onChange={filterByUsername}/>
             </div>
@@ -106,6 +155,9 @@ const Home=()=>{
                     </div>
 
             }
+            </div>
+            </div>
+            </div>
             </div>
         </>
     )
