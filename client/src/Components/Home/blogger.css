@@ -1,0 +1,60 @@
+#circle11{
+    animation: hide_show1 2s ease-in-out infinite ;
+}
+@keyframes hide_show1 {
+    0%{
+        display: block;
+    }
+    25%{
+        display: none;
+    }
+    50%{
+        display: block;
+    }
+    75%{
+        display: none;
+    }
+}
+#circle12{
+    animation: hide_show2 2s ease-in-out infinite ;
+}
+@keyframes hide_show2 {
+    0%{
+        display: none;
+    }
+    25%{
+        display: block;
+    }
+    50%{
+        display: none;
+    }
+    75%{
+        display: block;
+    }
+}
+#Vector_77{
+    
+}
+#Vector_14{
+    display: none;
+}
+#Vector_20,#Vector_17,#Vector_18,#Vector_13,#Vector_15,#Vector_16{
+    animation: rotate 2s ease-in-out infinite;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-1deg);
+    }
+    50%{
+        transform: rotate(0deg);
+    }
+    75%{
+        transform: rotate(-1deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
