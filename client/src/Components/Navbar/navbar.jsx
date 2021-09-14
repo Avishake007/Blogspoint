@@ -3,7 +3,9 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {UserContext} from "../../App";
-import {ImPencil} from 'react-icons/im'
+import {ImPencil} from 'react-icons/im';
+import "../DarkMode/darkmode.css";
+
 import Logo from './logo.png';
 const Navbar=()=>{
   const {state,dispatch}=useContext(UserContext);
@@ -37,13 +39,18 @@ const callAboutPage= async()=>{
   useEffect(()=>{
     callAboutPage();
 },[]);
+const toggleTheme=()=>{
+  document.body.classList.toggle("darkmode");
+}
   const Toggle=()=>{
     if(state||flag){
       return(
         <>
          <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /><ImPencil/></a>
          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
+   <div className="line"></div>
+   <div className="line"></div>
+   <div className="line"></div>
   </button>
       <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
@@ -74,7 +81,9 @@ const callAboutPage= async()=>{
        
   <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /><ImPencil/></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
+   <div className={`${styles.line}`}></div>
+   <div className={`${styles.line}`}></div>
+   <div className={`${styles.line}`}></div>
   </button>
   <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
@@ -102,10 +111,10 @@ const callAboutPage= async()=>{
      <div className={`${styles.container2}`}>
         <header>
             {/* <div className={`${styles.navbar}`}> */}
-            <nav className="navbar navbar-expand-lg navbar-dark " style={{zIndex: "4"}}>
-            
+            <nav className={`navbar navbar-expand-lg navbar-primary ${styles.navbar}`} style={{zIndex: "4"}}>
             
             <Toggle/>
+            <input type="checkbox"  className={`${styles.toggle}`} name="toggle" id="toggle" onClick={()=>toggleTheme()}/>
             </nav>
         </header>
         </div>

@@ -177,7 +177,7 @@ const Signup=()=>{
    </div>
    
    </div>
-   <div className={`${styles.col}`}>
+   <div className={`${styles.form_row}`}>
    <i className={`fa fa-lock ${styles.fa_lock}`} aria-hidden="true"></i>
  <div className={`${styles.col}`}>
      <input type="password" className={`${styles.form_control}`} 
@@ -207,7 +207,7 @@ const Signup=()=>{
    <Registersvg/>
    <div className={`${styles.has_account}`}>
    Already have an account ?
-   <Link style={{    marginLeft: "14px",cursor: "pointer",color: "#faa855"}} to="/signin">
+   <Link style={{    marginLeft: "14px",cursor: "pointer"}} to="/signin">
     Signin
     </Link>
  </div>

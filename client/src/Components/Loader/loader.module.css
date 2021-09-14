@@ -1,16 +1,17 @@
 .loader{
     display: flex;
-    background: #2c2b2b;
+    background: var(--login_form_color);
     height: 90vh;
+    width: 100%;
     font-size: 38px;
-    color: white;
+    color: var(--secondary_color);
     justify-content: center;
     align-items: center;
 }
 .loader svg{
     width: 36px;
     height: 36px;
-    fill: white;
+    fill: var(--secondary_color);
     animation: rotateLoader 2s infinite ;
 }
 @keyframes rotateLoader {
