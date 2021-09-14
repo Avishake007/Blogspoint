@@ -1,0 +1,24 @@
+.darkmode{
+    --primary_color:black;
+    --login_form_color:#1c1c1d;
+    --secondary_color:white;
+    --input_color:#2d2929;
+    --svg_color:#9da4a4;
+    --register_login:#07f9dd;
+    --register-botton:#f0cd26;
+    --no-account:#4cd39e;
+    --shadow-color:black;
+    --details-color:#b3b1b1;
+}
+:root{
+    --primary_color:#e8e1e1;
+    --secondary_color:black;
+    --register_login:#05505e;
+    --login_form_color:#d4d3d3;
+    --secondary_color:black;
+    --input_color:#c3b4b4;
+    --register-botton:rgb(146 84 22);
+    --no-account:#0b6340;
+    --shadow-color:grey;
+    --details-color:#8f424c;
+}

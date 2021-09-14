@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Autour+One&display=swap');
 .container{
-    background: black;
+    background: var(--primary_color);
     height:100vh;
+    width: 100%;
     display:flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 }
 .container p{
-    color: white;
+    color: var(--secondary_color);
     font-family: 'Autour One', cursive;
     font-size: 3vw;
 }
@@ -31,7 +32,7 @@
     z-index: 1;
 }
 .info{
-    background: #1d1d1d;
+    background: var(--login_form_color);
     height: 80%;
     width: 100%;
     /* margin-left: 39px; */
@@ -43,7 +44,7 @@
 .detail label{
     font-size: 1.5vw;
     font-weight: bold;
-    color: #b3b1b1;
+    color: var(--details-color);
 }
 .detail p{
     padding: 0px;

@@ -5,9 +5,9 @@
     font-size: 4rem;
     justify-content: center;
     align-items: flex-end;
-    height: 100vh;
+    min-height: 88vh;
     /* height: 84vh; */
-    background: black;
+    background: var(--primary_color);
 }
 .form_outer{
     height: 94%;
@@ -19,16 +19,17 @@
 }
 .form_inner{
     width: 60%;
-    color: white;
+    margin-bottom: 25px;
+    color: var(--secondary_color);
     /* height: 94%; */
     /* font-weight: bold; */
     padding: 14px;
     display: flex;
     flex-direction: column;
-    background: #1c1c1d;
+    background: var(--login_form_color);
     /* justify-content: center; */
     /* align-items: center; */
-    /* box-shadow: 5px 6px 14px grey; */
+    box-shadow: 5px 6px 14px var(--shadow-color);
 }
 form{
     height: 68%;
@@ -81,6 +82,7 @@ p{
 }
 input[type=text],input[type=number],input[type=email],input[type=password]{
     /* background: #2d2929; */
+    border-bottom: 2px solid;
     font-size: 14px;
     background: transparent;
     outline: none;
@@ -92,11 +94,13 @@ input[type=text]{
 .col{
     width: 100%;
     display: flex;
-    background: #1f1f1e;
+    border-bottom: var();
+    /* background: #1f1f1e; */
     margin-right: 14px;
+    border-bottom: 2px solid var(--secondary_color);
 }
 .col input{
-    color: #fde6e6;
+    color: var(--secondary_color);
 }
 /* button{
     background: #da1919 !important;
@@ -124,8 +128,8 @@ button:hover{
     justify-content: center;
 }
 input[type=number]:focus,input[type=email]:focus,input[type=password]:focus,input[type=text]:focus{
-    background: #2d2929;
-    color: white;
+    /* background: #2d2929;
+    color: white; */
     opacity: 0.8;
     outline: none;
     border: 0;
@@ -157,10 +161,13 @@ i{
     font-size: 3vw;
 }
 .has_account{
-    font-size: 14px;
+    font-size: 18px;
     margin-top: 7px;
-    color: #4cd39e;
+    color: var(--no-account);
     margin-left:14px;
+}
+.has_account  a{
+    color: var(--register-botton);
 }
 .login{
     width: 7vw;

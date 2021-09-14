@@ -9,6 +9,9 @@ import BloggerBro from './bloggerbro'
 //Function to get all posts
 import { getAllPosts } from '../crud/crud';
 
+//React icons
+import {FaAngleDown} from 'react-icons/fa';
+
 //Search Icon
 import { Link, useLocation,NavLink } from 'react-router-dom';
 import Loader from '../Loader/loader';
@@ -119,8 +122,8 @@ const Home=()=>{
         </div>
         
         </div>
-
-        <div className={`${styles.allPosts}`}>
+            <div className={`${styles.down_arrow}`}><a href="#allPosts"><FaAngleDown/></a></div>
+        <div className={`${styles.allPosts}`} id="allPosts">
             <div className={`${styles.blogger}`}>
             <BloggerBro/>
             </div>

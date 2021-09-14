@@ -103,7 +103,7 @@ const Login=()=>{
   </button>
  <div className={`${styles.no_account}`}>
    Don't have an account ?
-   <Link style={{    marginLeft: "14px",cursor: "pointer",color: "#faa855"}} to="/signup">
+   <Link style={{    marginLeft: "14px",cursor: "pointer"}} to="/signup">
     Register
     </Link>
  </div>
