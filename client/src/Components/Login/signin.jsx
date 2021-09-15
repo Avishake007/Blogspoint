@@ -58,6 +58,7 @@ const Login=()=>{
     }
   }
     useEffect(()=>{
+      document.title="Signin Page";
       setLoader(false);
     },[])
     if(loader)

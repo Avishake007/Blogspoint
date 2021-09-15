@@ -58,6 +58,7 @@ const DetailView=({match})=>{
 
 
   useEffect(()=>{
+      document.title="Post Details Page";
     userAuthenticate();
 },[]);
     useEffect(() => {

@@ -4,6 +4,7 @@ import { Route,Switch} from 'react-router-dom';
 
 import Home from './Components/Home/home';
 import Navbar from './Components/Navbar/navbar';
+import Footer from './Components/Footer/footer';
 import About from './Components/About/about';
 import Write from './Components/Write/write'
 import Login from './Components/Login/signin';
@@ -21,7 +22,7 @@ function App() {
   const [state,dispatch]=useReducer(reducer,initialState);
     return (
      
-    <div style={{background:"black"}}>
+   
       <UserContext.Provider value={{state,dispatch}}>
       <Navbar/>
       <Switch>
@@ -49,8 +50,9 @@ function App() {
         <Error_Page/>
       </Route>
       </Switch>
+      <Footer/>
       </UserContext.Provider>
-    </div>
+   
    
   );
 }

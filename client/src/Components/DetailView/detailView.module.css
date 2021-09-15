@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 .container{
     height: 90vh;
-    background: #3f3d3d;
+    background: var(--login_form_color);
     padding:18px;
 }
 .first_inner_container{
     display: flex;
-    color: white;
+    color: var(--secondary_color);
     justify-content: space-between;
 }
 .first_inner_container label{
-    color: #76ff76;
+    color:var(--label-color);
     margin-right: 14px;
 }
 .first_inner_container p{
-    color: #fff698;
+    color: var(--inner-container);
 }
 .second_inner_container{
     display: flex;
@@ -26,7 +26,7 @@
     margin-right: 14px;
 }
 .second_inner_container p{
-    color: #96fdde;
+    color: var(--second-inner);
     font-family: 'Arvo', serif;
     font-size: 48px;
     font-weight: normal;
@@ -38,7 +38,7 @@
     height: 71vh;
     background: transparent;
     border: 2px solid transparent;
-    color: white;
+    color: var(--secondary_color);
     padding: 14px;
     width: 100%;
     font-size: 20px;

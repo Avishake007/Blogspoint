@@ -24,6 +24,10 @@ a svg{
     /* align-items: center; */
     background: var(--primary_color);
 }
+.navbar img{
+    height: 3rem;
+    margin-left: 14px;
+}
 .nav_item{
     margin-top: 14px;
     display: flex;

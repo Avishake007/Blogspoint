@@ -46,15 +46,15 @@ const toggleTheme=()=>{
     if(state||flag){
       return(
         <>
-         <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /><ImPencil/></a>
+         <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-   <div className="line"></div>
-   <div className="line"></div>
-   <div className="line"></div>
+  <div className={`${styles.line}`}></div>
+   <div className={`${styles.line}`}></div>
+   <div className={`${styles.line}`}></div>
   </button>
       <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
-      <li className="nav-item active">
+      <li className={`nav-item ${styles.nav_item} active`} >
       <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home<span className="sr-only">(current)</span></NavLink>
       </li>
       <li className={`nav-item ${styles.nav_item}`}>
@@ -79,7 +79,7 @@ const toggleTheme=()=>{
       return(
         <>
        
-  <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /><ImPencil/></a>
+  <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
    <div className={`${styles.line}`}></div>
    <div className={`${styles.line}`}></div>
@@ -87,7 +87,7 @@ const toggleTheme=()=>{
   </button>
   <div className="collapse navbar-collapse" style={{justifyContent: "flex-end"}}id="navbarNavAltMarkup">
     <ul className="navbar-nav mr-auto">
-      <li className={`nav-item active ${styles.nav_item}`}>
+      <li className={`nav-item active ${styles.nav_item} active`}>
       <NavLink className={`nav-link ${styles.navlink}`} id="home" to="/">Home</NavLink>
       </li>
       <li className={`nav-item ${styles.nav_item}`}>
