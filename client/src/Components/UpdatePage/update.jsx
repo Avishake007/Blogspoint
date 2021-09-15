@@ -15,6 +15,7 @@ const UpdatePage=({match})=>{
       title:'',description:'',username:'',categories:'',createdDate:new Date()
     });
     useEffect(() => {
+      document.title="Update Page";
       const fetchData = async () => {
           let data = await getPost(match.params.id);
           setPost(data);

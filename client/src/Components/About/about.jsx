@@ -81,6 +81,7 @@ const About=()=>{
     }
    
     useEffect(()=>{
+        document.title="About Page";
         userAuthenticate();
         const fetchData = async (username) => { 
             let data = await getPostByUsername(username); // params in url

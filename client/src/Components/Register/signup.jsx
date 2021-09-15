@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import styles from './signup.module.css';
 import Registersvg from './register.jsx';
 //React Toastify
@@ -93,6 +93,9 @@ const Signup=()=>{
     // else
     // alert("Password did not match");
   }
+    useEffect(()=>{
+        document.title="Signup Page";
+    },[])
     return(
       <>
       <ToastContainer/>

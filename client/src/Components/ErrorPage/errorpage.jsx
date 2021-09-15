@@ -1,10 +1,13 @@
 //404 Error page
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './errorpage.css';
 import {NavLink} from 'react-router-dom';
 // import Error from 'Error.svg';
 const Errorpage=()=>{
+  useEffect(()=>{
+      document.title="404 Error Page";
+  },[])
   return(
     <>
     <div className="errorpage">

@@ -42,6 +42,7 @@ const Write=()=>{
       }
   }
   useEffect(()=>{
+    document.title="Write";
     userAuthenticate();
     setLoader(false);
 },[]);

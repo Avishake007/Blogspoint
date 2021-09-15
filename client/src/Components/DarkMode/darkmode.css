@@ -1,3 +1,4 @@
+/* DarkMode */
 .darkmode{
     --primary_color:black;
     --login_form_color:#1c1c1d;
@@ -9,7 +10,12 @@
     --no-account:#4cd39e;
     --shadow-color:black;
     --details-color:#b3b1b1;
+    --inner-container:#fff698;
+    --second-inner:#96fdde;
+    --label-color:#76ff76;
 }
+
+/* LightMode */
 :root{
     --primary_color:#e8e1e1;
     --secondary_color:black;
@@ -21,4 +27,7 @@
     --no-account:#0b6340;
     --shadow-color:grey;
     --details-color:#8f424c;
+    --inner-container:#828301;
+    --second-inner:#2c8b6f;;
+    --label-color:#0a7d0a;
 }

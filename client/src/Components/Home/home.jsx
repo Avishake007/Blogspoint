@@ -59,6 +59,7 @@ const Home=()=>{
   
   
     useEffect(()=>{
+        document.title="Home Page";
       userAuthenticate();
   },[]);
     useEffect(() => {
