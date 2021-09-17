@@ -1,17 +1,6 @@
 :root{
     --primary_color:#e8e1e1;
-    --secondary_color:black;
-    --register_login:#05505e;
-    --login_form_color:#d4d3d3;
-    --secondary_color:black;
-    --input_color:#c3b4b4;
-    --register-botton:rgb(146 84 22);
-    --no-account:#0b6340;
-    --shadow-color:grey;
-    --details-color:#8f424c;
-    --inner-container:#828301;
-    --second-inner:#2c8b6f;;
-    --label-color:#0a7d0a;
+   
 }
 .errorpage{
     background: var(--primary_color);
