@@ -35,7 +35,7 @@ const Signup=()=>{
         isDigit=1;
       }
       if(value.length>0)
-      if(value.length>=8&&(value[0].toUpperCase()==value[0]&&!Number.isInteger(parseInt(value[0])))&&isDigit===1&&isLower===1)
+      if(value.length>=8&&(value[0].toUpperCase()===value[0]&&!Number.isInteger(parseInt(value[0])))&&isDigit===1&&isLower===1)
       {
         setFormat(true);
       }
@@ -75,7 +75,7 @@ const Signup=()=>{
     const data=await res.json();
     console.log(res);
     console.log(data);
-    if(format==false||confirmPassword===false)
+    if(format===false||confirmPassword===false)
     setTimeout(toast.error("Password must start with a capital letter, should contain atleast one lower case letter and one digit",{
       position: "top-center",
     }),3000);

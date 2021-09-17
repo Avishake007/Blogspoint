@@ -22,6 +22,7 @@ import {UserContext} from "../../App"
 const Login=()=>{
 
   const {state,dispatch}=useContext(UserContext);
+  console.log(state)
   const history=useHistory();
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
