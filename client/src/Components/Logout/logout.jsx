@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import {UserContext} from '../../App';
 const Logout=()=>{
     const {state,dispatch}=useContext(UserContext);
+    console.log(state);
     //Promises
     const history=useHistory();
     useEffect(()=>{
@@ -24,7 +25,7 @@ const Logout=()=>{
             setTimeout(toast.success("Successfully Logout",{
                 position: "top-center",
               }),3000);
-            //   window.location.reload(false);
+              window.location.reload(false);
             history.push('/signin',{replace:false});
             if(!res.status===200){
                 const error=new Error(res.error);

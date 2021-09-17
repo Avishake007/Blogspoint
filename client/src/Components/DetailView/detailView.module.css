@@ -35,7 +35,7 @@
     display: flex;
 }
 .third_inner_container{
-    height: 71vh;
+    height: 45vh;
     background: transparent;
     border: 2px solid transparent;
     color: var(--secondary_color);

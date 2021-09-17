@@ -3,12 +3,13 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {UserContext} from "../../App";
-import {ImPencil} from 'react-icons/im';
+// import {ImPencil} from 'react-icons/im';
 import "../DarkMode/darkmode.css";
 
 import Logo from './logo.png';
 const Navbar=()=>{
   const {state,dispatch}=useContext(UserContext);
+  console.log(dispatch)
   const [flag,setFlag]=useState(false);
 const callAboutPage= async()=>{
       try{
@@ -46,7 +47,7 @@ const toggleTheme=()=>{
     if(state||flag){
       return(
         <>
-         <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
+         <a className="navbar-brand" href="/"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   <div className={`${styles.line}`}></div>
    <div className={`${styles.line}`}></div>
@@ -79,7 +80,7 @@ const toggleTheme=()=>{
       return(
         <>
        
-  <a className="navbar-brand" href="#"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
+  <a className="navbar-brand" href="/"><img src={Logo} className={`${styles.logo}`} alt="" /></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
    <div className={`${styles.line}`}></div>
    <div className={`${styles.line}`}></div>
