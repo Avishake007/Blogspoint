@@ -5,7 +5,8 @@
     font-size: 4rem;
     justify-content: center;
     align-items: flex-end;
-    min-height: 88vh;
+    /* min-height: 88vh; */
+    height: 85%;
     /* height: 84vh; */
     background: var(--primary_color);
 }

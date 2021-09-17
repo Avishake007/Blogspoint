@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Route,Switch} from 'react-router-dom';
 
@@ -12,7 +11,7 @@ import Signup from './Components/Register/signup';
 import Logout from './Components/Logout/logout';
 import Update from './Components/UpdatePage/update';
 import DetailView from './Components/DetailView/detailpost';
-import Error_Page from './Components/ErrorPage/errorpage';
+import ErrorPage from './Components/ErrorPage/errorpage';
 import { useReducer,createContext } from 'react';
 import {initialState,reducer} from '../src/reducer/UseReducer';
 // ContextAPI
@@ -47,7 +46,7 @@ function App() {
       <Logout/>
       </Route>
       <Route>
-        <Error_Page/>
+        <ErrorPage/>
       </Route>
       </Switch>
       <Footer/>

@@ -1,7 +1,7 @@
 import React from 'react';
 //Home.css
 import "./blogger.css";
-import styles from "./home.module.css";
+// import styles from "./home.module.css";
 const BloggerBro=()=>{
     return(
 <svg width="529" height="472" viewBox="0 0 529 472" fill="none" xmlns="http://www.w3.org/2000/svg">

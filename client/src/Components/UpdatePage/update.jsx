@@ -22,7 +22,7 @@ const UpdatePage=({match})=>{
           setLoader(false);
       }
       fetchData();
-    }, [])
+    })
       console.log(match);
       let name,value;
       const handleInputs=(e)=>{
@@ -46,16 +46,10 @@ const UpdatePage=({match})=>{
         <>
         <ToastContainer/>
           <div className="write">
-      <img
-        className="writeImg"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        alt=""
-      />
+      
       <form className="writeForm">
-        <div className="writeFormGroup">
-          <label htmlFor="fileInput">
-            <i className="writeIcon fas fa-plus"></i>
-          </label>
+        <div className="writeFormGroup" id="field1">
+         
           <input
             className="writeInput"
             placeholder="Title"
@@ -65,8 +59,12 @@ const UpdatePage=({match})=>{
             type="text"
             autoFocus="off"
           />
+          <div className="writeSubmit"  onClick={()=>updateBlogPost()}>
+          Update
         </div>
-        <div className="writeFormGroup">
+        </div>
+        
+        <div className="writeFormGroup" id="field2">
           <textarea
             className="writeText"
             placeholder="Tell your story..."
@@ -78,9 +76,7 @@ const UpdatePage=({match})=>{
             autoFocus="off"
           />
         </div>
-        <div className="writeSubmit"  onClick={()=>updateBlogPost()}>
-          Update
-        </div>
+       
       </form>
     </div>
         </>

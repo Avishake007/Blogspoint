@@ -13,7 +13,7 @@ import { getAllPosts } from '../crud/crud';
 import {FaAngleDown} from 'react-icons/fa';
 
 //Search Icon
-import { Link, useLocation,NavLink } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 import Loader from '../Loader/loader';
 
 const Home=()=>{
@@ -44,7 +44,7 @@ const Home=()=>{
             setAuthenticate(false);
             throw error;
         }
-        const data=await res.json();
+        // const data=await res.json();
         
         setAuthenticate(true);
       
@@ -107,14 +107,14 @@ const Home=()=>{
             <p>The best place for bloggers</p> */}
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio velit iure quibusdam iste mollitia. Aliquam quisquam, pariatur sint nulla assumenda labore!</p>
             {
-                (authenticate==false)&&<div className={`${styles.signin_signup}`}>
+                (authenticate===false)&&<div className={`${styles.signin_signup}`}>
                 <Link className={` ${styles.signup}`} to="../signup">Register</Link>
                     OR
                 <Link className={`${styles.signin}`} to="../signin">Login</Link>
                 </div>
             }
             {
-                (authenticate==true)&&<Link className={`${styles.get_started}`} to="../write">Get Started</Link>
+                (authenticate===true)&&<Link className={`${styles.get_started}`} to="../write">Get Started</Link>
             }
         </div>
         <div className={`${styles.second}`}>

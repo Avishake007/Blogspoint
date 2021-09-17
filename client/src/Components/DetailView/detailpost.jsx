@@ -69,7 +69,7 @@ const DetailView=({match})=>{
             setLoader(false);
         }
         fetchData();
-    }, []);
+    });
     console.log(post);
 
     //Deleting a post
@@ -105,7 +105,7 @@ const DetailView=({match})=>{
                 <p>{post.title}</p>
                 </div>
                 {
-                (flag==true)&&(userData.username===post.username)&&<div className={`${styles.edit_update}`}>
+                (flag===true)&&(userData.username===post.username)&&<div className={`${styles.edit_update}`}>
                     <Link to={`/update/${post._id}`}><AiFillEdit/></Link>
                     
                     <Link to="/" className={`${styles.delete}`}><MdDelete  onClick={()=>deleteBlog()}/></Link>
