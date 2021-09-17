@@ -24,5 +24,7 @@
 *  Created UserSchema for the database which will contain all the information of the user while registration.
 *  Hashed the password using   _bcryptJs_   (12 rounds)
 *  Saved the _hashed password_ of the user in the database.
-*  Authentication is provided using _jsonwebtoken_   by creating and assigning a unique secret key for each user.
+*  Authentication is provided using _jsonwebtoken_   by creating and a)ssigning a unique secret key for each user.
 *   While login the user email id and password are checked for their existence in the database.
+## Website ##
+![](https://github.com/Avishake007/Blogspoint/blob/main/Blogspoint.gif)
