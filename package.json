@@ -1,0 +1,19 @@
+{
+  "name": "blogspoint",
+  "version": "1.0.0",
+  "description": "It is a blogging web app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd server && yarn run dev\" \"cd client && yarn start\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avishake007/Blogspoint.git"
+  },
+  "author": "Avishake Maji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Avishake007/Blogspoint/issues"
+  },
+  "homepage": "https://github.com/Avishake007/Blogspoint#readme"
+}
