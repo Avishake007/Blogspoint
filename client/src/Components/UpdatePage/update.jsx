@@ -4,6 +4,8 @@ import React ,{useState,useEffect} from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import swal from "sweetalert";
+
 //Loader
 import Loader from '../Loader/loader';
 import { useHistory } from 'react-router-dom';
@@ -22,7 +24,7 @@ const UpdatePage=({match})=>{
           setLoader(false);
       }
       fetchData();
-    })
+    },[])
       console.log(match);
       let name,value;
       const handleInputs=(e)=>{
@@ -31,12 +33,13 @@ const UpdatePage=({match})=>{
         setPost({...post,[name]:value});
         
       }
-     
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+     }
       const updateBlogPost = async () => {
         await updatePost(match.params.id, post);
-        setTimeout(toast.success("Post updated successfully",{
-          position: "top-center",
-        }),3000);
+        swal("Post updated successfully","","success");
+        await sleep(3000)
         history.push(`/details/${match.params.id}`);  
     }
 

@@ -15,6 +15,7 @@ import {Link,useHistory} from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import swal from "sweetalert";
 import Loader from '../Loader/loader';
 
 
@@ -40,9 +41,12 @@ const Login=()=>{
     });
     const data=res.json();
     if(res.status===400|| !data){
-      setTimeout(toast.error("Invalid Credentials ",{
-        position: "top-center",
-      }),3000);
+      setTimeout(
+        swal("Login failed", "Invalid Credentials ", "error")
+        ,10000);
+      // setTimeout(toast.error("",{
+      //   position: "top-center",
+      // }),3000);
     }
     else if(email===""||password==="")
     {
@@ -52,12 +56,14 @@ const Login=()=>{
     }
     else{
       dispatch({type:'USER',payload:true})
-      setTimeout(toast.success("Login Successful",{
-        position: "top-center",
-      }),3000);
+      swal("Welcome!", "Login Successful", "success");
+      await sleep(3000);
       history.push('/');
     }
   }
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
     useEffect(()=>{
       document.title="Signin Page";
       setLoader(false);
@@ -82,6 +88,7 @@ const Login=()=>{
       <input type="email" className={`${styles.form_control}`}
       value={email}
       onChange={(e)=>setEmail(e.target.value)}
+      autoComplete="off"
       placeholder="Enter your email" name="email"/>
     </div> 
   </div>

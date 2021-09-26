@@ -53,8 +53,10 @@
     margin-right: 14px;
     cursor: pointer;
 }
-.delete svg path{
+.delete svg {
     /* height: 29px; */
+    height:50px;
+    /* width: 50px; */
     fill: #de5050;
     
  

@@ -77,9 +77,9 @@ router.post('/signin',async (req,res)=>{
             return res.status(res.json({error:"Please fill the data"}));
         }
         const userLogin=await User.findOne({email:email});
-        const isMatch=await bcrypt.compare(password,userLogin.password);
+       
         if(userLogin){
-            
+            const isMatch=await bcrypt.compare(password,userLogin.password);
             token=await userLogin.generateAuthToken();
             console.log(token);
 

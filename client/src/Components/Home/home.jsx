@@ -40,12 +40,13 @@ const Home=()=>{
         // console.log(res.json());
         if(!res.status===200)
         {
-            const error=new Error(res.error);
             setAuthenticate(false);
+            const error=new Error(res.error);
+            
             throw error;
         }
-        // const data=await res.json();
-        
+        const data=await res.json();
+        console.log(data);
         setAuthenticate(true);
       
     }
