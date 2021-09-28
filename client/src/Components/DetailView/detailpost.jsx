@@ -22,7 +22,7 @@ const DetailView = ({ match }) => {
     const history = useHistory();
 
     //Defining useState  constanta
-    const [post, setPost] = useState({"username":'',"title":'',"description":''});
+    const [post, setPost] = useState({ "username": '', "title": '', "description": '' });
     const [userData, setUserData] = useState({});
     const [flag, setFlag] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -73,29 +73,29 @@ const DetailView = ({ match }) => {
 
     //Deleting a post
     const deleteBlog = async () => {
-       var y=false;
+        var y = false;
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this post",
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-               delet();
-            } else {
-              swal("Your Post is safe!");
-            }
-          });
-       
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    delet();
+                } else {
+                    swal("Your Post is safe!");
+                }
+            });
+
     }
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
-     }
-    const delet=async ()=>{
+    }
+    const delet = async () => {
         await deletePost(post._id);
-        swal("","Post deleted successfully","success");
+        swal("", "Post deleted successfully", "success");
         await sleep(3000);
         history.push('/')
     }
@@ -107,39 +107,38 @@ const DetailView = ({ match }) => {
             <ToastContainer />
             <div className={`${styles.container}`}>
                 <div className={`${styles.first_inner_container}`}>
+                    <div className={`${styles.title}`}>
 
-                    <p>
-                        <label htmlFor="username">Username : </label>
+                        <p>{post.title}</p>
+                    </div>
+                   
+                </div>
+                <div className={`${styles.second_inner_container}`}>
+                <p>
+                      
                         {post.username}
                     </p>
                     <p>
                         <label htmlFor="Created_date">Created Date : </label>
                         {new Date(post.createdDate).toDateString()}
                     </p>
-                </div>
-                <div className={`${styles.second_inner_container}`}>
-                    <div className={`${styles.title}`}>
-
-                        <p>{post.title}</p>
-                    </div>
                     {
                         (flag === true) && (userData.username === post.username) && <div className={`${styles.edit_update}`}>
                             <Link to={`/update/${post._id}`}><AiFillEdit /></Link>
 
-                            <div  className={`${styles.delete}`}><MdDelete onClick={() => deleteBlog()} /></div>
+                            <div className={`${styles.delete}`}><MdDelete onClick={() => deleteBlog()} /></div>
                         </div>
                     }
                 </div>
 
                 {/* <div className=> */}
-                <textarea
+                <div
                     className={`${styles.third_inner_container}`}
-                    type="text"
-                    value={post.description}
+                   
 
                     name="description"
 
-                />
+                >{post.description}</div>
                 {/* <p>{
                     for(var i=0;i<post.description.length;i++){
 

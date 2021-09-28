@@ -4,32 +4,26 @@
     background: var(--login_form_color);
     padding:18px;
 }
-.first_inner_container{
-    display: flex;
-    color: var(--secondary_color);
-    justify-content: space-between;
-}
-.first_inner_container label{
-    color:var(--label-color);
-    margin-right: 14px;
-}
+
 .first_inner_container p{
-    color: var(--inner-container);
+    color: var(--secondary_color);
+    font-weight: bold;
+    font-size:36px;
 }
 .second_inner_container{
     display: flex;
-    justify-content: space-between;
+
 }
 .second_inner_container label{
-    color: orange;
-    font-size: 3vh;
-    margin-right: 14px;
+    color: rgb(114, 108, 96);
+    /* font-size: 3vh; */
+    margin-right: 3px;
 }
 .second_inner_container p{
-    color: var(--second-inner);
     font-family: 'Arvo', serif;
-    font-size: 48px;
-    font-weight: normal;
+    color: var(--secondary_color);
+    font-size: 15px;
+    margin-right: 15px;
 }
 .title,.edit_update{
     display: flex;
@@ -42,20 +36,25 @@
     padding: 14px;
     width: 100%;
     font-size: 20px;
+    overflow-y: auto;
     /* text-transform: capitalize; */
 }
 .third_inner_container::first-letter{
     text-transform:capitalize;
 }
+.edit_update{
+    position: absolute;
+    right: 13px;
+}
 .edit_update a svg{
-    height: 50px;
+    height: 32px;
     fill: #76b8ef;
     margin-right: 14px;
     cursor: pointer;
 }
 .delete svg {
     /* height: 29px; */
-    height:50px;
+    height:32px;
     /* width: 50px; */
     fill: #de5050;
     
