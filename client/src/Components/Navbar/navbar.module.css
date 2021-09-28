@@ -66,39 +66,9 @@ a svg{
 
 /* Toggle */
 .toggle{
-    right: 16px;
-    top: 90px;
+    right: 2%;
+    bottom: 3%;
     position: fixed;
-}
-.toggle[type="checkbox"]{
-    /* position: relative; */
-    width: 70px;
-    height:30px;
-    -webkit-appearance:none;
-    background:white;
-    outline:none;
-    border-radius: 20px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0,.2);
-    transition: .5s;
-}
-.toggle:checked[type="checkbox"]{
-    background: #a2a0a0;
-}
-.toggle[type="checkbox"]:before{
-    content:"";
     cursor: pointer;
-    position: absolute;
-    height:32px;
-    width: 32px;
-    border-radius: 20px;
-    top:0;
-    left:0;
-    background: black;
-    transform: scale(1.1);
-    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-    transition: .5s;
-}
-.toggle:checked[type="checkbox"]:before{
-    left:40px;
-    background: yellow;
+    height: 32px;
 }

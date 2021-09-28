@@ -3,12 +3,15 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from './navbar.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from "../../App";
+import {FaMoon} from 'react-icons/fa';
+import {BsSun} from 'react-icons/bs';
 // import {ImPencil} from 'react-icons/im';
 import "../DarkMode/darkmode.css";
 
 import Logo from './logo.png';
 const Navbar = () => {
   const { state, dispatch } = useContext(UserContext);
+  const [isNight,setIsNight]=useState(false);
   console.log(dispatch)
   const [flag, setFlag] = useState(false);
   const callAboutPage = async () => {
@@ -41,6 +44,10 @@ const Navbar = () => {
   }, []);
   const toggleTheme = () => {
     document.body.classList.toggle("darkmode");
+    if(!isNight)
+    setIsNight(true);
+    else
+    setIsNight(false);
   }
   const Toggle = () => {
     if (state || flag) {
@@ -114,7 +121,15 @@ const Navbar = () => {
           <nav className={`navbar navbar-expand-lg navbar-primary ${styles.navbar}`} style={{ zIndex: "4" }}>
 
             <Toggle />
-            <input type="checkbox" className={`${styles.toggle}`} name="toggle" id="toggle" onClick={() => toggleTheme()} />
+            {/* <input type="checkbox" className={`${styles.toggle}`} name="toggle" id="toggle" onClick={() => toggleTheme()} /> */}
+            <div className={`${styles.toggle}`} onClick={()=>toggleTheme()}>
+            {
+                (!isNight)&&<FaMoon style={{color:"#aa9c9f"}}/>
+            }
+            {
+              (isNight)&&<BsSun style={{color:"yellow"}}/>
+            }
+            </div>
           </nav>
         </header>
       </div>

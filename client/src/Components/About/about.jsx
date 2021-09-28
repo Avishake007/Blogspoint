@@ -12,10 +12,10 @@ import defaultpic from './defaultpic.png';
 import styles from './about.module.css';
 
 //Function to get all posts
-import { getPostByUsername } from '../crud/crud';
+import { getPostByUsername ,getAllPosts} from '../crud/crud';
 
 //
-import {useHistory} from 'react-router-dom';
+import {useHistory,useLocation} from 'react-router-dom';
 
 //Importing the Loader Page
 import Loader from '../Loader/loader';
@@ -24,11 +24,12 @@ const About=()=>{
 
     const history=useHistory();
     const [userData,setUserData]=useState({});
-    // const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [loader,setLoader]=useState(true);
+    const { search } = useLocation("/");
     // const [fliterPosts,setFilterPosts]=useState([]);
     // const [noOfBlogs,setNoOfBlogs]=useState(0);
-   
+   var noOfBlogs=0;
     // console.log(search)
     //Checking for user authentication 
     const userAuthenticate= async()=>{
@@ -62,48 +63,50 @@ const About=()=>{
         }
     }
 
-    // const filterByUsername=(username)=>{
+    const filterByUsername=(username)=>{
       
-    //     var curr_username=username;
-    //     var count=0;
-    //     posts.filter((post)=>{
-    //         console.log(post.username==curr_username)
+        var curr_username=username;
+       if(posts.length>0)
+        posts.filter((post)=>{
+            console.log(post.username==curr_username)
            
-    //         if(post.username==curr_username){
-    //             count+=1;
+            if(post.username==curr_username){
+                noOfBlogs+=1;
               
-    //             console.log(noOfBlogs)
-    //         }
-    //     })
-    //     setNoOfBlogs(count);
-    //     // console.log(fliterPosts);
+              
+            }
+        })
+        // setNoOfBlogs(count);
+        // console.log(fliterPosts);
         
-    // }
+    }
    
     useEffect(()=>{
         document.title="About Page";
         userAuthenticate();
-        const fetchData = async (username) => { 
-            let data = await getPostByUsername(username); // params in url
-            console.log(data)
+        const fetchData = async (search) => { 
+            let data = await getAllPosts(search); // params in url
+            setPosts(data);
+            // console.log(data+"pp");
             // setNoOfBlogs(data.length);
            
           
-            console.log(userData)
+            // console.log(userData)
        
-            // filterByUsername(userData.username);
+          
             setLoader(false);
             
             
         }
-        fetchData(userData.username);
         
+        fetchData(search);
+        filterByUsername(userData.username);
        
-        // console.log(posts)
+        console.log(posts+"o")
         //  console.log(fliterPosts)
        
         
-    });
+    },[]);
     
     
     // console.log(posts)
@@ -147,7 +150,7 @@ const About=()=>{
                         </div>
                         <div className={`${styles.detail}`}>
                             <label htmlFor="no_of_blogs">No of Blogs : </label>
-                            <p>0</p>
+                            <p>{noOfBlogs}</p>
                         </div>
                     </div>
                 </div>
