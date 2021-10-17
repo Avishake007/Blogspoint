@@ -32,17 +32,33 @@
     /* align-items: center; */
     box-shadow: 5px 6px 14px var(--shadow-color);
 }
-form{
+.form_inner form{
     height: 68%;
 }
 .formpng{
     display: flex;
 }
+.form_name{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .form_name div:nth-child(2){
+    height: 12px;
+    font-size: 12px;
+    color: red;
+    text-align: left;
+    font-weight: bold;
+  }
+  .form_name input{
+      border-bottom: 2px solid black;
+  }
 .login_png{
     height: 100%;
     width: 100%;
 }
-p{
+.form_inner p{
     font-size: 26px;
 }
 .fa_user,.fa_lock{
@@ -63,28 +79,32 @@ p{
     width: 50%;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
 }
 .formpng .form_inner_inner{
-    margin-top: 55px;
+    margin-top: 8px;
 }
-input[type=text],input[type=number],input[type=email],input[type=password]{
+.col input{
     /* background: #2d2929; */
-    border-bottom: 2px solid;
+    border: 0;
+    border-bottom: 2px solid black;
     background: transparent;
     outline: none;
     /* border: 0; */
 }
-input[type=text]{
+.col input[type=text]{
     width: 100%;
 }
 .col{
     width: 100%;
     display: flex;
-    border-bottom: 2px solid var(--secondary_color);
+    /* border-bottom: 2px solid var(--secondary_color); */
 }
 .col input{
     color: var(--secondary_color);
+}
+.col> i{
+    font-size: 25px;
 }
 /* button{
     background: #da1919 !important;
@@ -112,12 +132,12 @@ button:hover{
     flex-direction: column;
     justify-content: center;
 }
-input[type=number]:focus,input[type=email]:focus,input[type=password]:focus,input[type=text]:focus{
+.col input:focus{
     /* background: var(--input_color);
     color: var(--secondary_color); */
     opacity: 0.8;
     outline: none;
-    border: 0;
+    /* border: 0; */
 }
 .form_check_label{
     font-size: 18px;
@@ -126,7 +146,7 @@ input[type=number]:focus,input[type=email]:focus,input[type=password]:focus,inpu
     /* color:lightblue !important; */
     /* opacity:1 !important; */
 /* } */ 
-i{
+.form_row>i{
     font-size: 25px;
     margin-right: 14px;
     color: var(--secondary_color) !important;
@@ -158,7 +178,7 @@ i{
 .no_account a{
     color:var(--register-botton);
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1060px) {
     .form_inner{
         width: 87%;
     }
