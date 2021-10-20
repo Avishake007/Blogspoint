@@ -9,6 +9,7 @@ import { createPost } from '../crud/crud';
 import './write.css';
 import Loader from '../Loader/loader';
 const Write = () => {
+  var userID;
   const history = useHistory();
   const [userData, setUserData] = useState({});
   const [flag, setFlag] = useState(false);
@@ -31,6 +32,10 @@ const Write = () => {
       const data = await res.json();
       console.log(data);
       setUserData(data);
+      userID=data._id;
+      console.log(userID)
+     setPost({...post,["userId"]:userID})
+
       setFlag(true);
 
     }
@@ -43,14 +48,16 @@ const Write = () => {
   useEffect(() => {
     document.title = "Write";
     userAuthenticate();
+    
     setLoader(false);
   }, []);
 
   const [post, setPost] = useState({
-    title: '', description: '', username: '', categories: 'jnn', createdDate: new Date()
+    title: '', description: '', username: '', categories: 'jnn', createdDate: new Date(),userId:userData._id
   });
   if (flag === true) {
     setPost({ ...post, username: `${userData.username}` })
+    // setPost({...post,userId:`${userID}`})
     setFlag(false);// To stop infinite re renders 
   }
 
@@ -72,6 +79,7 @@ const Write = () => {
   const savePost = async (e) => {
     e.preventDefault();
     if (post.title !== "" && post.description !== "") {
+      console.log(post);
       await createPost(post);
       
       swal("","Post created successfully","success");

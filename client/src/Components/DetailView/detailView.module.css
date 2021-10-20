@@ -64,6 +64,16 @@
 .edit_update a svg:hover{
     opacity: 0.8;
 }
+.like_dislike{
+    position: absolute;
+    right: 14px;
+    display: flex;
+}
+.like,.dislike{
+    margin-right: 14px;
+    font-size: 22px;
+    cursor: pointer;
+}
 @media only screen and (max-width: 750px) {
     .first_inner_container{
         flex-direction: column;

@@ -120,6 +120,7 @@ router.post('/create',async(req,res)=>{
         const post = await new Post(req.body);
         post.save();
         res.status(200).json('Post saved successfully');
+        console.log("kop")
     } catch (error) {
         res.status(500).json(error);
     }
@@ -157,15 +158,15 @@ router.get('/post/:id', async (request, response) => {
         response.status(500).json(error)
     }
 });
-router.get('/post/:username',async(request,response)=>{
+router.get('/post/user/:id',async(request,response)=>{
     let posts;
     console.log("oo")
     try{
-        // if(request.params.username){
-        //     posts=await Post.find({username : requestusername});
-        // }
-        // response.status(200).json(posts);
-        // console.log("po")
+        if(request.params.id){
+            posts=await Post.find({userId : request.params.id});
+        }
+        response.status(200).json(posts);
+        console.log("po")
         console.log(request+"   pop")
     }
     catch(error){
