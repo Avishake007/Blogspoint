@@ -19,9 +19,9 @@ export const getAllPosts = async (param) => {
         console.log('Error while calling getPosts API ', error)
     }
 }
-export const getPostByUsername=async (username)=>{
+export const getPostByUsername=async (id)=>{
     try {
-        let response = await axios.get(`/post/${username}`);
+        let response = await axios.get(`/post/user/${id}`);
         console.log(response.data)
         return response.data;
     } catch (error) {

@@ -13,7 +13,7 @@ import { getPost, deletePost } from '../crud/crud';
 //Importing react icons
 import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
-
+import {AiOutlineLike,AiOutlineDislike,AiFillLike,AiFillDislike} from 'react-icons/ai';
 import { Link, useHistory } from 'react-router-dom';
 
 //Importing css of detailpost
@@ -26,7 +26,8 @@ const DetailView = ({ match }) => {
     const [userData, setUserData] = useState({});
     const [flag, setFlag] = useState(false);
     const [loader, setLoader] = useState(true);
-
+    const [like,setLike]=useState(false);
+    const [dislike,setDislike]=useState(false);
     //Checking for user authentication
     const userAuthenticate = async () => {
         try {
@@ -84,6 +85,7 @@ const DetailView = ({ match }) => {
             .then((willDelete) => {
                 if (willDelete) {
                     delet();
+                    history.push("/");
                 } else {
                     swal("Your Post is safe!");
                 }
@@ -97,9 +99,23 @@ const DetailView = ({ match }) => {
         await deletePost(post._id);
         swal("", "Post deleted successfully", "success");
         await sleep(3000);
-        history.push('/')
     }
-
+    const toggleLike=()=>{
+        if(dislike===true)
+        setDislike(false);
+        if(like===true)
+        setLike(false)
+        else
+        setLike(true);
+    }
+    const toggleDislike=()=>{
+        if(like===true)
+        setLike(false);
+        if(dislike===true)
+        setDislike(false);
+        else
+        setDislike(true);
+    }
     if (loader)
         return <Loader />
     return (
@@ -127,6 +143,15 @@ const DetailView = ({ match }) => {
                             <Link to={`/update/${post._id}`}><AiFillEdit /></Link>
 
                             <div className={`${styles.delete}`}><MdDelete onClick={() => deleteBlog()} /></div>
+                        </div>
+                    }
+                    {
+                        (flag === true) && (userData.username !== post.username) &&<div className={`${styles.like_dislike}`}>
+                            <div className={`${styles.like}`} onClick={()=>toggleLike()}>
+                                {
+                                    like===false?<AiOutlineLike/>:<AiFillLike/>}</div>
+                            <div className={`${styles.dislike}`} onClick={()=>toggleDislike()}>
+                                {dislike===false?<AiOutlineDislike/>:<AiFillDislike/>}</div>
                         </div>
                     }
                 </div>

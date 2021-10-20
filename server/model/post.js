@@ -20,6 +20,10 @@ const postSchema =new mongoose.Schema({
     },
     createdDate: {
         type: Date
+    },
+    userId:{
+        type:String,
+        required:true
     }
 });
 

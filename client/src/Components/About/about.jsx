@@ -21,7 +21,7 @@ import {useHistory,useLocation} from 'react-router-dom';
 import Loader from '../Loader/loader';
 
 const About=()=>{
-
+    var userID;
     const history=useHistory();
     const [userData,setUserData]=useState({});
     const [posts, setPosts] = useState([]);
@@ -49,8 +49,12 @@ const About=()=>{
             throw error;
         }
         const data=await res.json();
-        // console.log(data);
+        console.log(data);
+        // userID=data._id;
+        fetchData(data._id);
+        
         setUserData(data);
+        setLoader(false);
    
       
     }
@@ -80,34 +84,22 @@ const About=()=>{
         // console.log(fliterPosts);
         
     }
-   
+    const fetchData = async (userID) => { 
+        console.log(userID)
+        let data = await  getPostByUsername(userID);// params in url
+        setPosts(data);
+    }
     useEffect(()=>{
         document.title="About Page";
         userAuthenticate();
-        const fetchData = async (search) => { 
-            let data = await getAllPosts(search); // params in url
-            setPosts(data);
-            // console.log(data+"pp");
-            // setNoOfBlogs(data.length);
-           
-          
-            // console.log(userData)
-       
-          
-            setLoader(false);
-            
-            
-        }
-        
-        fetchData(search);
-        filterByUsername(userData.username);
-       
-        console.log(posts+"o")
         //  console.log(fliterPosts)
        
         
     },[]);
+    useEffect(()=>{
     
+        console.log(posts+"o")
+    },[])
     
     // console.log(posts)
     //Loader section
@@ -150,7 +142,7 @@ const About=()=>{
                         </div>
                         <div className={`${styles.detail}`}>
                             <label htmlFor="no_of_blogs">No of Blogs : </label>
-                            <p>{noOfBlogs}</p>
+                            <p>{posts.length}</p>
                         </div>
                     </div>
                 </div>

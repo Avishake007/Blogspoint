@@ -44,7 +44,8 @@
   
   .writeInput {
     font-size: 18px;
-    background: #1d1d1c;
+    background:var(--primary_color);
+    border:0;
     height: 52px;
     width: 75% !important;
     color:var(--secondary_color);
