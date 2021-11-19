@@ -18,13 +18,15 @@
   }
   
   .writeFormGroup{
-    margin-left: 150px;
+    /* margin-left: 150px; */
     display: flex;
     align-items: center;
+    justify-content: space-around;
 
   }
  #field1{
     height: 10%;
+    margin-left:7px ;
   }
   #field2{
     height: 88%;
@@ -67,6 +69,7 @@
     color: var(--secondary_color);
     /* height: 83vh; */
     height: 100%;
+    width: 90% !important;
     /* height: 100vh; */
     font-family: inherit;
     font-size: 20px;
@@ -74,6 +77,8 @@
     border: none;
     padding: 20px;
     width: 70vw;
+    resize: none;
+    outline: none;
 }
 
   .writeSubmit {
@@ -90,4 +95,36 @@
     display: flex;
     align-items: center;
   }
-  
+  .tag_field{
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--login_form_color);
+    align-items: center;
+    color: var(--secondary_color);
+  }
+  .tag_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    background: var(--secondary_color);
+    color: var(--login_form_color);
+    font-weight: bold;
+    margin: 7px;
+    padding: 7px;
+    border-radius: 8px;
+    min-width: 71px;
+  }
+  .tag_input span{
+    margin-left: 7px;
+    cursor: pointer;
+  }
+  .tag_field input{
+    background: var(--login_form_color);
+    border: 0;
+    width: 100%;
+    margin: 14px;
+    outline: none;
+    color: var(--secondary_color);
+  }

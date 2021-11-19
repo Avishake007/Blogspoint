@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import swal from "sweetalert";
 import { useHistory } from 'react-router-dom';
 import { createPost } from '../crud/crud';
+import {AiFillCloseCircle} from "react-icons/ai"; 
 import './write.css';
 import Loader from '../Loader/loader';
 const Write = () => {
@@ -32,9 +33,9 @@ const Write = () => {
       const data = await res.json();
       console.log(data);
       setUserData(data);
-      userID=data._id;
+      userID = data._id;
       console.log(userID)
-     setPost({...post,["userId"]:userID})
+      setPost({ ...post, ["userId"]: userID })
 
       setFlag(true);
 
@@ -48,12 +49,12 @@ const Write = () => {
   useEffect(() => {
     document.title = "Write";
     userAuthenticate();
-    
+
     setLoader(false);
   }, []);
 
   const [post, setPost] = useState({
-    title: '', description: '', username: '', categories: 'jnn', createdDate: new Date(),userId:userData._id
+    title: '', description: '', username: '', categories: [], createdDate: new Date(), userId: userData._id
   });
   if (flag === true) {
     setPost({ ...post, username: `${userData.username}` })
@@ -75,14 +76,14 @@ const Write = () => {
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
- }
+  }
   const savePost = async (e) => {
     e.preventDefault();
     if (post.title !== "" && post.description !== "") {
       console.log(post);
       await createPost(post);
-      
-      swal("","Post created successfully","success");
+
+      swal("", "Post created successfully", "success");
       await sleep(3000);
       history.push('/');
     }
@@ -91,6 +92,19 @@ const Write = () => {
         position: "top-center",
       }), 3000);
     }
+  }
+
+  //Add Tags
+  const addTags=(e)=>{
+    if(e.target.value!==""){
+    setPost({...post,["categories"]:[...post.categories,e.target.value]});
+    e.target.value="";
+    }
+  }
+
+  //Delete Tags
+  const deleteTags=(delIndex)=>{
+    setPost({...post,["categories"]:post.categories.filter((_,index)=>index!==delIndex)});
   }
   if (loader)
     return <Loader />
@@ -129,6 +143,17 @@ const Write = () => {
           </div>
 
         </form>
+      </div>
+      <div className="tag_field">
+          {
+            post.categories.length?post.categories.map((tag,index)=>(
+              <div className="tag_input">
+                {tag}
+                <span><AiFillCloseCircle onClick={()=>deleteTags(index)}/></span>
+              </div>
+            )):<div></div>
+          }
+          <input type="text" onKeyUp={(e)=>e.key==='Enter'?addTags(e):null} placeholder="Please type your tag and then Press 'Enter'"/>
       </div>
     </>
   );

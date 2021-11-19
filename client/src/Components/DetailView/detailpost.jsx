@@ -157,13 +157,14 @@ const DetailView = ({ match }) => {
                 </div>
 
                 {/* <div className=> */}
-                <div
+                <textarea
                     className={`${styles.third_inner_container}`}
                    
 
                     name="description"
+                    readOnly
 
-                >{post.description}</div>
+                >{post.description}</textarea>
                 {/* <p>{
                     for(var i=0;i<post.description.length;i++){
 
@@ -174,7 +175,20 @@ const DetailView = ({ match }) => {
                     console.log(post.description)
                 } */}
                 {/* </div> */}
+                <div className="tag_field" >
+                    Tags : 
+          {
+            post.categories.length?post.categories.map((tag,index)=>(
+              <div className="tag_input">
+                {tag}
+               
+              </div>
+            )):<div></div>
+          }
+         
+      </div>
             </div>
+           
         </>
     )
 }
