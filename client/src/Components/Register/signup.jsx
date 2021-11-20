@@ -4,12 +4,14 @@ import Registersvg from './register.jsx';
 //React Toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {BsEyeFill,BsEyeSlashFill} from "react-icons/bs";
 import swal from "sweetalert";
 import { validateName, validateCity, validateState, validateStuProf, validateEmail, validatePassword, validateConfirmPassword, validateUsername } from '../Validators/validate';
 import { Link, useHistory } from 'react-router-dom';
 const Signup = () => {
   const history = useHistory();
-
+  const [showPassword1,setShowPassword1]=useState(false);
+  const [showPassword2,setShowPassword2]=useState(false);
   const [user, setUser] = useState({
     username: '', name: '', state: '', city: '', stuprof: '', email: '', password: '', confirmpassword: ''
   });
@@ -113,6 +115,18 @@ const Signup = () => {
     // else
     // alert("Password did not match");
   }
+  const toggleEyes1=()=>{
+    if(showPassword1===true)
+    setShowPassword1(false);
+    else
+    setShowPassword1(true);
+  }
+  const toggleEyes2=()=>{
+    if(showPassword2===true)
+    setShowPassword2(false);
+    else
+    setShowPassword2(true);
+  }
   useEffect(() => {
     document.title = "Signup Page";
   }, [])
@@ -195,6 +209,7 @@ const Signup = () => {
                         {error.stuprof === 0 && <i class="fas fa-check-circle" style={{ color: "#005f00" }}></i>}
                       </div>
                       {error.stuprof === 1 && <div className={`${styles.errorMessage}`} >{errorMessage.stuprof}</div>}
+                      
                     </div>
                   </div>
                   <div className={`${styles.form_row}`}>
@@ -207,15 +222,17 @@ const Signup = () => {
                           placeholder="Enter your email" name="email" autoComplete="off" />
                         {error.email === 1 && <i class="fas fa-exclamation-circle" style={{ color: "#f60000" }}></i>}
                         {error.email === 0 && <i class="fas fa-check-circle" style={{ color: "#005f00" }}></i>}
+                        
                       </div>
                       {error.email === 1 && <div className={`${styles.errorMessage}`} >{errorMessage.email}</div>}
+                     
                     </div>
                   </div>
                   <div className={`${styles.form_row}`}>
                     <i className={`fa fa-lock ${styles.fa_lock}`} aria-hidden="true"></i>
                     <div className={`${styles.form_name}`} >
                       <div className={`${styles.col}`}>
-                        <input type="password" className={`${styles.form_control}`}
+                        <input type={showPassword1===true?"text":"password"} className={`${styles.form_control}`}
                           value={user.password}
                           pattern='[A-Za-Z0-9]{7,}'
                           title="Password must start with a captital "
@@ -223,6 +240,7 @@ const Signup = () => {
                           placeholder="Enter your password" name="password" required />
                         {error.password === 1 && <i class="fas fa-exclamation-circle" style={{ color: "#f60000" }}></i>}
                         {error.password === 0 && <i class="fas fa-check-circle" style={{ color: "#005f00" }}></i>}
+                        {showPassword1===true?<BsEyeSlashFill className={`${styles.close_eyes}`} onClick={()=>toggleEyes1()}/>:<BsEyeFill className={`${styles.open_eyes}`} onClick={()=>toggleEyes1()}/>}
                       </div>
                       {error.password === 1 && <div className={`${styles.errorMessage}`} >{errorMessage.password}</div>}
                       <div className={`${styles.form_name}`} ></div>
@@ -232,7 +250,9 @@ const Signup = () => {
                     <i className={`fa fa-lock ${styles.fa_lock}`} aria-hidden="true"></i>
                     <div className={`${styles.form_name}`} >
                       <div className={`${styles.col}`}>
-                        <input type="password" className={`${styles.form_control}`}
+                        <input
+                         type={showPassword2===true?"text":"password"} 
+                         className={`${styles.form_control}`}
                           value={user.confirmpassword}
                           onChange={handleInputs}
                           pattern="[A-Za-Z0-9]{7,}"
@@ -240,7 +260,7 @@ const Signup = () => {
                           placeholder="Confirm your password" name="confirmpassword" required />
                         {error.confirmpassword === 1 && <i class="fas fa-exclamation-circle" style={{ color: "#f60000" }}></i>}
                         {error.confirmpassword === 0 && <i class="fas fa-check-circle" style={{ color: "#005f00" }}></i>}
-
+                        {showPassword2===true?<BsEyeSlashFill className={`${styles.close_eyes}`} onClick={()=>toggleEyes2()}/>:<BsEyeFill className={`${styles.open_eyes}`} onClick={()=>toggleEyes2()}/>}
                       </div>
                       {error.confirmpassword === 1 && <div className={`${styles.errorMessage}`} >{errorMessage.confirmpassword}</div>}
                     </div>
