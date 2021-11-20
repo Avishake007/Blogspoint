@@ -68,7 +68,7 @@
 .form_row{
     display: flex;
     /* background: #2d2929; */
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     justify-content: center;
     align-items: center;
     height: 11%;
@@ -225,4 +225,11 @@ button:hover{
     .has_account{
         width: 100%;
     }
+  }
+  .open_eyes,.close_eyes{
+    height: 27px;
+    width: 31px;
+    margin-left: 7px;
+    cursor: pointer;
+    color: var(--secondary_color);
   }
