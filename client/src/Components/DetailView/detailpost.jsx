@@ -175,18 +175,21 @@ const DetailView = ({ match }) => {
                     console.log(post.description)
                 } */}
                 {/* </div> */}
-                <div className="tag_field" >
+                {
+                post.categories.length?<div className="tag_field" >
                     Tags : 
           {
-            post.categories.length?post.categories.map((tag,index)=>(
+            post.categories.map((tag,index)=>(
               <div className="tag_input">
                 {tag}
                
               </div>
-            )):<div></div>
+            ))
           }
-         
-      </div>
+                
+                
+      </div>:<div></div>
+}
             </div>
            
         </>

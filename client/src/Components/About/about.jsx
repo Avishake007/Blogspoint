@@ -110,7 +110,9 @@ const About=()=>{
             <div className={`${styles.container}`}>
                 <p>ABOUT</p>
                 <div className={`${styles.about_section}`}>
+                    <div className={`${styles.user_pic}`}>
                     <img src={defaultpic} alt="" />
+                    </div>
                     <div className={`${styles.info}`}>
                         <div className={`${styles.detail}`}>
                             <label htmlFor="Username">Username</label>

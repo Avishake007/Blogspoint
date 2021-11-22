@@ -85,8 +85,8 @@
     /* position: absolute; */
     /* top: 20px; */
     /* right: 50px; */
-    color: white;
-    background-color: teal;
+    color: var(--primary_color);
+    background-color: var(--font-color);
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -108,7 +108,7 @@
     justify-content: center;
     align-items: center;
     height: 32px;
-    background: var(--secondary_color);
+    background: var(--font-color);
     color: var(--login_form_color);
     font-weight: bold;
     margin: 7px;

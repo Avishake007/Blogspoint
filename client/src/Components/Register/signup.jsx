@@ -266,7 +266,7 @@ const Signup = () => {
                     </div>
                   </div>
                   <div className={`${styles.btner}`}>
-                    <input type="submit" className={`btn btn-danger ${styles.login}`}
+                    <input type="submit" className={`btn btn-success ${styles.login}`}
 
                       value="Register"
                     />

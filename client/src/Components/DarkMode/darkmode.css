@@ -13,6 +13,7 @@
     --inner-container:#fff698;
     --second-inner:#96fdde;
     --label-color:#76ff76;
+    --font-color:#35ff2e;
 }
 
 /* LightMode */
@@ -30,4 +31,5 @@
     --inner-container:#828301;
     --second-inner:#2c8b6f;;
     --label-color:#0a7d0a;
+    --font-color:#080c45;
 }
