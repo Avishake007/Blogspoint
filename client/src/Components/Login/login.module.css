@@ -32,8 +32,11 @@
     /* align-items: center; */
     box-shadow: 5px 6px 14px var(--shadow-color);
 }
+.form_inner>p{
+    color: var(--font-color);
+}
 .form_inner form{
-    height: 68%;
+    height: 83%;
 }
 .formpng{
     display: flex;
@@ -87,7 +90,7 @@
 .col input{
     /* background: #2d2929; */
     border: 0;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--font-color);
     background: transparent;
     outline: none;
     /* border: 0; */
@@ -149,7 +152,7 @@ button:hover{
 .form_row>i{
     font-size: 25px;
     margin-right: 14px;
-    color: var(--secondary_color) !important;
+    color: var(--font-color) !important;
 }
 .form_control{
     height: 100%;
