@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import swal from "sweetalert";
 //Loader section
-import Loader from '../Loader/loader';
+import Loader from '../Skeleton Loader/Posts/post';
 
 //Get post and delete post function
 import { getPost, deletePost } from '../crud/crud';

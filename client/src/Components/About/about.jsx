@@ -138,10 +138,7 @@ const About=()=>{
                             <label htmlFor="stuorprof">Student/Professional : </label>
                             <p>{userData.stuprof}</p>
                         </div>
-                        <div className={`${styles.detail}`}>
-                            <label htmlFor="">Age : </label>
-                            <p>21</p>
-                        </div>
+                      
                         <div className={`${styles.detail}`}>
                             <label htmlFor="no_of_blogs">No of Blogs : </label>
                             <p>{posts.length}</p>

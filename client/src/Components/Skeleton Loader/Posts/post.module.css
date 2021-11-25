@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
+.container{
+    height: 90vh;
+    background: var(--login_form_color);
+    padding:18px;
+}
+
+.first_inner_container p{
+    color: var(--secondary_color);
+    font-weight: bold;
+    font-size:36px;
+}
+.second_inner_container{
+    display: flex;
+
+}
+.second_inner_container label{
+    color: rgb(114, 108, 96);
+    /* font-size: 3vh; */
+    margin-right: 3px;
+}
+.created {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.second_inner_container p{
+   
+    margin-right: 15px;
+   
+}
+.title,.edit_update{
+    display: flex;
+}
+.third_inner_container{
+    height: 45vh;
+    background: transparent;
+    border: 2px solid transparent;
+    color: var(--secondary_color);
+    padding: 14px;
+    width: 100%;
+    font-size: 20px;
+    overflow-y: auto;
+    outline: none;
+    resize: none;
+    /* text-transform: capitalize; */
+}
+.third_inner_container::first-letter{
+    text-transform:capitalize;
+}
+.edit_update{
+    position: absolute;
+    right: 13px;
+}
+.edit_update a svg{
+    height: 32px;
+    fill: #76b8ef;
+    margin-right: 14px;
+    cursor: pointer;
+}
+.delete svg {
+    /* height: 29px; */
+    height:32px;
+    /* width: 50px; */
+    fill: #de5050;
+    
+ 
+    cursor: pointer;
+}
+.edit_update a svg:hover{
+    opacity: 0.8;
+}
+.like_dislike{
+    position: absolute;
+    right: 14px;
+    display: flex;
+}
+.like,.dislike{
+    margin-right: 14px;
+    font-size: 22px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 750px) {
+    .first_inner_container{
+        flex-direction: column;
+    }
+    .second_inner_container{
+        flex-direction: column;
+    }
+}
+.skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  
+  .skeleton_text {
+    width: 10%;
+    height: 1.5rem;
+    margin-bottom: .25rem;
+    border-radius: .125rem;
+    margin: 14px;
+  }
+  .skeleton_text_description{
+    width: 100%;
+    height: 1.5rem;
+    margin-bottom: .25rem;
+    border-radius: .125rem;
+    margin-top: 14px;
+  }
+  .skeleton_text_description:last-child {
+    margin-bottom: 0;
+    width: 80%;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #aaa2a2;
+    }
+  
+    100% {
+      background-color: #c0b6b6;
+    }
+  }
+  
