@@ -81,6 +81,8 @@
     }
     .about_section img{
         border-radius: 50%;
+        height:90%;
+        width: 85%;
     }
     .detail{
         justify-content: center;
