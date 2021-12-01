@@ -75,6 +75,7 @@
     margin-right: 14px;
     font-size: 22px;
     cursor: pointer;
+    color: var(--secondary_color);
 }
 @media only screen and (max-width: 750px) {
     .first_inner_container{

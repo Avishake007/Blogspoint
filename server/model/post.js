@@ -4,11 +4,12 @@ const postSchema =new mongoose.Schema({
         type: String,
         required: true,
         unique:false
+       
     },
     description: {
         type: String,
         required: true,
-        unique:false
+      
     },
     username: {
         type: String,
@@ -24,6 +25,12 @@ const postSchema =new mongoose.Schema({
     userId:{
         type:String,
         required:true
+    },
+    noOfLikes:{
+        type:Number,
+    },
+    noOfDislikes:{
+        type:Number
     }
 });
 

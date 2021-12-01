@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-//React Toastify
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import swal from "sweetalert";
 
@@ -45,7 +42,7 @@ const UpdatePage = ({ match }) => {
   }
   //Add Tags
   const addTags = (e) => {
-    if (e.target.value !== "") {
+    if (e.target.value !== ""&&post.categories.includes(e.target.value)===false) {
       setPost({ ...post, ["categories"]: [...post.categories, e.target.value] });
       e.target.value = "";
     }
@@ -59,7 +56,7 @@ const UpdatePage = ({ match }) => {
     return <Loader />
   return (
     <>
-      <ToastContainer />
+     
       <div className="write">
 
         <form className="writeForm">

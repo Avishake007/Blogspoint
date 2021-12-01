@@ -56,7 +56,7 @@
     text-transform: capitalize;
   }
   .writeInput::placeholder {
-    color: rgb(196, 146, 146);
+    color: var(--font-color);
     font-weight: 400;
   }
   

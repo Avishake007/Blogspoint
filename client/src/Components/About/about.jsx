@@ -12,24 +12,24 @@ import defaultpic from './defaultpic.png';
 import styles from './about.module.css';
 
 //Function to get all posts
-import { getPostByUsername ,getAllPosts} from '../crud/crud';
+import { getPostByUsername } from '../crud/crud';
 
 //
-import {useHistory,useLocation} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 //Importing the Loader Page
 import Loader from '../Loader/loader';
 
 const About=()=>{
-    var userID;
+    // var userID;
     const history=useHistory();
     const [userData,setUserData]=useState({});
     const [posts, setPosts] = useState([]);
     const [loader,setLoader]=useState(true);
-    const { search } = useLocation("/");
+    // const { search } = useLocation("/");
     // const [fliterPosts,setFilterPosts]=useState([]);
     // const [noOfBlogs,setNoOfBlogs]=useState(0);
-   var noOfBlogs=0;
+//    var noOfBlogs=0;
     // console.log(search)
     //Checking for user authentication 
     const userAuthenticate= async()=>{
@@ -67,23 +67,23 @@ const About=()=>{
         }
     }
 
-    const filterByUsername=(username)=>{
+    // const filterByUsername=(username)=>{
       
-        var curr_username=username;
-       if(posts.length>0)
-        posts.filter((post)=>{
-            console.log(post.username==curr_username)
+    //     var curr_username=username;
+    //    if(posts.length>0)
+    //     posts.filter((post)=>{
+    //         console.log(post.username==curr_username)
            
-            if(post.username==curr_username){
-                noOfBlogs+=1;
+    //         if(post.username==curr_username){
+    //             noOfBlogs+=1;
               
               
-            }
-        })
-        // setNoOfBlogs(count);
-        // console.log(fliterPosts);
+    //         }
+    //     })
+    //     // setNoOfBlogs(count);
+    //     // console.log(fliterPosts);
         
-    }
+    // }
     const fetchData = async (userID) => { 
         console.log(userID)
         let data = await  getPostByUsername(userID);// params in url

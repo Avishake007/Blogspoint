@@ -33,7 +33,7 @@ router.get('/',(req,res)=>{
 //     }).catch(err=>{console.log(err)});
 // });
 const middleware=(res,req,next)=>{
-    console.log("Middleware");
+    // console.log("Middleware");
     next();
 }
 // Async await
@@ -70,7 +70,7 @@ router.post('/signup', async (req,res)=>{
 
 router.post('/signin',async (req,res)=>{
     const {email,password}=req.body;
-    console.log(req.body);
+    // console.log(req.body);
     try{
         let token;
         if(!email||!password){
@@ -81,14 +81,14 @@ router.post('/signin',async (req,res)=>{
         if(userLogin){
             const isMatch=await bcrypt.compare(password,userLogin.password);
             token=await userLogin.generateAuthToken();
-            console.log(token);
+            // console.log(token);
 
             res.cookie("jwtoken",token,{
                 expires:new Date(Date.now()+25892000000),
                 httpOnly:true
             });
             if(isMatch){
-                console.log("Match");
+                // console.log("Match");
                 return res.json({message:"Successful Login"});
             }
             else{
@@ -109,7 +109,7 @@ router.get('/about',authenticate,(req,res)=>{
 });
 // About Page
 router.get('/logout',(req,res)=>{
-    console.log("Logout");
+    // console.log("Logout");
     res.clearCookie('jwtoken',{path:'/'});
     
     res.status(200).send("Logout")
@@ -120,7 +120,7 @@ router.post('/create',async(req,res)=>{
         const post = await new Post(req.body);
         post.save();
         res.status(200).json('Post saved successfully');
-        console.log("kop")
+        // console.log("kop")
     } catch (error) {
         res.status(500).json(error);
     }
@@ -160,14 +160,14 @@ router.get('/post/:id', async (request, response) => {
 });
 router.get('/post/user/:id',async(request,response)=>{
     let posts;
-    console.log("oo")
+    // console.log("oo")
     try{
         if(request.params.id){
             posts=await Post.find({userId : request.params.id});
         }
         response.status(200).json(posts);
-        console.log("po")
-        console.log(request+"   pop")
+        // console.log("po")
+        // console.log(request+"   pop")
     }
     catch(error){
         response.status(500).json(error)
@@ -185,7 +185,7 @@ router.get('/posts',async(request,response)=>{
         else 
             posts = await Post.find({});
 
-            console.log('Hoe', posts)
+            // console.log('Hoe', posts)
         response.status(200).json(posts);
     } catch (error) {
         response.status(500).json(error)
