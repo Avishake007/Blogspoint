@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-//React Toastify
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+
 import swal from "sweetalert";
 //Loader section
 import Loader from '../Skeleton Loader/Posts/post';
@@ -22,7 +21,8 @@ const DetailView = ({ match }) => {
     const history = useHistory();
 
     //Defining useState  constanta
-    const [post, setPost] = useState({ "username": '', "title": '', "description": '' });
+    const [post, setPost] = useState({ "username": '', "title": '', "description": '',
+"noOfLikes":0,"noOfDislikes":0 });
     const [userData, setUserData] = useState({});
     const [flag, setFlag] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -74,7 +74,7 @@ const DetailView = ({ match }) => {
 
     //Deleting a post
     const deleteBlog = async () => {
-        var y = false;
+        // var y = false;
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this post",
@@ -120,7 +120,7 @@ const DetailView = ({ match }) => {
         return <Loader />
     return (
         <>
-            <ToastContainer />
+          
             <div className={`${styles.container}`}>
                 <div className={`${styles.first_inner_container}`}>
                     <div className={`${styles.title}`}>

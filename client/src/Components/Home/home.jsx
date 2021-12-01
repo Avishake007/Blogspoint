@@ -11,7 +11,8 @@ import { getAllPosts } from '../crud/crud';
 
 //React icons
 import {FaAngleDown} from 'react-icons/fa';
-
+import {IoMdArrowDropdownCircle,IoMdArrowDropupCircle} from 'react-icons/io';
+import {ImCross} from 'react-icons/im'
 //Search Icon
 import { Link, useLocation} from 'react-router-dom';
 import Loader from '../Loader/loader';
@@ -23,10 +24,12 @@ const Home=()=>{
     const [loader,setLoader]=useState(false);
     const [fliterPosts,setFilterPosts]=useState([]);
     const { search } = useLocation();
-    
+    const [tags,setTags]=useState(["poo","ppko"]);
+    const [showTags,setShowTags]=useState(false);
     const [all_posts,setAuto_posts]=useState([]);
     const [authenticate,setAuthenticate]=useState(false);
-
+    const [activeTags,setActiveTags]=useState([]);
+    var arr=[];
     //Checking for user authentication
     const userAuthenticate= async()=>{
         try{
@@ -68,11 +71,23 @@ const Home=()=>{
             let data = await getAllPosts(search); // params in url
             setPosts(data);
             setAuto_posts(data);
+            setFilterPosts(data)
             setLoader(true);
         }
         fetchData();
+       
         
     }, [search]);
+    useEffect(()=>{
+        console.log("po")
+    //   var t=new Set()
+    //   all_posts.map(post=>{
+    //       post.categories.map(tag=>{
+    //           t.add(tag)
+    //       })
+    //   })
+    //    setTags(t);
+    },[])
 
     //Function to filter by username
     const filterByUsername=(e)=>{
@@ -88,9 +103,81 @@ const Home=()=>{
         if(!curr_username)
         setPosts(all_posts);
         else
-        setPosts(fliterPosts);
+        setPosts(all_posts.filter((post)=>{
+            console.log(post.username.substring(0,curr_username.length)===curr_username)
+           
+            return (post.username.substring(0,curr_username.length)===curr_username);
+        }));
     //    for(var i=0;i<fliterPosts.length;i++)
     //    console.log(fliterPosts[i].username);
+    }
+    const filterByTags=(tag)=>{
+        setFilterPosts(fliterPosts.filter(post=>{
+           return post.categories.includes(tag)===true;
+        }))
+        
+        setPosts(fliterPosts.filter(post=>{
+            return post.categories.includes(tag)===true;
+         }));
+        
+    }
+   const activeTag=(tag)=>{
+        // e.style.background="red";
+        if(activeTags.includes(tag)===false)
+        setActiveTags([...activeTags,tag])
+        filterByTags(tag)
+   }
+    const toggleTags=()=>{
+        console.log("ja raha hain")
+        if(showTags===true)
+        setShowTags(false);
+        else
+        setShowTags(true);
+
+       
+    //     if(tags.length===0){
+        posts.map(post=>{
+            for(var i=0;i<post.categories.length;i++){
+                console.log("pl"+post.categories[i])
+                if(arr.includes(post.categories[i])===false)
+                arr.push(post.categories[i])
+                // setTags([...tags,post.categories[i]])
+
+            }
+
+        })
+        arr.map(tag=> console.log(tag))
+       console.log(arr);
+        setTags(arr) 
+        console.log(tags)
+    // }
+        
+    }
+    const removeFilter=(tag)=>{
+       var po=[]
+       all_posts.map(post=>{
+           let flag=1;
+        for(var i=0;i<activeTags.length;i++)
+        {
+            if(activeTags[i]!==tag&&post.categories.includes(activeTags[i])===false)
+            {
+            flag=0;
+            break
+            }
+        }
+        if(flag==1)
+        po.push(post);
+})
+console.log(po)
+setPosts(po)
+        setFilterPosts( po)
+    if(activeTags.length===1)
+    setPosts(all_posts)
+    }
+    const removeTags=(_)=>{
+        setActiveTags( activeTags.filter((tag,index)=>index!==_))
+        console.log(activeTags[_])
+        removeFilter(activeTags[_])
     }
     if(!loader)
     return <Loader/>
@@ -136,9 +223,42 @@ const Home=()=>{
            
             <div className={`${styles.searchbox}`}>
                 <input type="search" name="search" id="search" placeholder="Search by username..." onChange={filterByUsername}/>
+                <div className={`${styles.tags}`} onClick={()=>toggleTags()}>Tags <span>
+                    {(showTags===false)?<IoMdArrowDropdownCircle/>:<IoMdArrowDropupCircle/>}</span></div>
+               
             </div>
+            {
+            (showTags===true)&&<div className={`${styles.allTags}`}>
+                {/* {tags.key.length===true} */}
+                {/* {tags.map((tag)=>{
+                        <div>{tag}</div>
+                        // <div className={`${styles.tag}`} name={tag} onClick={()=>activeTag(tag)}>{tag}</div>
+                        // tag
+                    })} */}
+                {
+                    all_posts.length&&all_posts.map((post,_)=>(
+                        post.categories.map(tag=>(
+                        <div className={`${styles.tag}`} name={tag} onClick={()=>activeTag(tag)}>{tag}</div>
+                        ))
+                    ))
+                    
+                }
+                
+                </div>
+}
+                
+                    <div className={`${styles.activeTags}`}>
+                        {
+                    activeTags.map((tag,_)=>(
+                        <div className={`${styles.tagActive}`}>{tag}<span onClick={()=>removeTags(_)}><ImCross/></span></div>
+                    ))
+                }
+                </div>
+                {/* {posts.length} */}
         {
+             
                 posts.length ? posts.map(post => (
+                    
                         <div className={`${styles.post}`} >
                        
                             <div className={`${styles.upper}`}>

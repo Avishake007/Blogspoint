@@ -54,7 +54,8 @@ const Write = () => {
   }, []);
 
   const [post, setPost] = useState({
-    title: '', description: '', username: '', categories: [], createdDate: new Date(), userId: userData._id
+    title: '', description: '', username: '', categories: [], createdDate: new Date(), userId: userData._id,
+    noOFLikes:0,noOfDisLikes:0
   });
   if (flag === true) {
     setPost({ ...post, username: `${userData.username}` })
@@ -96,7 +97,7 @@ const Write = () => {
 
   //Add Tags
   const addTags=(e)=>{
-    if(e.target.value!==""){
+    if(e.target.value!==""&&post.categories.includes(e.target.value)===false){
     setPost({...post,["categories"]:[...post.categories,e.target.value]});
     e.target.value="";
     }
