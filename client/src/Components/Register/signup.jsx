@@ -13,7 +13,7 @@ const Signup = () => {
   const [showPassword1,setShowPassword1]=useState(false);
   const [showPassword2,setShowPassword2]=useState(false);
   const [user, setUser] = useState({
-    username: '', name: '', state: '', city: '', stuprof: '', email: '', password: '', confirmpassword: ''
+    username: '', name: '', state: '', city: '', stuprof: '', email: '', password: '', confirmpassword: '',postLikes:[],postDislikes:[]
   });
   const [error, setError] = useState({
     username: -1, name: -1, state: -1, city: -1, stuprof: -1, email: -1, password: -1, confirmpassword: -1

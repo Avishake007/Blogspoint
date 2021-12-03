@@ -7,7 +7,7 @@ import swal from "sweetalert";
 import Loader from '../Skeleton Loader/Posts/post';
 
 //Get post and delete post function
-import { getPost, deletePost } from '../crud/crud';
+import { getPost, deletePost, updatePost, updateUserInfo } from '../crud/crud';
 
 //Importing react icons
 import { AiFillEdit } from 'react-icons/ai';
@@ -45,6 +45,10 @@ const DetailView = ({ match }) => {
             }
             const data = await res.json();
             console.log(data);
+            if(data.postLikes.includes(match.params.id))
+            setLike(true)
+            else if(data.postDislikes.includes(match.params.id))
+            setDislike(true)
             setUserData(data);
             setFlag(true);
 
@@ -62,7 +66,7 @@ const DetailView = ({ match }) => {
         userAuthenticate();
     }, []);
     useEffect(() => {
-
+       
         const fetchData = async () => {
             let data = await getPost(match.params.id);
             setPost(data);
@@ -70,7 +74,7 @@ const DetailView = ({ match }) => {
         }
         fetchData();
     });
-    console.log(post);
+    // console.log(post);
 
     //Deleting a post
     const deleteBlog = async () => {
@@ -100,21 +104,94 @@ const DetailView = ({ match }) => {
         swal("", "Post deleted successfully", "success");
         await sleep(3000);
     }
-    const toggleLike=()=>{
-        if(dislike===true)
-        setDislike(false);
-        if(like===true)
-        setLike(false)
-        else
-        setLike(true);
+    const update=async(post)=>{
+        await updatePost(match.params.id, post);
+
     }
-    const toggleDislike=()=>{
-        if(like===true)
-        setLike(false);
-        if(dislike===true)
-        setDislike(false);
+    const max=(a,b)=>{
+        if(a>b)
+        return a;
         else
+        return b;
+    }
+    const updateUser=async(user)=>{
+        console.log(userData._id)
+        await updateUserInfo(userData._id, user);
+    }
+    const toggleLike=()=>{
+        var temPost=post;
+        var tempUser=userData;
+        if(dislike===true){
+            setDislike(false);
+            setUserData({...userData,["postDislikes"]:userData.postDislikes.filter(post=>post!==match.params.id),["postLikes"]:[...userData.postLikes,match.params.id]})
+            temPost["noOfDislikes"]=max(0,temPost["noOfDislikes"]- 1);
+            tempUser.postDislikes=userData.postDislikes.filter(post=>post!==match.params.id);
+            setLike(true);
+           
+            temPost["noOfLikes"]+=1;
+            tempUser.postLikes.push(match.params.id)
+            setPost({...post,["noOfLikes"]:post.noOfLikes+1,["noOfDislikes"]:max(0,post.noOfDislikes-1)})
+        
+       
+        }
+        else{
+        if(like===true){
+        setLike(false)
+        temPost["noOfLikes"]=max(0,temPost["noOfLikes"]- 1);
+        tempUser.postLikes=userData.postLikes.filter(post=>post!==match.params.id);
+        setUserData({...userData,["postLikes"]:userData.postLikes.filter(post=>post!==match.params.id)})
+        setPost({...post,["noOfLikes"]:max(0,post.noOfLikes-1)})
+        }
+        else{
+        setLike(true);
+        temPost["noOfLikes"]+=1;
+        tempUser.postLikes.push(match.params.id);
+        setUserData({...userData,["postLikes"]:[...userData.postLikes,match.params.id]})
+        setPost({...post,["noOfLikes"]:post.noOfLikes+1})
+        }
+    }
+    console.log(userData.postLikes)
+        update(temPost)
+        updateUser(tempUser)
+    }
+
+    const toggleDislike=()=>{
+        var temPost=post;
+        var tempUser=userData;
+        if(like===true){
+            setLike(false);
+            tempUser.postLikes=userData.postLikes.filter(post=>post!==match.params.id);
+            setUserData({...userData,["postLikes"]:userData.postLikes.filter(post=>post!==match.params.id),["postDislikes"]:[...userData.postDislikes,match.params.id]})
+            temPost["noOfLikes"]=max(0,temPost["noOfLikes"]- 1);
+          
+           
+            setDislike(true);
+            tempUser.postDislikes.push(match.params.id);
+            temPost["noOfDislikes"]+=1;
+            setPost({...post,["noOfLikes"]:max(0,post.noOfLikes-1),["noOfDislikes"]:post.noOfDislikes+1})
+        
+       
+        }
+        else{
+        if(dislike===true){
+        setDislike(false)
+        tempUser.postDislikes=userData.postDislikes.filter(post=>post!==match.params.id);
+        setUserData({...userData,["postDislikes"]:userData.postDislikes.filter(post=>post!==match.params.id)})
+        temPost["noOfDislikes"]=max(0,temPost["noOfDislikes"]- 1);
+          
+        setPost({...post,["noOfDislikes"]:max(0,post.noOfDislikes-1)})
+        }
+        else{
         setDislike(true);
+        tempUser.postDislikes.push(match.params.id);
+        temPost["noOfDislikes"]+=1;
+        setUserData({...userData,["postDislikes"]:[...userData.postDislikes,match.params.id]})
+        setPost({...post,["noOfDislikes"]:post.noOfDislikes+1})
+        }
+       
+    }
+    updateUser(tempUser)
+update(temPost)
     }
     if (loader)
         return <Loader />
@@ -147,11 +224,20 @@ const DetailView = ({ match }) => {
                     }
                     {
                         (flag === true) && (userData.username !== post.username) &&<div className={`${styles.like_dislike}`}>
-                            <div className={`${styles.like}`} onClick={()=>toggleLike()}>
+                            <div className={`${styles.like}`} >
                                 {
-                                    like===false?<AiOutlineLike/>:<AiFillLike/>}</div>
-                            <div className={`${styles.dislike}`} onClick={()=>toggleDislike()}>
-                                {dislike===false?<AiOutlineDislike/>:<AiFillDislike/>}</div>
+                                    like===false?<AiOutlineLike onClick={()=>toggleLike()}/>:<AiFillLike onClick={()=>toggleLike()}/>}{post.noOfLikes}</div>
+                            <div className={`${styles.dislike}`}>
+                                {dislike===false?<AiOutlineDislike  onClick={()=>toggleDislike()}/>:<AiFillDislike  onClick={()=>toggleDislike()}/>}{post.noOfDislikes}</div>
+                        </div>
+                    }
+                     {
+                        (flag === true) && (userData.username === post.username) &&<div className={`${styles.like_dislike}`}>
+                            <div className={`${styles.like}`} >
+                                {
+                                    like===false?<AiOutlineLike />:<AiFillLike />}{post.noOfLikes}</div>
+                            <div className={`${styles.dislike}`}>
+                                {dislike===false?<AiOutlineDislike />:<AiFillDislike  />}{post.noOfDislikes}</div>
                         </div>
                     }
                 </div>

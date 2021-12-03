@@ -264,7 +264,7 @@ setPosts(po)
                             <div className={`${styles.upper}`}>
                             <div className={`${styles.username}`}>{post.username}</div>
                             <Link style={{textDecoration: 'none', color: 'inherit'}} to={`details/${post._id}`}>
-                            <button className="btn btn-dark">Read More</button>
+                            <button className={`btn ${styles.read_me}`}>Read More</button>
                         
                             </Link>
                             

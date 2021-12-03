@@ -47,6 +47,16 @@ export const updatePost = async (id, post) => {
         console.log('Error while calling updatePost API ', error)
     }
 }
+//Function to update a particular user's information 
+export const updateUserInfo = async (id, user) => {
+    try {
+        console.log(id+" pp ")
+        return await axios.post(`/updateUser/${id}`, user);
+        
+    } catch(error) {
+        console.log('Error while calling updatePost API ', error)
+    }
+}
 //Function to delete a user's post
 export const deletePost = async (id) => {
     try {

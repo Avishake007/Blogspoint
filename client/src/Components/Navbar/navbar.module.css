@@ -76,3 +76,6 @@ a svg{
     height:100%;
     filter: drop-shadow(3px 1px 4px grey);
 }
+.toggle svg:hover{
+    opacity: 0.9;
+}

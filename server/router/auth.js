@@ -136,6 +136,17 @@ router.post('/update/:id',async (request, response) => {
         response.status(500).json(error);
     }
 });
+router.post('/updateUser/:id',async (request, response) => {
+    try {
+        const user = await User.findById(request.params.id);
+        console.log(request.params.id)
+        await User.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('User updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
 router.delete('/delete/:id',async (request, response) => {
 try {
     const post = await Post.findById(request.params.id);
