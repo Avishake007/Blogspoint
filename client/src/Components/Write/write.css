@@ -120,6 +120,9 @@
     margin-left: 7px;
     cursor: pointer;
   }
+  .tag_input:hover{
+    opacity: 0.9;
+  }
   .tag_field input{
     background: var(--login_form_color);
     border: 0;
@@ -127,4 +130,7 @@
     margin: 14px;
     outline: none;
     color: var(--secondary_color);
+  }
+  .writeSubmit:hover{
+    opacity: 0.8;
   }

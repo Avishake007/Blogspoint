@@ -182,10 +182,18 @@ svg{
 
 .post{
     height: 100px;
-    background:#bdadad;
+    background:var(--login_form_color);
     padding: 8px;
     margin-bottom: 14px;
     overflow: hidden;
+}
+.read_me{
+    background: var(--font-color) !important;
+    color: var(--primary_color) !important;
+    font-weight: bold !important;
+}
+.read_me:hover{
+    opacity: 0.9;
 }
 .searchbox{
     display: flex;
@@ -197,10 +205,10 @@ svg{
     width: 90%;
     margin-right: 14px;
     border-radius: 15px;
-    background: #dcdcdc;;
+    background: var(--login_form_color);
     outline: none;
     border: none;
-    color: black;
+    color: var(--secondary_color);
     padding: 6px;
     height: 34px;
 }
@@ -211,15 +219,15 @@ svg{
     cursor: pointer;
 }
 .searchbox input::placeholder{
-    color:black;
+    color:var(--secondary_color);
 }
 .username{
     height: 24%;
-    color: #052658;
+    color: var(--font-color);
     font-weight: bold;
 }
 .title{
-    color: rgb(27 90 14);
+    color: rgb(168, 112, 7);
     font-weight: bold;
     font-size: 18px;
 
@@ -230,7 +238,7 @@ svg{
 }
 .description{
     height: 60%;
-    color: black;
+    color: var(--secondary_color);
 }
 .down_arrow{
     display: flex;
@@ -294,7 +302,7 @@ svg{
 }
 .inner_cover{
     min-height: 421px;
-    background: white;
+    background: var(--primary_color);
     padding: 14px;
     
 }
@@ -310,6 +318,9 @@ svg{
     border-radius: 14px;
     cursor: pointer;
     
+}
+.tags:hover{
+    opacity: 0.9;
 }
 .tags svg{
     margin-left: 7px;
@@ -377,7 +388,7 @@ svg{
     position: relative;
     height: 136px;
     width: 100;
-    background: #e0d9d9;
+    background: var(--login_form_color);
     margin-bottom: 14px;
     transition: all 1s ease-in-out;
     display:flex;
@@ -388,14 +399,14 @@ svg{
   .tag{
     min-width: 59px;
     height: 31px;
-    background: #000000;
+    background: var(--font-color);
     /* display: flex; */
     text-align: center;
     margin: 7px;
     border-radius: 7px;
     cursor: pointer;
     padding: 1px;
-    color: white;
+    color: var(--primary_color);
     font-weight: bold;
   }
   .tag:hover{

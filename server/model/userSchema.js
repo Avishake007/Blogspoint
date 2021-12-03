@@ -40,7 +40,15 @@ const userSchema=new mongoose.Schema({
                 required:true
             }
         }
-    ]
+    ],
+    postLikes:{
+        type:Array,
+        required:false
+    },
+    postDislikes:{
+        type:Array,
+        required:false
+    }
 });
 //we are hashing the password
 userSchema.pre('save',async function(next){
