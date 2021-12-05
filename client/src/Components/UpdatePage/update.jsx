@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 
 import swal from "sweetalert";
-
+//React Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Loader
 import Loader from '../Loader/loader';
 import { useHistory } from 'react-router-dom';
@@ -26,19 +28,26 @@ const UpdatePage = ({ match }) => {
   console.log(match);
   let name, value;
   const handleInputs = (e) => {
+
     name = e.target.name;
     value = e.target.value;
-    setPost({ ...post, [name]: value });
+    setPost({ ...post, [name]: value ,["isUpdated"]:true});
 
   }
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   const updateBlogPost = async () => {
+    if(post.title!=""&&post.description!=""){
     await updatePost(match.params.id, post);
     swal("Post updated successfully", "", "success");
     await sleep(3000)
-    history.push(`/details/${match.params.id}`);
+    history.push(`/details/${match.params.id}`);}
+    else{
+      setTimeout(toast.error("Please do not keep the title and/or description empty", {
+        position: "top-center",
+      }), 3000);
+    }
   }
   //Add Tags
   const addTags = (e) => {
@@ -52,11 +61,14 @@ const UpdatePage = ({ match }) => {
   const deleteTags = (delIndex) => {
     setPost({ ...post, ["categories"]: post.categories.filter((_, index) => index !== delIndex) });
   }
+  useEffect(() => {
+    document.title="Update Page - Blogspoint"
+  }, [])
   if (loader)
     return <Loader />
   return (
     <>
-     
+     <ToastContainer/>
       <div className="write">
 
         <form className="writeForm">

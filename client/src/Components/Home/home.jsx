@@ -63,7 +63,7 @@ const Home=()=>{
   
   
     useEffect(()=>{
-        document.title="Home Page";
+        document.title="Home Page - Blogspoint";
       userAuthenticate();
   },[]);
     useEffect(() => {

@@ -130,3 +130,7 @@ svg{
     height: 33px;
     margin-left: 14px;
 }
+.backbtn{
+    background: var(--font-color) !important;
+    color: var(--primary_color) !important;
+}

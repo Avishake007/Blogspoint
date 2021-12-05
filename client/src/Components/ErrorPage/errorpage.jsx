@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 // import Error from 'Error.svg';
 const Errorpage=()=>{
   useEffect(()=>{
-      document.title="404 Error Page";
+      document.title="404 Error Page - Blogspoint";
   },[])
   return(
     <>
@@ -52,7 +52,7 @@ const Errorpage=()=>{
           <p>PAGE NOT FOUND!</p>
           <i class="fa fa-frown"></i>
           </div>
-          <button type="button" class="btn btn-light btn-outline-primary"  >
+          <button type="button" class="btn btn-light btn-outline-primary backbtn "  >
             <NavLink className="nav-link" to="/">Back to Home</NavLink></button>
         </div>
         </div>

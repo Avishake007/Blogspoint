@@ -128,7 +128,7 @@ const Signup = () => {
     setShowPassword2(true);
   }
   useEffect(() => {
-    document.title = "Signup Page";
+    document.title = "Signup Page - Blogspoint";
   }, [])
   return (
     <>

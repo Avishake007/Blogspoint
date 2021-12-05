@@ -47,7 +47,7 @@ const Write = () => {
     }
   }
   useEffect(() => {
-    document.title = "Write";
+    document.title = "Write - BlogsPoint";
     userAuthenticate();
 
     setLoader(false);
@@ -55,7 +55,7 @@ const Write = () => {
 
   const [post, setPost] = useState({
     title: '', description: '', username: '', categories: [], createdDate: new Date(), userId: userData._id,
-    noOFLikes:0,noOfDisLikes:0
+    noOfLikes:0,noOfDislikes:0,isUpdated:false
   });
   if (flag === true) {
     setPost({ ...post, username: `${userData.username}` })
