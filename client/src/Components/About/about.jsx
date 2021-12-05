@@ -90,7 +90,7 @@ const About=()=>{
         setPosts(data);
     }
     useEffect(()=>{
-        document.title="About Page";
+        document.title="About Page - Blogspoint";
         userAuthenticate();
         //  console.log(fliterPosts)
        

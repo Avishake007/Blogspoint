@@ -106,7 +106,7 @@ const Login = () => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   useEffect(() => {
-    document.title = "Signin Page";
+    document.title = "Signin Page - Blogspoint";
     setLoader(false);
   }, [])
   if (loader)

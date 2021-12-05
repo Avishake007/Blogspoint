@@ -31,6 +31,9 @@ const postSchema =new mongoose.Schema({
     },
     noOfDislikes:{
         type:Number
+    },
+    isUpdated:{
+        type:Boolean
     }
 });
 

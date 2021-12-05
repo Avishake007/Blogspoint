@@ -5,7 +5,9 @@ import React, { useEffect, useState } from 'react';
 import swal from "sweetalert";
 //Loader section
 import Loader from '../Skeleton Loader/Posts/post';
-
+//React Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Get post and delete post function
 import { getPost, deletePost, updatePost, updateUserInfo } from '../crud/crud';
 
@@ -193,16 +195,31 @@ const DetailView = ({ match }) => {
     updateUser(tempUser)
 update(temPost)
     }
+    const showError=()=>{
+        setTimeout(toast.error("You cannot like or dislike your own post", {
+            position: "top-center",
+          }), 3000);
+    }
+    useEffect(()=>{
+        document.title="Your Post - Blogspoint";
+        userAuthenticate();
+        //  console.log(fliterPosts)
+       
+        
+    },[]);
     if (loader)
         return <Loader />
     return (
         <>
-          
+          <ToastContainer/>
             <div className={`${styles.container}`}>
                 <div className={`${styles.first_inner_container}`}>
                     <div className={`${styles.title}`}>
 
                         <p>{post.title}</p>
+                        {
+                            (post.isUpdated===true)&&<span>(edited)</span>
+                        }
                     </div>
                    
                 </div>
@@ -234,10 +251,10 @@ update(temPost)
                      {
                         (flag === true) && (userData.username === post.username) &&<div className={`${styles.like_dislike}`}>
                             <div className={`${styles.like}`} >
-                                {
-                                    like===false?<AiOutlineLike />:<AiFillLike />}{post.noOfLikes}</div>
+                                
+                                    <AiOutlineLike onClick={()=>showError()}/>{post.noOfLikes}</div>
                             <div className={`${styles.dislike}`}>
-                                {dislike===false?<AiOutlineDislike />:<AiFillDislike  />}{post.noOfDislikes}</div>
+                               <AiOutlineDislike onClick={()=>showError()}/>{post.noOfDislikes}</div>
                         </div>
                     }
                 </div>

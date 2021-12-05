@@ -27,6 +27,13 @@
 }
 .title,.edit_update{
     display: flex;
+    justify-content: space-between;
+}
+.title span{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: var(--font-color);
 }
 .third_inner_container{
     height: 45vh;
