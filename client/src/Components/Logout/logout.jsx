@@ -1,14 +1,13 @@
+//Third Party imports
 import React, { useEffect, useContext } from 'react';
-
-
 import { useHistory } from 'react-router-dom';
-
 import { UserContext } from '../../App';
 const Logout = () => {
+    //UseContext Declarations
     const { state, dispatch } = useContext(UserContext);
-    console.log(state);
-    //Promises
+    //UseHistory Declarations
     const history = useHistory();
+    //UseEffect Declarations
     useEffect(() => {
         fetch('./logout', {
             method: "GET",
@@ -32,7 +31,7 @@ const Logout = () => {
     });
     return (
         <>
-            <div style={{height:"100vh"}}></div>
+            <div ></div>
 
         </>
     )

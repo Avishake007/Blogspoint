@@ -1,5 +1,7 @@
 const express=require('express');
 const Post=require("../model/post");
+const Comment=require("../model/comment");
+const Reply=require("../model/replies");
 // import createPost from '../controller/create.js'
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
@@ -202,4 +204,117 @@ router.get('/posts',async(request,response)=>{
         response.status(500).json(error)
     }
 })
+router.post('/post/update/user/:id',async (request, response) => {
+    try {
+        const user = await User.findById(request.params.id);
+        console.log(request.params.id)
+        await User.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('User updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
+router.post('/createComment',async(req,res)=>{
+    try {
+        const comment = await new Comment(req.body);
+        comment.save();
+        res.status(200).json('Comment saved successfully');
+        // console.log("kop")
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+router.get('/comment/:id', async (request, response) => {
+    try {
+        const comment = await Comment.findById(request.params.id);
+
+        response.status(200).json(comment);
+    } catch (error) {
+        response.status(500).json(error)
+    }
+});
+router.get('/comment/user/:id',async(request,response)=>{
+    let comments;
+    // console.log("oo")
+    try{
+        if(request.params.id){
+            comments=await Comment.find({postId : request.params.id});
+        }
+        response.status(200).json(comments);
+        // console.log("po")
+        // console.log(request+"   pop")
+    }
+    catch(error){
+        response.status(500).json(error)
+    }
+})
+router.post('/comment/update/:id',async (request, response) => {
+    try {
+        const comment = await Comment.findById(request.params.id);
+        
+        await Comment.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('comment updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
+router.post('/comment/update/user/:id',async (request, response) => {
+    try {
+        const user = await User.findById(request.params.id);
+        console.log(request.params.id)
+        await User.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('User updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
+router.post('/reply/create',async(req,res)=>{
+    try {
+        const reply = await new Reply(req.body);
+        reply.save();
+        res.status(200).json('Reply saved successfully');
+        // console.log("kop")
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+router.get('/reply/comment/:id',async(request,response)=>{
+    let replies;
+   
+    try{
+        if(request.params.id){
+            replies=await Reply.find({commentId : request.params.id});
+        }
+        response.status(200).json(replies);
+        
+    }
+    catch(error){
+        response.status(500).json(error)
+    }
+})
+router.post('/reply/update/:id',async (request, response) => {
+    try {
+        const reply = await Reply.findById(request.params.id);
+        
+        await Reply.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('reply updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
+router.post('/reply/update/user/:id',async (request, response) => {
+    try {
+        const user = await User.findById(request.params.id);
+        console.log(request.params.id)
+        await User.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('User updated successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+});
 module.exports=router;

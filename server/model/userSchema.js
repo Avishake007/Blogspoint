@@ -48,6 +48,22 @@ const userSchema=new mongoose.Schema({
     postDislikes:{
         type:Array,
         required:false
+    },
+    commentLikes:{
+        type:Array,
+        required:false
+    },
+    commentDislikes:{
+        type:Array,
+        required:false
+    },
+    replyLikes:{
+        type:Array,
+        required:false
+    },
+    replyDislikes:{
+        type:Array,
+        required:false
     }
 });
 //we are hashing the password

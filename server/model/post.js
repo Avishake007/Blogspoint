@@ -34,6 +34,14 @@ const postSchema =new mongoose.Schema({
     },
     isUpdated:{
         type:Boolean
+    },
+    likeUsers:{
+        type:Array,
+        required:false
+    },
+    dislikeUsers:{
+        type:Array,
+        required:false
     }
 });
 
