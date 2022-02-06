@@ -1,8 +1,9 @@
-.footer{
-   
-    width:100%;
-    background: #06062d;
-    color: white;
-    text-align: center;
-    height: 5%;
+.footer {
+  width: 100%;
+  background: #06062d;
+  color: white;
+  text-align: center;
+  height: 5%;
+  position: sticky;
+  bottom: 0px;
 }

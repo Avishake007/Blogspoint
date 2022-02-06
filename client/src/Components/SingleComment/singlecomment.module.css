@@ -1,0 +1,36 @@
+.comment{
+
+}
+.writeComment{
+
+}
+.commentHeader{
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--secondary_color);
+}
+.commentArea{
+    height: 18vh;
+    width: 100%;
+    resize: none;
+    background: var(--login_form_color);
+    border: 0;
+    padding: 10px;
+}
+.commentArea:focus{
+    outline:none
+}
+.commentBtn{
+    width: 122px;
+    height: 37px;
+    outline: none;
+    border-radius: 18px;
+    border: 2px solid var(--font-color);
+    font-weight: bold;
+    background: var(--font-color);
+    color: var(--login_form_color);
+    
+}
+.commentBtn:hover{
+    transform: scale(1.1);
+}

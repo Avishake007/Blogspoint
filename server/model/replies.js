@@ -1,8 +1,8 @@
 const mongoose=require('mongoose');
-const commentSchema =new mongoose.Schema({
-    postId:{
-        type:String,
-        required:true
+const replySchema =new mongoose.Schema({
+    commentId:{
+        type: String,
+        required:true,
     },
     username: {
         type: String,
@@ -17,7 +17,6 @@ const commentSchema =new mongoose.Schema({
     createdDate: {
         type: Date
     },
-   
     noOfLikes:{
         type:Number,
     },
@@ -35,5 +34,5 @@ const commentSchema =new mongoose.Schema({
 });
 
 
-const Comment= mongoose.model('COMMENT', commentSchema);
-module.exports=Comment;
+const Replies= mongoose.model('REPLY', replySchema);
+module.exports=Replies;
