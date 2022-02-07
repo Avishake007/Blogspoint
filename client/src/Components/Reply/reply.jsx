@@ -10,7 +10,7 @@ import {
 //StyleSheets imports
 import styles from "./reply.module.css";
 //Local Imports
-import { updateReply } from "../../methods/crud/crud";
+import { updateReply } from "../../methods/crud/reply";
 const Reply = ({ reply, user }) => {
   const [singleReply, _SingleReply] = useState(reply);
   const [like, setLike] = useState(false);

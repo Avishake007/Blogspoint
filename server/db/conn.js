@@ -1,11 +1,16 @@
-// Mongodb connection
-const mongoose=require('mongoose');
-const DB=process.env.DATABASE;
-mongoose.connect(DB,{
-    useCreateIndex:true,
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-    useFindAndModify:false
-}).then(()=>{
+// Third party import
+const mongoose = require("mongoose");
+//Local import
+const DB = process.env.DATABASE;
+//MongoDB Connection
+mongoose
+  .connect(DB, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
     console.log("Connection succesful");
-}).catch((err)=>console.log(`no connection`));
+  })
+  .catch((err) => console.log(`no connection`));

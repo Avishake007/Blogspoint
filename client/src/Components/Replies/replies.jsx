@@ -7,7 +7,7 @@ import { MdSend } from "react-icons/md";
 import style from "./replies.module.css";
 import "react-toastify/dist/ReactToastify.css";
 //Local imports
-import { createReply, getReplyByCommentId } from "../../methods/crud/crud";
+import { createReply, getReplyByCommentId } from "../../methods/crud/reply";
 import Reply from "../Reply/reply";
 
 const Replies = ({ user, comment, rep }) => {

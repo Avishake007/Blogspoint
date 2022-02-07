@@ -5,7 +5,7 @@ import swal from "sweetalert";
 //StyleSheet imports
 import styles from "./singlecomment.module.css";
 //Local imports
-import { createComment, getCommentByPostId } from "../../methods/crud/crud";
+import { createComment,getCommentByPostId } from "../../methods/crud/comment";
 import Comment from "../Comments/comment.jsx";
 
 const SingleComment = ({ match, userData }) => {

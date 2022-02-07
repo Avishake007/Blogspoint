@@ -9,7 +9,7 @@ import { IoMdArrowDropdownCircle, IoMdArrowDropupCircle } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 import BloggerBro from "../../assest/images/bloggerbro.jsx";
 //Local Imports
-import { getAllPosts } from "../../methods/crud/crud";
+import { getAllPosts } from "../../methods/crud/post";
 import Loader from "../Loader/loader";
 import Post from "../Post/post";
 
@@ -40,7 +40,7 @@ const AllPosts = () => {
       setFilterPosts(data);
       setLoader(false)
     };
-    fetchData();
+    fetchData(); 
   }, [search]);
   
   //Function to filter by username

@@ -13,9 +13,9 @@ import style from "./comment.module.css";
 //Local imports
 import {
   getComment,
-  getReplyByCommentId,
   updateComment,
-} from "../../methods/crud/crud";
+} from "../../methods/crud/comment";
+import {getReplyByCommentId} from "../../methods/crud/reply"
 import Replies from "../Replies/replies";
 import Loader from "../Skeleton Loader/Posts/post";
 

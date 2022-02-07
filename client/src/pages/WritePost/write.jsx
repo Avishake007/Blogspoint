@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 //Local imports
-import { createPost } from "../../methods/crud/crud";
+import { createPost } from "../../methods/crud/post";
 import "./write.css";
 import Loader from "../../Components/Loader/loader";
 const Write = () => {
@@ -31,7 +31,7 @@ const Write = () => {
   //Check whether the user is authenticated
   const userAuthenticate = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch("/user/authenticate", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const Logout = () => {
     const history = useHistory();
     //UseEffect Declarations
     useEffect(() => {
-        fetch('./logout', {
+        fetch('/user/logout', {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -20,7 +20,7 @@ const Logout = () => {
             dispatch({ type: 'USER', payload: false })
             
             window.location.reload(false);
-            history.push('/about', { replace: false });
+            history.push('/signin', { replace: false });
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;

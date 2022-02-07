@@ -22,7 +22,7 @@ const Navbar = () => {
   const [flag, setFlag] = useState(false);
   const userAuthenticate = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch("/user/authenticate", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
