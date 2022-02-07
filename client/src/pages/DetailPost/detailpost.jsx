@@ -18,7 +18,7 @@ const DetailView = ({ match }) => {
   //Checking for user authentication
   const userAuthenticate = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch("/user/authenticate", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

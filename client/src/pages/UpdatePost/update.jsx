@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 // Local imports
 import Loader from "../../Components/Loader/loader";
-import { getPost, updatePost } from "../../methods/crud/crud";
+import { getPost, updatePost } from "../../methods/crud/post";
 const UpdatePage = ({ match }) => {
   //UseHistory Declarations
   const history = useHistory();

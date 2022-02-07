@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./about.module.css";
 //Local Imports
 import defaultpic from "../../assest/images/defaultpic.png";
-import { getPostByUsername } from "../../methods/crud/crud";
+import { getPostByUsername } from "../../methods/crud/post";
 import Loader from "../../Components/Loader/loader";
 
 const About = () => {
@@ -21,7 +21,7 @@ const About = () => {
   //Checking for user authentication
   const userAuthenticate = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch("/user/authenticate", {
         method: "GET",
         headers: {
           Accept: "application/json",

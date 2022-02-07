@@ -61,7 +61,7 @@ const Login = () => {
     e.preventDefault();
     var email = userLogin.email;
     var password = userLogin.password;
-    const res = await fetch("/signin", {
+    const res = await fetch("/user/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

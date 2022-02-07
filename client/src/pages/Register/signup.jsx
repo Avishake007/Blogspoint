@@ -39,10 +39,6 @@ const Signup = () => {
     email: "",
     password: "",
     confirmpassword: "",
-    postLikes: [],
-    postDislikes: [],
-    commentLikes: [],
-    commentDislikes: [],
   });
   const [error, setError] = useState({
     username: -1,
@@ -118,7 +114,7 @@ const Signup = () => {
       confirmpassword,
     } = user;
 
-    const res = await fetch("/signup", {
+    const res = await fetch("/user/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ import {
 import styles from "./singlepost.module.css";
 //Local imports
 import Loader from "../Skeleton Loader/Posts/post";
-import { getPost, deletePost, updatePost } from "../../methods/crud/crud";
+import { getPost, deletePost, updatePost } from "../../methods/crud/post";
 
 const SinglePost = ({ flaged, user, match }) => {
   //UseHistory Declarations

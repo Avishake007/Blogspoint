@@ -1,50 +1,35 @@
-const dotenv=require('dotenv');
-const express=require('express');
-const app=express();
-// config.env file helps to keep the secret details safe from the
-// outside world
-var cookieParser = require('cookie-parser')
-app.use(cookieParser())
-dotenv.config({path:'./config.env'});
-require('./db/conn');
-const PORT=process.env.PORT;
+//Third Party imports
+const dotenv = require("dotenv");
+const express = require("express");
+const app = express();
+var cookieParser = require("cookie-parser");
+// config.env file helps to keep the secret details safe from the outside world
 
+dotenv.config({ path: "./config.env" });
+//Connecting to MongooDB
+require("./db/conn");
+//Getting the port number from config.env
+const PORT = process.env.PORT;
+//MiddleWare
+// Middleware : It allows us to show the required page to the authenticate user only
+app.use(cookieParser());
 app.use(express.json());
 
-//Linking of router file
-app.use(require('./router/auth'));
-
-//User Schema
-const User=require('./model/userSchema');
+//Importing Routes
+const userRoute = require("./routes/userRoutes");
+const postRoute = require("./routes/postRoutes");
+const commentRoute = require("./routes/commentRoutes");
+const replyRoute = require("./routes/replyRoutes");
+//Route middleware
+app.use("/user", userRoute);
+app.use("/post", postRoute);
+app.use("/comment", commentRoute);
+app.use("/reply", replyRoute);
 //Home Page
-app.get('/',(req,res)=>{
-    res.send("Hello World");
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
-// Middleware : It allows us to show the required page to the 
-//              authenticate user only
-// const middleware=(res,req,next)=>{
-//         console.log("Middleware");
-
-//         next();// This statement makes the page appear
-//  }
- //About Page
-// app.get('/about',middleware,(req,res)=>{
-//     res.send("about");
-// });
-//Signin Page
-app.get('/signin',(req,res)=>{
-    res.send("Signin");
-});
-//Signup Page
-app.get('/signup',(req,res)=>{
-    res.send("Signup");
-});
-//Remaining Page
-app.get('/*',(req,res)=>{
-    res.send("404");
-})
 //Server connection
-app.listen(PORT,()=>{
-    console.log(`server is running at ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`server is running at ${PORT}`);
 });
-
