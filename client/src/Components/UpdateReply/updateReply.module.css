@@ -1,0 +1,38 @@
+
+.update_box{
+    height: 37vh;
+    width: 35vw;
+    margin-top: 36px;
+  
+}
+.desc_section{
+    width: 100%;
+    height: 85%;
+}
+.desc_section textarea{
+    padding: 14px;
+    height: 100%;
+    width: 100%;
+    resize: none;
+    outline: none;
+    background: white;
+    color:black;
+    border:0;
+    overflow: auto;
+}
+.update_btn_section{
+    height:15%;
+}
+.update_btn{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: black;
+    color:white;
+    opacity:0.9;
+}
+.update_btn:hover{
+    opacity: 1;
+}

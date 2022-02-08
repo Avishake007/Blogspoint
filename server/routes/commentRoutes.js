@@ -37,7 +37,7 @@ router.get("/post/:id", async (request, response) => {
   }
 });
 //Updating a comment according to comment id
-router.post("/update/:id", async (request, response) => {
+router.put("/update/:id", async (request, response) => {
   try {
     const comment = await Comment.findById(request.params.id);
 
@@ -48,5 +48,28 @@ router.post("/update/:id", async (request, response) => {
     response.status(500).json(error);
   }
 });
+//Deleting a comment according to comment id
+router.delete("/delete/:id", async (request, response) => {
+  try {
+    const comment = await Comment.findById(request.params.id);
 
+    await comment.delete();
+
+    response.status(200).json("Comment deleted successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
+//Deleting comment/s according to post id
+router.delete("/delete/post/:id", async (request, response) => {
+  try {
+    
+     await Comment.deleteMany({ postId: request.params.id });
+
+
+    response.status(200).json("Comment deleted successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
 module.exports = router;

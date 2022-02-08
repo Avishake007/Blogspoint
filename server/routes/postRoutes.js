@@ -54,7 +54,7 @@ router.get("/", async (request, response) => {
 //Updating a post according to post id
 router.post("/update/:id", async (request, response) => {
   try {
-    const post = await Post.findById(request.params.id);
+    
 
     await Post.findByIdAndUpdate(request.params.id, { $set: request.body });
 

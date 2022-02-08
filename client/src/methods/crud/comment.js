@@ -29,8 +29,24 @@ export const getCommentByPostId = async (id) => {
 //Function to update a particular user's comment
 export const updateComment = async (id, comment) => {
   try {
-    return await axios.post(`/comment/update/${id}`, comment);
+    return await axios.put(`/comment/update/${id}`, comment);
   } catch (error) {
     console.log("Error while calling updateComment API ", error);
+  }
+};
+//Function to delete a user's comment by comment id
+export const deleteComment = async (id) => {
+  try {
+    return await axios.delete(`/comment/delete/${id}`);
+  } catch (error) {
+    console.log("Error while calling deleteComment API ", error);
+  }
+};
+//Function to delete comments by post id
+export const deleteCommentByPostId = async (id) => {
+  try {
+    return await axios.delete(`/comment/delete/post/${id}`);
+  } catch (error) {
+    console.log("Error while calling deleteCommentByPostId API ", error);
   }
 };

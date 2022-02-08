@@ -72,8 +72,8 @@ const SingleComment = ({ match, userData }) => {
           COMMENT
         </button>
       </div>
-      {comments.map((comm) => (
-        <div className={`${styles.allComments}`}>
+      {comments.map((comm,_) => (
+        <div className={`${styles.allComments}`} key={_}>
           <Comment comm={comm} user={userData} />
         </div>
       ))}

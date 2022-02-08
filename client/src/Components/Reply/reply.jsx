@@ -10,14 +10,22 @@ import {
 //StyleSheets imports
 import styles from "./reply.module.css";
 //Local Imports
-import { updateReply } from "../../methods/crud/reply";
+import { updateReply,deleteReply} from "../../methods/crud/reply";
+import Loader from "../Skeleton Loader/Replies/reply"
+import UpdateReply from "../UpdateReply/updateReply";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import swal from "sweetalert";
 const Reply = ({ reply, user }) => {
   const [singleReply, _SingleReply] = useState(reply);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
+  const [loader,_loader]=useState(true);
+  const [show,_show]=useState(false);
+  const [open,_open]=useState(false);
   useEffect(() => {
     if (reply.likeUsers.includes(user._id)) setLike(true);
     else if (reply.dislikeUsers.includes(user._id)) setDislike(true);
+    _loader(false)
   }, []);
   //Updating a reply
   useEffect(() => {
@@ -106,13 +114,57 @@ const Reply = ({ reply, user }) => {
       }
     }
   };
+  //Function to toggle show update delete on click
+  const showUpDel=()=>{
+    if(show)_show(false)
+    else _show(true)
+  }
+  const onOpenModal=()=>{
+    _open((prev)=>(prev=true))
+  }
+  const onCLoseModal=()=>{
+    _open((prev)=>(prev=false));
+  }
+  //Deleting a Reply
+  const deleteRep = async () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this reply",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        delet();
+      } else {
+        swal("Your Reply is safe!");
+      }
+    });
+  };
+  //Providing delay for ms milliseconds
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  const delet = async () => {
+    await deleteReply(singleReply._id);
+    swal("", "Reply deleted successfully", "success");
+    await sleep(3000);
+  };
+  if(loader)return <Loader/>
   return (
+    <>
     <div className={`${styles.reply}`}>
       <div className={`${styles.replyTop}`}>
-        <div>{reply.username}</div>
-        <div>
-          <Moment fromNow>{reply.createdDate}</Moment>
+        <div>{reply.username}
+        <Moment fromNow className={`${styles.moment}`}>{reply.createdDate}</Moment>
+
         </div>
+        
+        <div className={`${styles.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>
+          {show&&<div className={`${styles.updel}`} >
+            <div className={`${styles.update}`} onClick={()=>onOpenModal()}>Update</div>
+            <div className={`${styles.delete}`} onClick={()=>deleteRep()}>Delete</div>
+          </div>}
       </div>
       <textarea
         name="description"
@@ -140,6 +192,8 @@ const Reply = ({ reply, user }) => {
         </div>
       </div>
     </div>
+    <UpdateReply open={open} onCLoseModal={onCLoseModal} rep={reply}/>
+    </>
   );
 };
 

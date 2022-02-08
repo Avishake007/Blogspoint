@@ -7,27 +7,33 @@ import {
   AiOutlineLike,
 } from "react-icons/ai";
 import { FaRegCommentAlt, FaCommentAlt } from "react-icons/fa";
-import Moment from "react-moment";
+import {BsThreeDotsVertical} from "react-icons/bs";
+
 //StyleSheet imports
 import style from "./comment.module.css";
 //Local imports
 import {
+  deleteComment,
   getComment,
   updateComment,
 } from "../../methods/crud/comment";
-import {getReplyByCommentId} from "../../methods/crud/reply"
+import {deleteReplyByCommentId, getReplyByCommentId} from "../../methods/crud/reply"
 import Replies from "../Replies/replies";
-import Loader from "../Skeleton Loader/Posts/post";
+import Loader from "../Skeleton Loader/Comments/comment";
+import Moment from "react-moment";
+import UpdateComment from "../UpdateComment/updateComment";
+import swal from "sweetalert";
 
 const Comment = ({ comm, user }) => {
   //UseState Declarations
   const [comment, setComment] = useState({});
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-
+  const [show,_show]=useState(false);
   const [loader, setLoader] = useState(true);
   const [activeReply, setActiveReply] = useState(false);
   const [replies, setReplies] = useState([]);
+  const [open,_open]=useState(false);
   //UseEffect Declarations
   useEffect(() => {
     //Getting replies according to comment id
@@ -49,7 +55,7 @@ const Comment = ({ comm, user }) => {
     };
 
     fetchData();
-  }, []);
+  },[]);
   useEffect(() => {
     //Updating a comment according to comment id
     const updateComm = async (comment) => {
@@ -112,7 +118,7 @@ const Comment = ({ comm, user }) => {
         ["noOfLikes"]: max(0, comment.noOfLikes - 1),
         ["noOfDislikes"]: comment.noOfDislikes + 1,
         ["likeUsers"]: comment.likeUsers.filter(
-          (currUser) => currUser !== user._id
+          (currUser) => currUser !== user._id 
         ),
         ["dislikeUsers"]: [...comment.dislikeUsers, user._id],
       });
@@ -138,21 +144,67 @@ const Comment = ({ comm, user }) => {
       }
     }
   };
+  //Function to toggle reply icon on click
   const toggleReply = () => {
     if (activeReply) setActiveReply(false);
     else setActiveReply(true);
   };
+  //Function to toggle show update delete on click
+  const showUpDel=()=>{
+    if(show)_show(false)
+    else _show(true)
+  }
+  const onOpenModal=()=>{
+    _open((prev)=>(prev=true))
+  }
+  const onCLoseModal=()=>{
+    _open((prev)=>(prev=false));
+  }
+  //Deleting a Comment with replies
+  const deleteComm = async () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this comment and replies",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        delet();
+      } else {
+        swal("Your Comment is safe!");
+      }
+    });
+  };
+  //Providing delay for ms milliseconds
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  //Deleting...
+  const delet = async () => {
+    await deleteReplyByCommentId(comment._id);
+    await deleteComment(comment._id);
+    swal("", "Comment and its Replies deleted successfully", "success");
+    await sleep(3000);
+  };
   //Loader Functionality
-  if (loader) <Loader />;
+  if (loader) return <Loader />;
   return (
     <>
       <div className={`${style.individualCom}`}>
         <div className={`${style.commentHeaderInd}`}>
-          {comment.username} <Moment fromNow>{comment.createdDate}</Moment>{" "}
+          <div>{comment.username}
+          <Moment fromNow className={`${style.moment}`}>{comment.createdDate}</Moment> 
+          </div>
+          <div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>
+          {show&&<div className={`${style.updel}`} >
+            <div className={`${style.update}`} onClick={()=>onOpenModal()}>Update</div>
+            <div className={`${style.delete}`} onClick={deleteComm}>Delete</div>
+          </div>}
         </div>
         <textarea
           className={`${style.commentBody}`}
-          value={comment.description}
+          value={comm.description}
           readOnly
         />
         <div className={`${style.commentFooter}`}>
@@ -187,6 +239,7 @@ const Comment = ({ comm, user }) => {
         </div>
       </div>
       {activeReply && <Replies user={user} comment={comm} rep={replies} />}
+      <UpdateComment open={open} onCLoseModal={onCLoseModal} comm={comm}/>
     </>
   );
 };

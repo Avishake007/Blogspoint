@@ -2,6 +2,10 @@
 const mongoose = require("mongoose");
 //Reply Schema
 const replySchema = new mongoose.Schema({
+  postId:{
+    type: String,
+    required: true,
+  },
   commentId: {
     type: String,
     required: true,

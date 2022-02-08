@@ -18,6 +18,35 @@
     font-family: 'Indie Flower', cursive;
     
 }
+.moment{
+    margin-left: 23px;
+    font-weight: 400;
+    font-family: emoji;
+  }
+.three_dots{
+    cursor: pointer;
+  }
+  .updel{
+    position: absolute;
+      right: 46px;
+  }
+  .update,.delete{
+    background: var(--primary_color);
+    color:var(--secondary_color);
+      padding: 2px;
+      font-family: system-ui;
+      font-size: 89%;
+      width: 103px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35px;
+      border: 2px solid var(--login_form_color);
+      cursor:pointer
+  }
+  .update:hover,.delete:hover{
+    opacity: 0.8;
+  }
 .replyCenter{
     height: 60%;
     width: 100%;

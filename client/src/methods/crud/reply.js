@@ -24,3 +24,27 @@ export const updateReply = async (id, reply) => {
     console.log("Error while calling updateReply API ", error);
   }
 };
+//Function to delete a user's reply by reply id
+export const deleteReply = async (id) => {
+  try {
+    return await axios.delete(`/reply/delete/${id}`);
+  } catch (error) {
+    console.log("Error while calling deleteReply API ", error);
+  }
+};
+//Function to delete replies by comment id
+export const deleteReplyByCommentId = async (id) => {
+  try {
+    return await axios.delete(`/reply/delete/comment/${id}`);
+  } catch (error) {
+    console.log("Error while calling deleteReplyByCommentId API ", error);
+  }
+};
+//Function to delete replies by post id
+export const deleteReplyByPostId = async (id) => {
+  try {
+    return await axios.delete(`/reply/delete/post/${id}`);
+  } catch (error) {
+    console.log("Error while calling deleteReplyByPostId API ", error);
+  }
+};

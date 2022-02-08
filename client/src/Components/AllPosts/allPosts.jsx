@@ -41,7 +41,7 @@ const AllPosts = () => {
       setLoader(false)
     };
     fetchData(); 
-  }, [search]);
+  });
   
   //Function to filter by username
   const filterByUsername = (e) => {
@@ -198,8 +198,8 @@ const AllPosts = () => {
               </div>
               {/* Posts Section */}
               {posts.length ? (
-                posts.map((post) => (
-                 <Post post={post}/>
+                posts.map((post,_) => (
+                 <Post post={post} key={_}/>
                 ))
               ) : (
                 <div

@@ -38,4 +38,37 @@ router.post("/update/:id", async (request, response) => {
     response.status(500).json(error);
   }
 });
+//Deleting a reply according to reply id
+router.delete("/delete/:id", async (request, response) => {
+  try {
+    const reply = await Reply.findById(request.params.id);
+
+    await reply.delete();
+
+    response.status(200).json("Reply deleted successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
+//Deleting reply/s according to comment id
+router.delete("/delete/comment/:id", async (request, response) => {
+  try {
+   await Reply.deleteMany({ commentId: request.params.id });
+
+    response.status(200).json("Reply deleted successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
+//Deleting reply/s according to post id
+router.delete("/delete/post/:id", async (request, response) => {
+  try {
+    await Reply.deleteMany({ postId: request.params.id });
+
+
+    response.status(200).json("Reply deleted successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
 module.exports = router;
