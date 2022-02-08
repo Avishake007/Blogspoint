@@ -13,6 +13,7 @@ import Reply from "../Reply/reply";
 const Replies = ({ user, comment, rep }) => {
   const [replies, setReplies] = useState(rep);
   const [reply, setReply] = useState({
+    postId:comment.postId,
     commentId: comment._id,
     username: user.username,
     description: "",
@@ -63,15 +64,15 @@ const Replies = ({ user, comment, rep }) => {
         <div className={`${style.writeReply}`}>
           <textarea
             className={`${style.replyArea}`}
-            placeholder="Write your reply and press 'Enter' "
+            placeholder="Write your reply ... "
             name="description"
             value={reply.description}
             onChange={handleInputs}
           />
           <MdSend onClick={(e) => saveReply(e)} />
         </div>
-        {replies.map((reply) => (
-          <Reply reply={reply} user={user} />
+        {replies.map((reply,id) => (
+          <Reply key={id} reply={reply} user={user} />
         ))}
       </div>
     </>

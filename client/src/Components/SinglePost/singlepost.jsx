@@ -16,6 +16,8 @@ import styles from "./singlepost.module.css";
 //Local imports
 import Loader from "../Skeleton Loader/Posts/post";
 import { getPost, deletePost, updatePost } from "../../methods/crud/post";
+import { deleteReplyByPostId } from "../../methods/crud/reply";
+import { deleteCommentByPostId } from "../../methods/crud/comment";
 
 const SinglePost = ({ flaged, user, match }) => {
   //UseHistory Declarations
@@ -72,8 +74,12 @@ const SinglePost = ({ flaged, user, match }) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   const delet = async () => {
+    await deleteReplyByPostId(post._id);
+   
+    await deleteCommentByPostId(post._id);
+    
     await deletePost(post._id);
-    swal("", "Post deleted successfully", "success");
+    swal("", "Post with its comments and replies deleted successfully", "success");
     await sleep(3000);
   };
   //Updating a Post
@@ -246,7 +252,7 @@ const SinglePost = ({ flaged, user, match }) => {
         >
           Tags :
           {post.categories.map((tag, index) => (
-            <div className="tag_input">{tag}</div>
+            <div className="tag_input" key={index}>{tag}</div>
           ))}
         </div>
       ) : null}
