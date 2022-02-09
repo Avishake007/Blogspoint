@@ -1,23 +1,7 @@
-/* DarkMode */
-.darkmode{
-    --primary_color:black;
-    --login_form_color:#1c1c1d;
-    --secondary_color:#ccc1c1;
-    --input_color:#2d2929;
-    --svg_color:#9da4a4;
-    --register_login:#07f9dd;
-    --register-botton:#f0cd26;
-    --no-account:#4cd39e;
-    --shadow-color:black;
-    --details-color:#b3b1b1;
-    --inner-container:#fff698;
-    --second-inner:#96fdde;
-    --label-color:#76ff76;
-    --font-color:#0affeb;
-}
-
 /* LightMode */
 :root{
+    --nav_color:rgb(255, 255, 255);
+    --linear_gradient_color:linear-gradient(180deg, rgb(255, 255, 255), transparent);
     --primary_color:#ffffff;
     --secondary_color:#3b3636;
     --register_login:#05505e;
@@ -32,4 +16,5 @@
     --second-inner:#2c8b6f;;
     --label-color:#0a7d0a;
     --font-color:#080c45;
+    --correct-answer:rgb(10 132 10);
 }

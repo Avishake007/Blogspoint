@@ -13,7 +13,7 @@ import { getAllPosts } from "../../methods/crud/post";
 import Loader from "../Loader/loader";
 import Post from "../Post/post";
 
-const AllPosts = () => {
+const AllPosts = ({authenticate}) => {
   /**
    * UseStates Declarations
    */
@@ -41,7 +41,7 @@ const AllPosts = () => {
       setLoader(false)
     };
     fetchData(); 
-  });
+  },[search]);
   
   //Function to filter by username
   const filterByUsername = (e) => {
@@ -199,7 +199,7 @@ const AllPosts = () => {
               {/* Posts Section */}
               {posts.length ? (
                 posts.map((post,_) => (
-                 <Post post={post} key={_}/>
+                 <Post post={post} key={_} authenticate={authenticate}/>
                 ))
               ) : (
                 <div

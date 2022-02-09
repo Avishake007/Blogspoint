@@ -2,18 +2,18 @@
 This is a loader component
 */
 import React from 'react';
-
-//React Icons
-import { BiLoader } from 'react-icons/bi';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 //Loader Css 
 import styles from './loader.module.css';
 const Loader=()=>{
+    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
     return(
         <>
         <div className={`${styles.loader}`}>
         Loading...
-        <BiLoader/>
+        <Spin indicator={antIcon} />
         </div>
        
         </>

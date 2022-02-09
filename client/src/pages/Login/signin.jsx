@@ -136,7 +136,7 @@ const Login = () => {
                         {error.email === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -170,7 +170,7 @@ const Login = () => {
                         {error.password === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>

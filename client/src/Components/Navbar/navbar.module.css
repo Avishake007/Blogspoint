@@ -3,8 +3,9 @@
     /* position: absolute; */
     width: 100%;
     height: 10%;
-    position: sticky;
-    top:0px;
+    /* position: sticky;
+    top:0px; */
+    background: var(--nav_color);
 }
 .container2 header{
     width: 100%;
@@ -25,7 +26,7 @@ a svg{
     /* display: flex;
     justify-content: flex-end; */
     /* align-items: center; */
-    background: var(--primary_color);
+    /* background: var(--primary_color); */
 }
 .navbar img{
     height: 4rem;
@@ -80,4 +81,8 @@ a svg{
 }
 .toggle svg:hover{
     opacity: 0.9;
+}
+button:focus{
+    border:0;
+    box-shadow: none !important;
 }

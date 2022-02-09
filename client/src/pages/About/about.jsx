@@ -61,7 +61,7 @@ const About = () => {
   return (
     <>
       <div className={`${styles.container}`}>
-        <p>ABOUT</p>
+        <p>ABOUT ME</p>
         {/* Section which gives the information of a user */}
         <div className={`${styles.about_section}`}>
           <div className={`${styles.user_pic}`}>

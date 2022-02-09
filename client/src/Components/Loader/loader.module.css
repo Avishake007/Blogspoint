@@ -1,6 +1,6 @@
 .loader{
     display: flex;
-    background: var(--login_form_color);
+    background: var(--linear_gradient_color);
     height: 90vh;
     width: 100%;
     font-size: 38px;
@@ -11,23 +11,5 @@
 .loader svg{
     width: 36px;
     height: 36px;
-    fill: var(--font-color);
-    animation: rotateLoader 2s infinite ;
-}
-@keyframes rotateLoader {
-    0%{
-        transform: rotate(0deg);
-    }
-    25%{
-        transform: rotate(-90deg);
-    }
-    50%{
-        transform: rotate(-180deg);
-    }
-    75%{
-        transform: rotate(-270deg);
-    }
-    100%{
-        transform: rotate(-360deg);
-    }
+  
 }

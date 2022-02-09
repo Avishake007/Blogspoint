@@ -5,48 +5,9 @@ import { Link } from "react-router-dom";
 import styles from "../../pages/Home/home.module.css";
 //Local Imports
 import Blogger from "../../assest/svgs/Blogger/blogger";
-import Loader from "../Loader/loader";
-const Intro = () => {
-  /**
-   * States Definition
-   */
 
-  const [loader, setLoader] = useState(true);
-
-  const [authenticate, setAuthenticate] = useState(false);
-
-  //Checking for user authentication
-  const userAuthenticate = async () => {
-    try {
-      const res = await fetch("/user/authenticate", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!res.status === 200) {
-        setAuthenticate(false);
-        const error = new Error(res.error);
-
-        throw error;
-      }
-      const data = await res.json();
-
-      setAuthenticate(true);
-    } catch (err) {
-      console.log(err);
-      setAuthenticate(false);
-    }
-    setLoader(false);
-  };
-
-  //UseEffect definition
-  useEffect(() => {
-    userAuthenticate();
-  }, []);
-  //Loader Functionality
-  if (loader) return <Loader />;
+const Intro = ({authenticate}) => {
+ 
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.part}`}>

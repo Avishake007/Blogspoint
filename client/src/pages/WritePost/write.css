@@ -1,6 +1,6 @@
 .write {
     padding-top: 50px;
-    background: var(--primary_color);
+    background: var(--linear_gradient_color);
     height: 80vh;
   }
   
@@ -46,7 +46,8 @@
   
   .writeInput {
     font-size: 18px;
-    background:var(--primary_color);
+    /* background:var(--primary_color); */
+    background: transparent;
     border:0;
     height: 52px;
     width: 75% !important;
@@ -102,6 +103,8 @@
     background: var(--login_form_color);
     align-items: center;
     color: var(--secondary_color);
+    padding: 18px;
+    width: 100%;
   }
   .tag_input{
     display: flex;

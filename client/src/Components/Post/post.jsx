@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Importing Stylesheets
 import styles from "../../pages/Home/home.module.css";
-const Post = ({ post }) => {
+const Post = ({ post ,authenticate}) => {
   return (
     <div className={`${styles.post}`}>
       <div className={`${styles.upper}`}>
@@ -12,7 +12,7 @@ const Post = ({ post }) => {
         {/* Read More */}
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={`details/${post._id}`}
+          to={authenticate?`details/${post._id}`:'/signin'}
         >
           <button className={`btn ${styles.read_me}`}>Read More</button>
         </Link>
