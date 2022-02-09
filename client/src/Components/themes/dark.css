@@ -1,0 +1,21 @@
+/* DarkMode */
+.darkmode{
+    --nav_color:#00356c91;
+    --linear_gradient_color:linear-gradient(180deg, #00356c91, transparent);
+    --primary_color:black;
+    --login_form_color:#1c1c1d;
+    --secondary_color:#ccc1c1;
+    --input_color:#2d2929;
+    --svg_color:#9da4a4;
+    --register_login:#07f9dd;
+    --register-botton:#f0cd26;
+    --no-account:#4cd39e;
+    --shadow-color:black;
+    --details-color:#b3b1b1;
+    --inner-container:#fff698;
+    --second-inner:#96fdde;
+    --label-color:#76ff76;
+    --font-color:#0aff8d;
+    --correct-answer:rgb(9 212 9);
+}
+

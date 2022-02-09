@@ -196,7 +196,7 @@ const Signup = () => {
                         {error.username === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -234,7 +234,7 @@ const Signup = () => {
                         {error.name === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -269,7 +269,7 @@ const Signup = () => {
                         {error.city === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -305,7 +305,7 @@ const Signup = () => {
                         {error.state === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -343,7 +343,7 @@ const Signup = () => {
                         {error.stuprof === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -377,7 +377,7 @@ const Signup = () => {
                         {error.email === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                       </div>
@@ -416,7 +416,7 @@ const Signup = () => {
                         {error.password === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                         {showPassword1 === true ? (
@@ -467,7 +467,7 @@ const Signup = () => {
                         {error.confirmpassword === 0 && (
                           <i
                             class="fas fa-check-circle"
-                            style={{ color: "#005f00" }}
+                            style={{ color: "var(--correct-answer)" }}
                           ></i>
                         )}
                         {showPassword2 === true ? (

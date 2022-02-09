@@ -32,6 +32,6 @@
 .writeReply svg{
     width: 5%;
     height:50%;
-    color:var(--secondary_color);
+    color:var(--font-color);
     cursor: pointer;
 }

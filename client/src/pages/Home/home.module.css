@@ -10,7 +10,7 @@
 }
 
 .container {
-  background: var(--primary_color);
+  background: var(--linear_gradient_color);
   height: 85vh;
   width: 100%;
   display: flex;

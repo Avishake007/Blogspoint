@@ -9,7 +9,8 @@ import { BsSun } from "react-icons/bs";
 //StyleSheets imports
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import styles from "./navbar.module.css";
-import "../themes/darkmode.css";
+import "../themes/dark.css";
+import "../themes/light.css";
 //Local imports
 import { UserContext } from "../../App";
 
@@ -18,7 +19,7 @@ const Navbar = () => {
   //UseContext Declarations
   const { state, dispatch } = useContext(UserContext);
 
-  const [isNight, setIsNight] = useState(false);
+  const [isNight, setIsNight] = useState(JSON.parse(sessionStorage.getItem("night")));
   const [flag, setFlag] = useState(false);
   const userAuthenticate = async () => {
     try {
@@ -42,9 +43,17 @@ const Navbar = () => {
   };
   useEffect(() => {
     userAuthenticate();
+   
   }, []);
+  useEffect(()=>{
+    sessionStorage.setItem("night",JSON.stringify(isNight));
+    if(isNight)
+    document.body.classList.add("darkmode");
+    else
+    document.body.classList.remove("darkmode");
+  },[isNight])
   const toggleTheme = () => {
-    document.body.classList.toggle("darkmode");
+   
     if (!isNight) setIsNight(true);
     else setIsNight(false);
   };

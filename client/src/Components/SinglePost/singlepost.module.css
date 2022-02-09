@@ -1,14 +1,27 @@
+.first_inner_container{
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    background: var(--linear_gradient_color);
+}
 .first_inner_container p{
     color: var(--secondary_color);
     font-weight: bold;
     font-size:36px;
+    
+}
+.first_inner_container .title{
+    padding: 18px;
+    width: 100%;
 }
 .second_inner_container{
     display: flex;
+    padding: 18px;
+    width: 100%;
 
 }
 .second_inner_container label{
-    color: rgb(114, 108, 96);
+    color: var(--font-color);
     /* font-size: 3vh; */
     margin-right: 3px;
 }
@@ -19,6 +32,7 @@
     margin-right: 15px;
 }
 .title,.edit_update{
+    
     display: flex;
     justify-content: space-between;
 }
@@ -75,7 +89,7 @@
     margin-right: 14px;
     font-size: 16px;
     cursor: pointer;
-    color: var(--secondary_color);
+    color: var(--font-color);
 }
 @media only screen and (max-width: 750px) {
     .first_inner_container{

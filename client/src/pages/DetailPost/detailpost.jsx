@@ -13,8 +13,6 @@ const DetailView = ({ match }) => {
   const [userData, setUserData] = useState({});
   const [flag, setFlag] = useState(true);
   const [loader, setLoader] = useState(true);
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
   //Checking for user authentication
   const userAuthenticate = async () => {
     try {

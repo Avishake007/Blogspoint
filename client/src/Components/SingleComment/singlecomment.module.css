@@ -1,5 +1,5 @@
 .comment{
-
+    padding:18px;
 }
 .writeComment{
 
@@ -16,6 +16,7 @@
     background: var(--login_form_color);
     border: 0;
     padding: 10px;
+    color:var(--secondary_color);
 }
 .commentArea:focus{
     outline:none

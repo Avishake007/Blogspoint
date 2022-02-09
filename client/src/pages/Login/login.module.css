@@ -6,7 +6,7 @@
   font-size: 4rem;
   justify-content: center;
   align-items: flex-end;
-  background: var(--primary_color);
+  background: var(--linear_gradient_color);
 }
 .form_outer {
   height: 94%;

@@ -7,7 +7,8 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 //StyleSheets imports
 import "./errorpage.css";
-import "../../Components/themes/darkmode.css";
+import "../../Components/themes/dark.css";
+import "../../Components/themes/light.css";
 const Errorpage = () => {
   //UseEffect Declarations
   useEffect(() => {

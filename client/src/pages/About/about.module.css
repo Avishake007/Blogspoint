@@ -7,7 +7,8 @@
     display:flex;
    
     flex-direction: column;
-    justify-content: flex-end;
+    background: var(--linear_gradient_color);
+    /* justify-content: flex-end; */
     /* align-items: center; */
 }
 .container p{
@@ -16,9 +17,13 @@
     font-size: 3vw;
 }
 .container>p{
-    margin-left: 31px;
+    /* margin-left: 31px; */
     color: var(--font-color);
     font-size: 4vw;
+    /* text-align: center; */
+    height: 20vh;
+   padding:18px;
+   
 }
 .about_section{
     
@@ -47,7 +52,7 @@
     z-index: 1;
 }
 .info{
-    background: var(--primary_color);
+    /* background: var(--primary_color); */
     height: 80%;
     width: 48%;
     /* margin-left: 39px; */
