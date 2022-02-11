@@ -77,12 +77,12 @@ const Comment = ({ comm, user }) => {
 
       setComment({
         ...comment,
-        ["noOfLikes"]: comment.noOfLikes + 1,
-        ["noOfDislikes"]: max(0, comment.noOfDislikes - 1),
-        ["dislikeUsers"]: comment.dislikeUsers.filter(
+        "noOfLikes": comment.noOfLikes + 1,
+        "noOfDislikes": max(0, comment.noOfDislikes - 1),
+        "dislikeUsers": comment.dislikeUsers.filter(
           (curruser) => curruser !== user._id
         ),
-        ["likeUsers"]: [...comment.likeUsers, user._id],
+        "likeUsers": [...comment.likeUsers, user._id],
       });
     } else {
       if (like === true) {
@@ -90,8 +90,8 @@ const Comment = ({ comm, user }) => {
 
         setComment({
           ...comment,
-          ["noOfLikes"]: max(0, comment.noOfLikes - 1),
-          ["likeUsers"]: comment.likeUsers.filter(
+          "noOfLikes": max(0, comment.noOfLikes - 1),
+          "likeUsers": comment.likeUsers.filter(
             (cuurUser) => cuurUser !== user._id
           ),
         });
@@ -100,8 +100,8 @@ const Comment = ({ comm, user }) => {
 
         setComment({
           ...comment,
-          ["noOfLikes"]: comment.noOfLikes + 1,
-          ["likeUsers"]: [...comment.likeUsers, user._id],
+          "noOfLikes": comment.noOfLikes + 1,
+          "likeUsers": [...comment.likeUsers, user._id],
         });
       }
     }
@@ -115,12 +115,12 @@ const Comment = ({ comm, user }) => {
 
       setComment({
         ...comment,
-        ["noOfLikes"]: max(0, comment.noOfLikes - 1),
-        ["noOfDislikes"]: comment.noOfDislikes + 1,
-        ["likeUsers"]: comment.likeUsers.filter(
+        "noOfLikes": max(0, comment.noOfLikes - 1),
+        "noOfDislikes": comment.noOfDislikes + 1,
+        "likeUsers": comment.likeUsers.filter(
           (currUser) => currUser !== user._id 
         ),
-        ["dislikeUsers"]: [...comment.dislikeUsers, user._id],
+        "dislikeUsers": [...comment.dislikeUsers, user._id],
       });
     } else {
       if (dislike === true) {
@@ -128,8 +128,8 @@ const Comment = ({ comm, user }) => {
 
         setComment({
           ...comment,
-          ["noOfDislikes"]: max(0, comment.noOfDislikes - 1),
-          ["dislikeUsers"]: comment.dislikeUsers.filter(
+          "noOfDislikes": max(0, comment.noOfDislikes - 1),
+          "dislikeUsers": comment.dislikeUsers.filter(
             (currUser) => currUser !== user._id
           ),
         });
@@ -138,8 +138,8 @@ const Comment = ({ comm, user }) => {
 
         setComment({
           ...comment,
-          ["noOfDislikes"]: comment.noOfDislikes + 1,
-          ["dislikeUsers"]: [...comment.dislikeUsers, user._id],
+          "noOfDislikes": comment.noOfDislikes + 1,
+          "dislikeUsers": [...comment.dislikeUsers, user._id],
         });
       }
     }

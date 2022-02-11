@@ -1,8 +1,11 @@
+.first_second{
+    background: var(--linear_gradient_color);
+}
 .first_inner_container{
     height: 20vh;
     display: flex;
     align-items: center;
-    background: var(--linear_gradient_color);
+   
 }
 .first_inner_container p{
     color: var(--secondary_color);

@@ -40,7 +40,7 @@ const UpdatePage = ({ match }) => {
     let name, value;
     name = e.target.name;
     value = e.target.value;
-    setPost({ ...post, [name]: value, ["isUpdated"]: true });
+    setPost({ ...post, [name]: value, "isUpdated": true });
   };
   //Providing delay for ms milliseconds
   function sleep(ms) {
@@ -70,7 +70,7 @@ const UpdatePage = ({ match }) => {
     ) {
       setPost({
         ...post,
-        ["categories"]: [...post.categories, e.target.value],
+        "categories": [...post.categories, e.target.value],
       });
       e.target.value = "";
     }
@@ -80,7 +80,7 @@ const UpdatePage = ({ match }) => {
   const deleteTags = (delIndex) => {
     setPost({
       ...post,
-      ["categories"]: post.categories.filter((_, index) => index !== delIndex),
+      "categories": post.categories.filter((_, index) => index !== delIndex),
     });
   };
   //Loader Functionality

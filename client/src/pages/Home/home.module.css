@@ -54,7 +54,7 @@
 }
 .first p:nth-child(2) {
   font-size: 23px;
-  line-height: 27px;
+  line-height: 2;
   font-family: "Archivo", sans-serif;
 }
 .signin_signup {

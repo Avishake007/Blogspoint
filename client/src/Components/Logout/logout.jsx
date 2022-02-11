@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 const Logout = () => {
     //UseContext Declarations
-    const { state, dispatch } = useContext(UserContext);
+    const { dispatch } = useContext(UserContext);
     //UseHistory Declarations
     const history = useHistory();
     //UseEffect Declarations
@@ -18,9 +18,9 @@ const Logout = () => {
             credentials: "include"
         }).then((res) => {
             dispatch({ type: 'USER', payload: false })
-            
-            window.location.reload(false);
-            history.push('/signin', { replace: false });
+            localStorage.setItem("userLogin",JSON.stringify(false));
+            // window.location.reload(false);
+            history.push('/about', { replace: false });
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;

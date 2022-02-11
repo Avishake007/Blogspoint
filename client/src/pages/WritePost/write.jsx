@@ -46,7 +46,7 @@ const Write = () => {
 
       setUserData(data);
 
-      setPost({ ...post, ["userId"]: data._id });
+      setPost({ ...post, "userId": data._id });
 
       setFlag(true);
     } catch (err) {
@@ -109,7 +109,7 @@ const Write = () => {
     ) {
       setPost({
         ...post,
-        ["categories"]: [...post.categories, e.target.value],
+        "categories": [...post.categories, e.target.value],
       });
       e.target.value = "";
     }
@@ -119,7 +119,7 @@ const Write = () => {
   const deleteTags = (delIndex) => {
     setPost({
       ...post,
-      ["categories"]: post.categories.filter((_, index) => index !== delIndex),
+      "categories": post.categories.filter((_, index) => index !== delIndex),
     });
   };
   //Loader Functionality

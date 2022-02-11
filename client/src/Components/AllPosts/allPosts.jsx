@@ -1,6 +1,6 @@
 //Third Part imports
 import React, { useEffect, useState } from "react";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 //Importing Stylesheets
 import styles from "../../pages/Home/home.module.css";
 //Importing SVGs from React Icons
@@ -13,14 +13,14 @@ import { getAllPosts } from "../../methods/crud/post";
 import Loader from "../Loader/loader";
 import Post from "../Post/post";
 
-const AllPosts = ({authenticate}) => {
+const AllPosts = ({ authenticate }) => {
   /**
    * UseStates Declarations
    */
   const [loader, setLoader] = useState(true);
   const [posts, setPosts] = useState([]);
   const [fliterPosts, setFilterPosts] = useState([]);
-  const [tags, setTags] = useState([]);
+
   const [showTags, setShowTags] = useState(false);
   const [all_posts, setAuto_posts] = useState([]);
   const [activeTags, setActiveTags] = useState([]);
@@ -38,18 +38,17 @@ const AllPosts = ({authenticate}) => {
       setPosts(data);
       setAuto_posts(data);
       setFilterPosts(data);
-      setLoader(false)
+      setLoader(false);
     };
-    fetchData(); 
-  },[search]);
-  
+    fetchData();
+  }, []);
+
   //Function to filter by username
   const filterByUsername = (e) => {
     var curr_username = e.target.value + "";
 
     setFilterPosts(
       all_posts.filter((post) => {
-        
         return (
           post.username.substring(0, curr_username.length) === curr_username
         );
@@ -60,15 +59,13 @@ const AllPosts = ({authenticate}) => {
     else
       setPosts(
         all_posts.filter((post) => {
-         
-
           return (
             post.username.substring(0, curr_username.length) === curr_username
           );
         })
       );
   };
-  
+
   //Function to filter posts by tags
   const filterByTags = (tag) => {
     setFilterPosts(
@@ -83,13 +80,13 @@ const AllPosts = ({authenticate}) => {
       })
     );
   };
-  
+
   //Function to include a tag in the activeTags State
   const activeTag = (tag) => {
     if (activeTags.includes(tag) === false) setActiveTags([...activeTags, tag]);
     filterByTags(tag);
   };
-  
+
   //Function to toggle tags state between true and false
   const toggleTags = () => {
     var filteredPosts = [];
@@ -102,7 +99,6 @@ const AllPosts = ({authenticate}) => {
           filteredPosts.push(post.categories[i]);
       }
     });
-    setTags(filteredPosts);
   };
   //Function to filter by a tag
   const removeFilter = (tag) => {
@@ -118,7 +114,7 @@ const AllPosts = ({authenticate}) => {
           break;
         }
       }
-      if (flag == 1) filteredPosts.push(post);
+      if (flag === 1) filteredPosts.push(post);
     });
 
     setPosts(filteredPosts);
@@ -130,8 +126,8 @@ const AllPosts = ({authenticate}) => {
     setActiveTags(activeTags.filter((tag, index) => index !== _));
     removeFilter(activeTags[_]);
   };
-    //Loader Functionality
-  if(loader)<Loader/>
+  //Loader Functionality
+  if (loader) <Loader />;
   return (
     <>
       <div className={`${styles.down_arrow}`}>
@@ -141,7 +137,9 @@ const AllPosts = ({authenticate}) => {
       </div>
       <div className={`${styles.allPosts}`} id="allPosts">
         {/* BloggerBro Image */}
-        <div className={`${styles.blogger}`}><BloggerBro/></div>
+        <div className={`${styles.blogger}`}>
+          <BloggerBro />
+        </div>
         {/* All Posts Section */}
         <div className={`${styles.outer_cover}`}>
           <p>Posts so far : </p>
@@ -170,7 +168,6 @@ const AllPosts = ({authenticate}) => {
               </div>
               {showTags === true && (
                 <div className={`${styles.allTags}`}>
-               
                   {all_posts.length &&
                     all_posts.map((post, _) =>
                       post.categories.map((tag) => (
@@ -198,8 +195,8 @@ const AllPosts = ({authenticate}) => {
               </div>
               {/* Posts Section */}
               {posts.length ? (
-                posts.map((post,_) => (
-                 <Post post={post} key={_} authenticate={authenticate}/>
+                posts.map((post, _) => (
+                  <Post post={post} key={_} authenticate={authenticate} />
                 ))
               ) : (
                 <div

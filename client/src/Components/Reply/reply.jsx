@@ -47,12 +47,12 @@ const Reply = ({ reply, user }) => {
 
       _SingleReply({
         ...singleReply,
-        ["noOfLikes"]: singleReply.noOfLikes + 1,
-        ["noOfDislikes"]: max(0, singleReply.noOfDislikes - 1),
-        ["dislikeUsers"]: singleReply.dislikeUsers.filter(
+        "noOfLikes": singleReply.noOfLikes + 1,
+        "noOfDislikes": max(0, singleReply.noOfDislikes - 1),
+        "dislikeUsers": singleReply.dislikeUsers.filter(
           (curruser) => curruser !== user._id
         ),
-        ["likeUsers"]: [...singleReply.likeUsers, user._id],
+        "likeUsers": [...singleReply.likeUsers, user._id],
       });
     } else {
       if (like === true) {
@@ -60,8 +60,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          ["noOfLikes"]: max(0, singleReply.noOfLikes - 1),
-          ["likeUsers"]: singleReply.likeUsers.filter(
+          "noOfLikes": max(0, singleReply.noOfLikes - 1),
+          "likeUsers": singleReply.likeUsers.filter(
             (cuurUser) => cuurUser !== user._id
           ),
         });
@@ -70,8 +70,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          ["noOfLikes"]: singleReply.noOfLikes + 1,
-          ["likeUsers"]: [...singleReply.likeUsers, user._id],
+          "noOfLikes": singleReply.noOfLikes + 1,
+          "likeUsers": [...singleReply.likeUsers, user._id],
         });
       }
     }
@@ -85,12 +85,12 @@ const Reply = ({ reply, user }) => {
 
       _SingleReply({
         ...singleReply,
-        ["noOfLikes"]: max(0, singleReply.noOfLikes - 1),
-        ["noOfDislikes"]: singleReply.noOfDislikes + 1,
-        ["likeUsers"]: singleReply.likeUsers.filter(
+        "noOfLikes": max(0, singleReply.noOfLikes - 1),
+        "noOfDislikes": singleReply.noOfDislikes + 1,
+        "likeUsers": singleReply.likeUsers.filter(
           (currUser) => currUser !== user._id
         ),
-        ["dislikeUsers"]: [...singleReply.dislikeUsers, user._id],
+        "dislikeUsers": [...singleReply.dislikeUsers, user._id],
       });
     } else {
       if (dislike === true) {
@@ -98,8 +98,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          ["noOfDislikes"]: max(0, singleReply.noOfDislikes - 1),
-          ["dislikeUsers"]: singleReply.dislikeUsers.filter(
+          "noOfDislikes": max(0, singleReply.noOfDislikes - 1),
+          "dislikeUsers": singleReply.dislikeUsers.filter(
             (currUser) => currUser !== user._id
           ),
         });
@@ -108,8 +108,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          ["noOfDislikes"]: singleReply.noOfDislikes + 1,
-          ["dislikeUsers"]: [...singleReply.dislikeUsers, user._id],
+          "noOfDislikes": singleReply.noOfDislikes + 1,
+          "dislikeUsers": [...singleReply.dislikeUsers, user._id],
         });
       }
     }

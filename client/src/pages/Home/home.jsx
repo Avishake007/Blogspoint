@@ -34,7 +34,7 @@ const Home = () => {
   
           throw error;
         }
-        const data = await res.json();
+       await res.json();
   
         setAuthenticate(true);
       } catch (err) {
@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <>
       {/* Intro of BLogspoint */}
-      <Intro authenticate={{authenticate}}/>
+      <Intro authenticate={authenticate}/>
       {/* It displays all the posts of blogspoint */}
       <AllPosts authenticate={authenticate}/>
     </>
