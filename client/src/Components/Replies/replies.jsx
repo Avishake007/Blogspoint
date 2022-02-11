@@ -28,10 +28,10 @@ const Replies = ({ user, comment, rep }) => {
   useEffect(() => {
     const fetchReply = async () => {
       let data = await getReplyByCommentId(comment._id);
-      setReplies(data.reverse());
+      setReplies(data);
     };
     fetchReply();
-  });
+  },[reply]);
   //Stores  title , description & tags  of a reply
   const handleInputs = (e) => {
     let name, value;
@@ -46,7 +46,7 @@ const Replies = ({ user, comment, rep }) => {
     if (reply.description !== "") {
       console.log(reply);
       await createReply(reply);
-      setReply({ ...reply, ["description"]: "" });
+      setReply({ ...reply, "description": "" });
       swal("", "Reply created successfully", "success");
     } else {
       setTimeout(

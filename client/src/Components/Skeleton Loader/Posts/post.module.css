@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 .container{
     height: 90vh;
-    background: var(--login_form_color);
+    background: var(--linear_gradient_color);
     padding:18px;
 }
 

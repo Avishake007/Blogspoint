@@ -10,6 +10,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
+  color: var(--font-color);
+}
+.userDate{
+  display: flex;
+  width: 100%;
 }
 .commentBody {
   width: 100%;
@@ -32,6 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--font-color);
 }
 .skeleton {
     opacity: .7;

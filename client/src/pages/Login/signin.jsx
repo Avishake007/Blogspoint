@@ -20,7 +20,7 @@ import Loader from "../../Components/Loader/loader";
 import { UserContext } from "../../App";
 const Login = () => {
   //UseContext Declarations
-  const { state, dispatch } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
   //UseHistory Declarations
   const history = useHistory();
   //UseStates Declarations
@@ -82,7 +82,9 @@ const Login = () => {
         3000
       );
     } else {
+      
       dispatch({ type: "USER", payload: true });
+      localStorage.setItem("userLogin",JSON.stringify(true));
       swal("Welcome!", "Login Successful", "success");
       await sleep(3000);
       history.push("/");

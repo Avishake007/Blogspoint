@@ -12,7 +12,7 @@ const Loader=()=>{
     return(
         <>
         <div className={`${styles.loader}`}>
-        Loading...
+        Loading ...
         <Spin indicator={antIcon} />
         </div>
        

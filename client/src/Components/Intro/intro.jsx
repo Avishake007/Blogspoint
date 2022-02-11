@@ -1,5 +1,5 @@
 // Third party import
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 //Importing Stylesheets
 import styles from "../../pages/Home/home.module.css";
@@ -13,12 +13,11 @@ const Intro = ({authenticate}) => {
       <div className={`${styles.part}`}>
         {/* About BLogspoint */}
         <div className={`${styles.first}`}>
-          <p>Lorem ipsum dolor sit</p>
+          <p>Hey Blogger ,</p>
 
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-            velit iure quibusdam iste mollitia. Aliquam quisquam, pariatur sint
-            nulla assumenda labore!
+            Welcome to BlogsPoint - a place where you learn new things , share your knowledge to the world in the form of a blog. So 
+            what are you waiting for START BLOGGING...
           </p>
           {authenticate === false && (
             <div className={`${styles.signin_signup}`}>

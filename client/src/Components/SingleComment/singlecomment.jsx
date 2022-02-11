@@ -5,7 +5,7 @@ import swal from "sweetalert";
 //StyleSheet imports
 import styles from "./singlecomment.module.css";
 //Local imports
-import { createComment,getCommentByPostId } from "../../methods/crud/comment";
+import { createComment, getCommentByPostId } from "../../methods/crud/comment";
 import Comment from "../Comments/comment.jsx";
 
 const SingleComment = ({ match, userData }) => {
@@ -25,10 +25,10 @@ const SingleComment = ({ match, userData }) => {
   useEffect(() => {
     const fetchComment = async () => {
       let data = await getCommentByPostId(match.params.id);
-      setComments(data.reverse());
+      setComments(data);
     };
     fetchComment();
-  });
+  }, [comment]);
   //Getting the comment information and store it in comment state
   const handleInputs = (e) => {
     var name, value;
@@ -72,7 +72,7 @@ const SingleComment = ({ match, userData }) => {
           COMMENT
         </button>
       </div>
-      {comments.map((comm,_) => (
+      {comments.map((comm, _) => (
         <div className={`${styles.allComments}`} key={_}>
           <Comment comm={comm} user={userData} />
         </div>

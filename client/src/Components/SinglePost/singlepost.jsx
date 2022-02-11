@@ -34,7 +34,7 @@ const SinglePost = ({ flaged, user, match }) => {
     noOfDislikes: 0,
     isUpdated: false,
   });
-  const [flag, setFlag] = useState(flaged);
+ 
   const [loader, setLoader] = useState(true);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
@@ -63,6 +63,7 @@ const SinglePost = ({ flaged, user, match }) => {
     }).then((willDelete) => {
       if (willDelete) {
         delet();
+        swal("", "Post with its comments and replies deleted successfully", "success");
         history.push("/");
       } else {
         swal("Your Post is safe!");
@@ -79,7 +80,7 @@ const SinglePost = ({ flaged, user, match }) => {
     await deleteCommentByPostId(post._id);
     
     await deletePost(post._id);
-    swal("", "Post with its comments and replies deleted successfully", "success");
+   
     await sleep(3000);
   };
   //Updating a Post
@@ -102,12 +103,12 @@ const SinglePost = ({ flaged, user, match }) => {
 
       setPost({
         ...post,
-        ["noOfLikes"]: post.noOfLikes + 1,
-        ["noOfDislikes"]: max(0, post.noOfDislikes - 1),
-        ["dislikeUsers"]: post.dislikeUsers.filter(
+        "noOfLikes": post.noOfLikes + 1,
+        "noOfDislikes": max(0, post.noOfDislikes - 1),
+        "dislikeUsers": post.dislikeUsers.filter(
           (curruser) => curruser !== user._id
         ),
-        ["likeUsers"]: [...post.likeUsers, user._id],
+        "likeUsers": [...post.likeUsers, user._id],
       });
     } else {
       if (like === true) {
@@ -115,8 +116,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          ["noOfLikes"]: max(0, post.noOfLikes - 1),
-          ["likeUsers"]: post.likeUsers.filter(
+          "noOfLikes": max(0, post.noOfLikes - 1),
+          "likeUsers": post.likeUsers.filter(
             (cuurUser) => cuurUser !== user._id
           ),
         });
@@ -125,8 +126,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          ["noOfLikes"]: post.noOfLikes + 1,
-          ["likeUsers"]: [...post.likeUsers, user._id],
+          "noOfLikes": post.noOfLikes + 1,
+          "likeUsers": [...post.likeUsers, user._id],
         });
       }
     }
@@ -140,12 +141,12 @@ const SinglePost = ({ flaged, user, match }) => {
 
       setPost({
         ...post,
-        ["noOfLikes"]: max(0, post.noOfLikes - 1),
-        ["noOfDislikes"]: post.noOfDislikes + 1,
-        ["likeUsers"]: post.likeUsers.filter(
+        "noOfLikes": max(0, post.noOfLikes - 1),
+        "noOfDislikes": post.noOfDislikes + 1,
+        "likeUsers": post.likeUsers.filter(
           (currUser) => currUser !== user._id
         ),
-        ["dislikeUsers"]: [...post.dislikeUsers, user._id],
+        "dislikeUsers": [...post.dislikeUsers, user._id],
       });
     } else {
       if (dislike === true) {
@@ -153,8 +154,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          ["noOfDislikes"]: max(0, post.noOfDislikes - 1),
-          ["dislikeUsers"]: post.dislikeUsers.filter(
+          "noOfDislikes": max(0, post.noOfDislikes - 1),
+          "dislikeUsers": post.dislikeUsers.filter(
             (currUser) => currUser !== user._id
           ),
         });
@@ -163,8 +164,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          ["noOfDislikes"]: post.noOfDislikes + 1,
-          ["dislikeUsers"]: [...post.dislikeUsers, user._id],
+          "noOfDislikes": post.noOfDislikes + 1,
+          "dislikeUsers": [...post.dislikeUsers, user._id],
         });
       }
     }
@@ -182,6 +183,7 @@ const SinglePost = ({ flaged, user, match }) => {
   if (loader) <Loader />;
   return (
     <>
+    <div className={`${styles.first_second}`}>
       <div className={`${styles.first_inner_container}`}>
         <div className={`${styles.title}`}>
           <p>{post.title}</p>
@@ -194,7 +196,7 @@ const SinglePost = ({ flaged, user, match }) => {
           <label htmlFor="Created_date">Created Date : </label>
           {new Date(post.createdDate).toDateString()}
         </p>
-        {flag === true && user.username === post.username && (
+        {flaged === true && user.username === post.username && (
           <div className={`${styles.edit_update}`}>
             <Link to={`/update/${post._id}`}>
               <AiFillEdit />
@@ -205,7 +207,7 @@ const SinglePost = ({ flaged, user, match }) => {
             </div>
           </div>
         )}
-        {flag === true && user.username !== post.username && (
+        {flaged === true && user.username !== post.username && (
           <div className={`${styles.like_dislike}`}>
             <div className={`${styles.like}`}>
               {like === false ? (
@@ -225,7 +227,7 @@ const SinglePost = ({ flaged, user, match }) => {
             </div>
           </div>
         )}
-        {flag === true && user.username === post.username && (
+        {flaged === true && user.username === post.username && (
           <div className={`${styles.like_dislike}`}>
             <div className={`${styles.like}`}>
               <AiOutlineLike onClick={() => showError()} />
@@ -238,7 +240,7 @@ const SinglePost = ({ flaged, user, match }) => {
           </div>
         )}
       </div>
-
+      </div>
       <textarea
         className={`${styles.third_inner_container}`}
         name="description"

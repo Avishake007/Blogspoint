@@ -6,6 +6,7 @@
     /* position: sticky;
     top:0px; */
     background: var(--nav_color);
+    padding: 10px;
 }
 .container2 header{
     width: 100%;
@@ -14,23 +15,22 @@
 .logo{
     height: 59px;
 }
-a svg{
+/* a svg{
     width: 38px;
     height: 54px;
-    color:var(--secondary_color);
-}
+   
+} */
 .navbar{
-    /* height: 100%;
-    width:100%; */
-    /* float: right; */
-    /* display: flex;
-    justify-content: flex-end; */
-    /* align-items: center; */
-    /* background: var(--primary_color); */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 .navbar img{
     height: 4rem;
     margin-left: 14px;
+}
+.links{
+    display: flex;
 }
 .nav_item{
     margin-top: 14px;
@@ -44,13 +44,15 @@ a svg{
     margin-right: 14px;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100px;
     height: 50px;
     color: var(--font-color);
     border-radius: 18px;
-    
+    text-decoration: none;
     transition: all 1s ease-in-out;
 }
+
 .navlink:hover{
     opacity: 0.7;
     background: var(--font-color);
@@ -85,4 +87,143 @@ a svg{
 button:focus{
     border:0;
     box-shadow: none !important;
+}
+.small_device{
+    display: none;
+}
+.active{
+    color:orangered;
+    border-radius: 18px;
+    transition: all 1s ease-in-out;
+}
+.active:hover{
+    opacity: 0.7;
+    background: orangered;
+    border: 2px orangered;
+}
+@media screen and (max-width:720px){
+    .active{
+        display: block;
+    }
+    .non_active{
+        display: none;
+    }
+    .non_activeLinks{
+        /* animation: closeNav 1s 1; */
+        right:-50%;
+    }
+    /* @keyframes closeNav {
+        0%{
+            right:0%;
+        }
+        100%{
+            right:-50%;
+        }
+    } */
+    .small_device .activeLinks{
+        animation: showNav 1s 1;
+      
+        right:0px;
+    }
+    @keyframes showNav {
+        0%{
+            right:-50%;
+        }
+        100%{
+            right:0%;
+        }
+    }
+    .small_device .non_activeLinks{
+        
+        transition: all 1s ease-in-out;
+    }
+    .outer_container{
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        outline: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index:50;
+    }
+    .nav{
+        display: none;
+    }
+    .small_device{
+        display: block;
+        transition: all 1s ease-in-out;
+    }
+    .small_device>svg{
+        cursor: pointer;
+        color:var(--secondary_color);
+      
+    }
+    .nav_links{
+        position: fixed;
+    /* height: 100%; */
+    width: 50%;
+    top: 0px;
+    height: 100vh;
+    /* width: 63vw; */
+    transition: all 1s ease-in-out;
+    background: #03071d;
+    z-index: 100;
+   
+    }
+    .links{
+        height:100%;
+        flex-direction: column;
+        padding:0px;
+        margin-top: 56px;
+    }
+    .nav_links{
+        color:white;
+        padding: 0px;
+    }
+    .nav_links>svg{
+        width:34px;
+        height:34px;
+        position: absolute;
+        right:6px;
+        top:6px;
+        cursor: pointer;
+        margin-top: 15px;
+ ;   }
+    .nav_item{
+        width: 100%;
+        margin: 0px;
+        height: 58px;
+        border:0;
+    }
+    .navlink{
+        color:white;
+        width: 100%;
+        justify-content: space-evenly;
+        margin: 0px;
+        border-radius: 0px;
+        height: 100%;
+        border: 0;
+    }
+    .navlink svg{
+        /* color: white; */
+    width: 34px;
+    height: 23px;
+    }
+    .navlink:hover{
+        background: rgba(0, 0, 0, 0.3);
+        color: white !important;
+        border: 0;
+    }
+    .activeLink{
+        color:orangered  !important;
+    }
+    .activeLink:hover{
+        background: rgba(0, 0, 0, 0.3);
+        color: orangered !important;
+        border: 0;
+    }
+   
+
 }
