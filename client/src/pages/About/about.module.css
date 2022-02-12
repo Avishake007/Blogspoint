@@ -79,6 +79,21 @@
     /* justify-content: center; */
     align-items: center;
 }
+.your_post_btn{
+    width: 50%;
+    height: 46px;
+    background: var(--font-color);
+    border: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary_color);
+    opacity: 0.8;
+    border-radius: 25px;
+    margin-top: 19px;
+}
+.your_post_btn:hover{
+    opacity: 1;
+}
 @media only screen and (max-width: 600px){
     .about_section{
         flex-direction: column;
@@ -96,9 +111,13 @@
         font-size: 14px;
     }
     .user_pic{
+        width: 56%;
         margin-bottom: 14px;
     }
     .detail p{
         font-size: 14px;
+    }
+    .info{
+        width: 100%;
     }
 }

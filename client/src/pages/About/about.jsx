@@ -10,54 +10,34 @@ import styles from "./about.module.css";
 //Local Imports
 import defaultpic from "../../assest/images/defaultpic.png";
 import { getPostByUsername } from "../../methods/crud/post";
-import Loader from "../../Components/Loader/loader";
+import YourPostModal from "../../Components/YourPostModal/YourPostModal";
+import { Button } from "antd";
 
 const About = () => {
   //UseState Declarations
   const history = useHistory();
-  const [userData, setUserData] = useState({});
+  const userData = JSON.parse(localStorage.getItem("userLogin"));
   const [posts, setPosts] = useState([]);
-  const [loader, setLoader] = useState(true);
-  //Checking for user authentication
-  const userAuthenticate = async () => {
-    try {
-      const res = await fetch("/user/authenticate", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+  const [open, _open] =useState(false);
 
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-      const data = await res.json();
-
-      fetchData(data._id);
-
-      setUserData(data);
-      setLoader(false);
-    } catch (err) {
-      //If user not authenticate then redirect to signin page
-      console.log(err);
-      history.push("/signin");
-    }
-  };
   //Get all the posts of the login user
   const fetchData = async (userID) => {
     let data = await getPostByUsername(userID); // params in url
     setPosts(data);
   };
+  const onOpenModal=()=>{
+    _open((prev)=>(prev=true))
+  }
+  const onCLoseModal=()=>{
+    _open((prev)=>(prev=false));
+  }
   //UseEffect Declarations
   useEffect(() => {
     document.title = "About Page - Blogspoint";
-    userAuthenticate();
+    fetchData(userData?._id)
   }, []);
-    //Loader Functionality
-  if (loader) return <Loader />;
+    //Push the user to signin page if not login
+  if (userData==null) {history.push("/signin")}
   return (
     <>
       <div className={`${styles.container}`}>
@@ -70,11 +50,11 @@ const About = () => {
           <div className={`${styles.info}`}>
             <div className={`${styles.detail}`}>
               <label htmlFor="Username">Username</label>
-              <p>{userData.username}</p>
+              <p>{userData?.username}</p>
             </div>
             <div className={`${styles.detail}`}>
               <label htmlFor="name">Name : </label>
-              <p>{userData.name}</p>
+              <p>{userData?.name}</p>
             </div>
             <div className={`${styles.detail}`}>
               <label htmlFor="about_me">About Me : </label>
@@ -82,24 +62,29 @@ const About = () => {
             </div>
             <div className={`${styles.detail}`}>
               <label htmlFor="state">State : </label>
-              <p>{userData.state}</p>
+              <p>{userData?.state}</p>
             </div>
             <div className={`${styles.detail}`}>
               <label htmlFor="city">City : </label>
-              <p>{userData.city}</p>
+              <p>{userData?.city}</p>
             </div>
             <div className={`${styles.detail}`}>
               <label htmlFor="stuorprof">Student/Professional : </label>
-              <p>{userData.stuprof}</p>
+              <p>{userData?.stuprof}</p>
             </div>
 
             <div className={`${styles.detail}`}>
               <label htmlFor="no_of_blogs">No of Blogs : </label>
-              <p>{posts.length}</p>
+              <p>{posts?.length}</p>
+            </div>
+            <div className={`${styles.detail}`} style={{justifyContent:"center"}}>
+              <Button className={`${styles.your_post_btn}`} onClick={onOpenModal}>Your Posts</Button>
+              
             </div>
           </div>
         </div>
       </div>
+      <YourPostModal open={open} onCLoseModal={onCLoseModal} posts={posts}/>
     </>
   );
 };

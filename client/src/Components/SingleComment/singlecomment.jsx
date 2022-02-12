@@ -12,7 +12,7 @@ const SingleComment = ({ match, userData }) => {
   //UseState Declarations
   const [comment, setComment] = useState({
     postId: match.params.id,
-    username: userData.username,
+    username: userData?.username,
     description: "",
     createdDate: new Date(),
     noOfLikes: 0,
@@ -28,7 +28,7 @@ const SingleComment = ({ match, userData }) => {
       setComments(data);
     };
     fetchComment();
-  }, [comment]);
+  });
   //Getting the comment information and store it in comment state
   const handleInputs = (e) => {
     var name, value;
@@ -43,7 +43,7 @@ const SingleComment = ({ match, userData }) => {
   //Saving a valid comment into the database
   const saveComment = async (e) => {
     e.preventDefault();
-    if (comment.description !== "") {
+    if (comment?.description !== "") {
       await createComment(comment);
       swal("", "Comment created successfully", "success");
       sleep(3000);
@@ -65,7 +65,7 @@ const SingleComment = ({ match, userData }) => {
           className={`${styles.commentArea}`}
           placeholder="Write your comment"
           name="description"
-          value={comment.description}
+          value={comment?.description}
           onChange={handleInputs}
         />
         <button className={`${styles.commentBtn}`} onClick={saveComment}>

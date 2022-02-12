@@ -60,6 +60,7 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
+  const userData=JSON.parse(localStorage.getItem("userLogin"))
   //Function to get the fields of register and provide validation
   const handleInputs = (e) => {
     const { name, value } = e.target;
@@ -159,6 +160,7 @@ const Signup = () => {
   useEffect(() => {
     document.title = "Signup Page - Blogspoint";
   }, []);
+  if(userData!==null)history.push("/")
   return (
     <>
       <ToastContainer />

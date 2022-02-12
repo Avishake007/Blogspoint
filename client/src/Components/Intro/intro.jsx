@@ -17,7 +17,7 @@ const Intro = ({authenticate}) => {
 
           <p>
             Welcome to BlogsPoint - a place where you learn new things , share your knowledge to the world in the form of a blog. So 
-            what are you waiting for START BLOGGING...
+            what are you waiting for  <span style={{color:"var(--font-color)",marginLeft:"10px",fontFamily:"cursive",fontWeight:"500"}}>START BLOGGING...</span>
           </p>
           {authenticate === false && (
             <div className={`${styles.signin_signup}`}>

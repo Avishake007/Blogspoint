@@ -16,15 +16,13 @@ import {
 } from "../../methods/Validators/validate";
 import loginSvg from "../../assest/images/login.png";
 import { Link, useHistory } from "react-router-dom";
-import Loader from "../../Components/Loader/loader";
 import { UserContext } from "../../App";
 const Login = () => {
   //UseContext Declarations
   const { dispatch } = useContext(UserContext);
   //UseHistory Declarations
   const history = useHistory();
-  //UseStates Declarations
-  const [loader, setLoader] = useState(true);
+  //UseStates Declaration
   const [userLogin, setuserLogin] = useState({ email: "", password: "" });
   const [error, setError] = useState({
     email: -1,
@@ -34,6 +32,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const userData=JSON.parse(localStorage.getItem("userLogin"))
   //Function to get the email and password field and provide validation
   const handleInputs = (e) => {
     const { name, value } = e.target;
@@ -97,11 +96,10 @@ const Login = () => {
   //UseEffect Declaration
   useEffect(() => {
     document.title = "Signin Page - Blogspoint";
-    setLoader(false);
-  }, []);
-  //Loader Functionality
-  if (loader) return <Loader />;
 
+  }, []);
+
+  if(userData!==null) history.push("/")
   return (
     <>
       <ToastContainer />
@@ -231,5 +229,6 @@ const Login = () => {
       </div>
     </>
   );
+
 };
 export default Login;

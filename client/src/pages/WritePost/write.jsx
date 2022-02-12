@@ -12,9 +12,7 @@ import Loader from "../../Components/Loader/loader";
 const Write = () => {
   //UseStates Declarations
   const history = useHistory();
-  const [userData, setUserData] = useState({});
-  const [flag, setFlag] = useState(false);
-  const [loader, setLoader] = useState(true);
+  const [loader,_loader]=useState(true);
   const [post, setPost] = useState({
     title: "",
     description: "",
@@ -29,47 +27,19 @@ const Write = () => {
     dislikeUsers:[]
   });
   //Check whether the user is authenticated
-  const userAuthenticate = async () => {
-    try {
-      const res = await fetch("/user/authenticate", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-      const data = await res.json();
-
-      setUserData(data);
-
-      setPost({ ...post, "userId": data._id });
-
-      setFlag(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  //Calls  the authentication function and set loader to false
-  useEffect(() => {
+  const [userData,_userData] =useState(null);
+  //useEffect Declarations
+  useEffect(async() => {
     document.title = "Write - BlogsPoint";
-    userAuthenticate();
-
-    setLoader(false);
-  }, []);
-  //Fetches username & userId once user gets authenticated
-  if (flag === true) {
     setPost({
       ...post,
-      username: `${userData.username}`,
-      userId: `${userData._id}`,
+      username: `${userData?.username}`,
+      userId: `${userData?._id}`,
     });
-
-    setFlag(false); // To stop infinite re renders
-  }
+    _userData(JSON.parse(localStorage.getItem("userLogin")))
+    _loader(false)
+  }, []);
+ 
   //Stores  title , description & tags  of a post
   const handleInputs = (e) => {
     let name, value;
@@ -84,7 +54,7 @@ const Write = () => {
   //Saves or publishes the post
   const savePost = async (e) => {
     e.preventDefault();
-    if (post.title !== "" && post.description !== "") {
+    if (post?.title !== "" && post?.description !== "") {
       console.log(post);
       await createPost(post);
 
@@ -105,11 +75,11 @@ const Write = () => {
   const addTags = (e) => {
     if (
       e.target.value !== "" &&
-      post.categories.includes(e.target.value) === false
+      post?.categories?.includes(e.target.value) === false
     ) {
       setPost({
         ...post,
-        "categories": [...post.categories, e.target.value],
+        "categories": [...post?.categories, e.target.value],
       });
       e.target.value = "";
     }
@@ -119,11 +89,11 @@ const Write = () => {
   const deleteTags = (delIndex) => {
     setPost({
       ...post,
-      "categories": post.categories.filter((_, index) => index !== delIndex),
+      "categories": post?.categories.filter((_, index) => index !== delIndex),
     });
   };
-  //Loader Functionality
-  if (loader) return <Loader />;
+  if(loader) return <Loader/>
+  else if(userData===null)history.push("/signin")
   return (
     <>
       <ToastContainer />
@@ -134,7 +104,7 @@ const Write = () => {
             <input
               className="writeInput"
               placeholder="Title"
-              value={post.title}
+              value={post?.title}
               onChange={handleInputs}
               name="title"
               type="text"
@@ -150,7 +120,7 @@ const Write = () => {
               className="writeText"
               placeholder="Tell your story..."
               type="text"
-              value={post.description}
+              value={post?.description}
               onChange={handleInputs}
               name="description"
               autoFocus="off"

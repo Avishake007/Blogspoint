@@ -1,53 +1,31 @@
 //Third Party imports
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { ToastContainer } from "react-toastify";
+import { useHistory } from "react-router-dom"
 //StyleSheets import
 import "react-toastify/dist/ReactToastify.css";
-import SinglePost from "../../Components/SinglePost/singlepost";
 import styles from "./detailView.module.css";
 //Local import
-import Loader from "../../Components/Skeleton Loader/Posts/post";
+import SinglePost from "../../Components/SinglePost/singlepost";
 import SingleComment from "../../Components/SingleComment/singlecomment";
+;
 const DetailView = ({ match }) => {
-  //UseState Declarations
-  const [userData, setUserData] = useState({});
-  const [flag, setFlag] = useState(true);
-  const [loader, setLoader] = useState(true);
+  //UseHistory Declaration
+  const history = useHistory();
   //Checking for user authentication
-  const userAuthenticate = async () => {
-    try {
-      const res = await fetch("/user/authenticate", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-      const data = await res.json();
-      setUserData(data);
-      setFlag(true);
-      setLoader(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const userData = JSON.parse(localStorage.getItem("userLogin"));
   //UseEffect Declarations
   useEffect(() => {
     document.title = "Your Post - Blogspoint";
-    userAuthenticate();
+   
   }, []);
-  //Loader Functionality
-  if (loader) return <Loader />;
+  //Push the user to SignIn Page when user is not login
+  if(userData==null)history.push("/signin")
   return (
     <>
       <ToastContainer />
       <div className={`${styles.container}`}>
-        <SinglePost flaged={flag} user={userData} match={match}/>
+        <SinglePost flaged={true} user={userData} match={match}/>
         <SingleComment match={match} userData={userData} />
       </div>
     </>

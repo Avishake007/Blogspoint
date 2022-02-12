@@ -24,6 +24,7 @@ const UpdatePage = ({ match }) => {
     categories: "",
     createdDate: new Date(),
   });
+  const userData=JSON.parse(localStorage.getItem("userLogin"));
   //UseEffect Declarations
   useEffect(() => {
     document.title = "Update Page - Blogspoint";
@@ -83,7 +84,7 @@ const UpdatePage = ({ match }) => {
       "categories": post.categories.filter((_, index) => index !== delIndex),
     });
   };
-  //Loader Functionality
+  if(userData===null)history.push("/signin")
   if (loader) return <Loader />;
   return (
     <>
