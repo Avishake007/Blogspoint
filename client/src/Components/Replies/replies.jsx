@@ -14,8 +14,8 @@ const Replies = ({ user, comment, rep }) => {
   const [replies, setReplies] = useState(rep);
   const [reply, setReply] = useState({
     postId:comment.postId,
-    commentId: comment._id,
-    username: user.username,
+    commentId: comment?._id,
+    username: user?.username,
     description: "",
 
     createdDate: new Date(),
@@ -27,11 +27,11 @@ const Replies = ({ user, comment, rep }) => {
   //Getting replies according to comment id
   useEffect(() => {
     const fetchReply = async () => {
-      let data = await getReplyByCommentId(comment._id);
+      let data = await getReplyByCommentId(comment?._id);
       setReplies(data);
     };
     fetchReply();
-  },[reply]);
+  });
   //Stores  title , description & tags  of a reply
   const handleInputs = (e) => {
     let name, value;
@@ -43,7 +43,7 @@ const Replies = ({ user, comment, rep }) => {
   //Saving Reply
   const saveReply = async (e) => {
     e.preventDefault();
-    if (reply.description !== "") {
+    if (reply?.description !== "") {
       console.log(reply);
       await createReply(reply);
       setReply({ ...reply, "description": "" });
@@ -66,7 +66,7 @@ const Replies = ({ user, comment, rep }) => {
             className={`${style.replyArea}`}
             placeholder="Write your reply ... "
             name="description"
-            value={reply.description}
+            value={reply?.description}
             onChange={handleInputs}
           />
           <MdSend onClick={(e) => saveReply(e)} />

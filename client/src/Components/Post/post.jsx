@@ -8,19 +8,19 @@ const Post = ({ post ,authenticate}) => {
     <div className={`${styles.post}`}>
       <div className={`${styles.upper}`}>
         {/* Username */}
-        <div className={`${styles.username}`}>{post.username}</div>
+        <div className={`${styles.username}`}>{post?.username}</div>
         {/* Read More */}
         <Link
           style={{ textDecoration: "none", color: "inherit" }}
-          to={authenticate?`details/${post._id}`:'/signin'}
+          to={authenticate?`details/${post?._id}`:'/signin'}
         >
           <button className={`btn ${styles.read_me}`}>Read More</button>
         </Link>
       </div>
       {/* Title */}
-      <div className={`${styles.title}`}>{post.title}</div>
+      <div className={`${styles.title}`}>{post?.title}</div>
       {/* Description */}
-      <div className={`${styles.description}`}>{post.description}</div>
+      <div className={`${styles.description}`}>{post?.description}</div>
     </div>
   );
 };

@@ -19,37 +19,13 @@ const Home = () => {
     const [authenticate, setAuthenticate] = useState(false);
   
     //Checking for user authentication
-    const userAuthenticate = async () => {
-      try {
-        const res = await fetch("/user/authenticate", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-  
-        if (!res.status === 200) {
-          setAuthenticate(false);
-          const error = new Error(res.error);
-  
-          throw error;
-        }
-       await res.json();
-  
-        setAuthenticate(true);
-      } catch (err) {
-        console.log(err);
-        setAuthenticate(false);
-      }
-      setLoader(false);
-    };
-  
-    //UseEffect definition
-    useEffect(() => {
-      userAuthenticate();
-    }, []);
+    const userData = JSON.parse(localStorage.getItem("userLogin"));
+   
     useEffect(() => {
       document.title = "Home Page - Blogspoint";
+      if(userData)
+      setAuthenticate(true);
+      setLoader(false);
     }, []);
     //Loader Functionality
     if (loader) return <Loader />;

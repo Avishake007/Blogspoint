@@ -50,7 +50,7 @@ const AllPosts = ({ authenticate }) => {
     setFilterPosts(
       all_posts.filter((post) => {
         return (
-          post.username.substring(0, curr_username.length) === curr_username
+          post.username.substring(0, curr_username?.length) === curr_username
         );
       })
     );
@@ -60,7 +60,7 @@ const AllPosts = ({ authenticate }) => {
       setPosts(
         all_posts.filter((post) => {
           return (
-            post.username.substring(0, curr_username.length) === curr_username
+            post.username.substring(0, curr_username?.length) === curr_username
           );
         })
       );
@@ -70,13 +70,13 @@ const AllPosts = ({ authenticate }) => {
   const filterByTags = (tag) => {
     setFilterPosts(
       fliterPosts.filter((post) => {
-        return post.categories.includes(tag) === true;
+        return post?.categories.includes(tag) === true;
       })
     );
 
     setPosts(
       fliterPosts.filter((post) => {
-        return post.categories.includes(tag) === true;
+        return post?.categories.includes(tag) === true;
       })
     );
   };
@@ -94,21 +94,21 @@ const AllPosts = ({ authenticate }) => {
     else setShowTags(true);
 
     posts.map((post) => {
-      for (var i = 0; i < post.categories.length; i++) {
-        if (filteredPosts.includes(post.categories[i]) === false)
-          filteredPosts.push(post.categories[i]);
+      for (var i = 0; i < post?.categories?.length; i++) {
+        if (filteredPosts.includes(post?.categories[i]) === false)
+          filteredPosts.push(post?.categories[i]);
       }
     });
   };
   //Function to filter by a tag
   const removeFilter = (tag) => {
     var filteredPosts = [];
-    all_posts.map((post) => {
+    all_posts?.map((post) => {
       let flag = 1;
-      for (var i = 0; i < activeTags.length; i++) {
+      for (var i = 0; i < activeTags?.length; i++) {
         if (
           activeTags[i] !== tag &&
-          post.categories.includes(activeTags[i]) === false
+          post?.categories.includes(activeTags[i]) === false
         ) {
           flag = 0;
           break;
@@ -119,7 +119,7 @@ const AllPosts = ({ authenticate }) => {
 
     setPosts(filteredPosts);
     setFilterPosts(filteredPosts);
-    if (activeTags.length === 1) setPosts(all_posts);
+    if (activeTags?.length === 1) setPosts(all_posts);
   };
   //Function to delete a tag by index
   const removeTags = (_) => {
@@ -168,9 +168,9 @@ const AllPosts = ({ authenticate }) => {
               </div>
               {showTags === true && (
                 <div className={`${styles.allTags}`}>
-                  {all_posts.length &&
-                    all_posts.map((post, _) =>
-                      post.categories.map((tag) => (
+                  {all_posts?.length &&
+                    all_posts?.map((post, _) =>
+                      post?.categories.map((tag) => (
                         <div
                           className={`${styles.tag}`}
                           name={tag}
@@ -184,7 +184,7 @@ const AllPosts = ({ authenticate }) => {
               )}
 
               <div className={`${styles.activeTags}`}>
-                {activeTags.map((tag, _) => (
+                {activeTags?.map((tag, _) => (
                   <div className={`${styles.tagActive}`}>
                     {tag}
                     <span onClick={() => removeTags(_)}>
@@ -194,8 +194,8 @@ const AllPosts = ({ authenticate }) => {
                 ))}
               </div>
               {/* Posts Section */}
-              {posts.length ? (
-                posts.map((post, _) => (
+              {posts?.length ? (
+                posts?.map((post, _) => (
                   <Post post={post} key={_} authenticate={authenticate} />
                 ))
               ) : (
@@ -205,8 +205,10 @@ const AllPosts = ({ authenticate }) => {
                   No data is available for selected category
                 </div>
               )}
+              
             </div>
           </div>
+          <div className={`${styles.shady}`}></div>
         </div>
       </div>
     </>

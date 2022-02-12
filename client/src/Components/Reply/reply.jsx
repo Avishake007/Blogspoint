@@ -23,8 +23,8 @@ const Reply = ({ reply, user }) => {
   const [show,_show]=useState(false);
   const [open,_open]=useState(false);
   useEffect(() => {
-    if (reply.likeUsers.includes(user._id)) setLike(true);
-    else if (reply.dislikeUsers.includes(user._id)) setDislike(true);
+    if (reply?.likeUsers?.includes(user._id)) setLike(true);
+    else if (reply?.dislikeUsers?.includes(user._id)) setDislike(true);
     _loader(false)
   }, []);
   //Updating a reply
@@ -47,12 +47,12 @@ const Reply = ({ reply, user }) => {
 
       _SingleReply({
         ...singleReply,
-        "noOfLikes": singleReply.noOfLikes + 1,
-        "noOfDislikes": max(0, singleReply.noOfDislikes - 1),
-        "dislikeUsers": singleReply.dislikeUsers.filter(
+        "noOfLikes": singleReply?.noOfLikes + 1,
+        "noOfDislikes": max(0, singleReply?.noOfDislikes - 1),
+        "dislikeUsers": singleReply?.dislikeUsers.filter(
           (curruser) => curruser !== user._id
         ),
-        "likeUsers": [...singleReply.likeUsers, user._id],
+        "likeUsers": [...singleReply?.likeUsers, user._id],
       });
     } else {
       if (like === true) {
@@ -60,8 +60,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          "noOfLikes": max(0, singleReply.noOfLikes - 1),
-          "likeUsers": singleReply.likeUsers.filter(
+          "noOfLikes": max(0, singleReply?.noOfLikes - 1),
+          "likeUsers": singleReply?.likeUsers.filter(
             (cuurUser) => cuurUser !== user._id
           ),
         });
@@ -70,8 +70,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          "noOfLikes": singleReply.noOfLikes + 1,
-          "likeUsers": [...singleReply.likeUsers, user._id],
+          "noOfLikes": singleReply?.noOfLikes + 1,
+          "likeUsers": [...singleReply?.likeUsers, user._id],
         });
       }
     }
@@ -85,12 +85,12 @@ const Reply = ({ reply, user }) => {
 
       _SingleReply({
         ...singleReply,
-        "noOfLikes": max(0, singleReply.noOfLikes - 1),
-        "noOfDislikes": singleReply.noOfDislikes + 1,
-        "likeUsers": singleReply.likeUsers.filter(
+        "noOfLikes": max(0, singleReply?.noOfLikes - 1),
+        "noOfDislikes": singleReply?.noOfDislikes + 1,
+        "likeUsers": singleReply?.likeUsers.filter(
           (currUser) => currUser !== user._id
         ),
-        "dislikeUsers": [...singleReply.dislikeUsers, user._id],
+        "dislikeUsers": [...singleReply?.dislikeUsers, user._id],
       });
     } else {
       if (dislike === true) {
@@ -98,8 +98,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          "noOfDislikes": max(0, singleReply.noOfDislikes - 1),
-          "dislikeUsers": singleReply.dislikeUsers.filter(
+          "noOfDislikes": max(0, singleReply?.noOfDislikes - 1),
+          "dislikeUsers": singleReply?.dislikeUsers.filter(
             (currUser) => currUser !== user._id
           ),
         });
@@ -108,8 +108,8 @@ const Reply = ({ reply, user }) => {
 
         _SingleReply({
           ...singleReply,
-          "noOfDislikes": singleReply.noOfDislikes + 1,
-          "dislikeUsers": [...singleReply.dislikeUsers, user._id],
+          "noOfDislikes": singleReply?.noOfDislikes + 1,
+          "dislikeUsers": [...singleReply?.dislikeUsers, user._id],
         });
       }
     }
@@ -160,7 +160,7 @@ const Reply = ({ reply, user }) => {
 
         </div>
         
-        <div className={`${styles.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>
+        {reply?.username===user?.username&&<div className={`${styles.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
           {show&&<div className={`${styles.updel}`} >
             <div className={`${styles.update}`} onClick={()=>onOpenModal()}>Update</div>
             <div className={`${styles.delete}`} onClick={()=>deleteRep()}>Delete</div>
@@ -180,7 +180,7 @@ const Reply = ({ reply, user }) => {
           ) : (
             <AiFillLike onClick={() => toggleLike()} />
           )}
-          {singleReply.noOfLikes}
+          {singleReply?.noOfLikes}
         </div>
         <div className={`${styles.dislike}`}>
           {dislike === false ? (
@@ -188,7 +188,7 @@ const Reply = ({ reply, user }) => {
           ) : (
             <AiFillDislike onClick={() => toggleDislike()} />
           )}
-          {singleReply.noOfDislikes}
+          {singleReply?.noOfDislikes}
         </div>
       </div>
     </div>

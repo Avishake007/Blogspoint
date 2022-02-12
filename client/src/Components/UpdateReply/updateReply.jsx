@@ -21,8 +21,8 @@ const UpdateReply = ({open,onCLoseModal,rep}) => {
   //Saving a valid reply into the database
   const saveReply = async (e) => {
     e.preventDefault();
-    if (reply.description !== "") {
-      await updateReply(reply._id,reply);
+    if (reply?.description !== "") {
+      await updateReply(reply?._id,reply);
       swal("", "Reply updated successfully", "success");
       sleep(3000);
       onCLoseModal();
@@ -41,7 +41,7 @@ const UpdateReply = ({open,onCLoseModal,rep}) => {
       <textarea
           name="description"
           placeholder='Write your reply ...'
-          value={reply.description}
+          value={reply?.description}
           onChange={handleInputs}
         />
       </div>

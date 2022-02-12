@@ -2,6 +2,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
+import styles from "./logout.module.css";
 const Logout = () => {
     //UseContext Declarations
     const { dispatch } = useContext(UserContext);
@@ -18,9 +19,9 @@ const Logout = () => {
             credentials: "include"
         }).then((res) => {
             dispatch({ type: 'USER', payload: false })
-            localStorage.setItem("userLogin",JSON.stringify(false));
+            localStorage.setItem("userLogin",JSON.stringify(null));
             // window.location.reload(false);
-            history.push('/about', { replace: false });
+            history.push('/signin', { replace: false });
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;
@@ -31,7 +32,10 @@ const Logout = () => {
     });
     return (
         <>
-            <div ></div>
+            <div className={`${styles.logout}`}>
+                <p>Thanks for visiting our Website 😊</p>
+                <p>Please 🙏 come back Again </p>
+            </div>
 
         </>
     )

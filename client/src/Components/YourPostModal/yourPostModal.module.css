@@ -1,0 +1,17 @@
+.tags_modal{
+    width: 40vw;
+    /* height: 80vh; */
+    margin-top: 30px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.tags_modal::-webkit-scrollbar { 
+    display: none;  /*Safari and Chrome*/
+}
+.shady{
+    height: 36px;
+    position: relative;
+    top: -36px;
+    background: linear-gradient(0deg, var(--primary_color), transparent);
+}

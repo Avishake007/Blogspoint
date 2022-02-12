@@ -21,8 +21,8 @@ const UpdateComment = ({open,onCLoseModal,comm}) => {
   //Saving a valid comment into the database
   const saveComment = async (e) => {
     e.preventDefault();
-    if (comment.description !== "") {
-      await updateComment(comment._id,comment);
+    if (comment?.description !== "") {
+      await updateComment(comment?._id,comment);
       swal("", "Comment updated successfully", "success");
       sleep(3000);
       onCLoseModal();
@@ -42,7 +42,7 @@ const UpdateComment = ({open,onCLoseModal,comm}) => {
           name="description"
           placeholder='Write your comment ...'
           // className={`${style.commentBody}`}
-          value={comment.description}
+          value={comment?.description}
           onChange={handleInputs}
         />
       </div>

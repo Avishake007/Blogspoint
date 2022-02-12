@@ -99,7 +99,7 @@
   justify-content: center;
   align-items: center;
 }
-svg {
+.first svg,.second svg {
   height: 80%;
   width: 100%;
 }
@@ -191,7 +191,7 @@ svg {
   font-weight: bold;
 }
 .title {
-  color: rgb(168, 112, 7);
+  color: rgb(255, 51, 0);
   font-weight: bold;
   font-size: 18px;
 }
@@ -233,7 +233,7 @@ svg {
 }
 .allPosts {
   background: var(--primary_color);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 18px;
   display: flex;
@@ -347,7 +347,7 @@ svg {
 }
 .allTags {
   position: relative;
-  height: 136px;
+  
   width: 100;
   background: var(--login_form_color);
   margin-bottom: 14px;
@@ -355,17 +355,29 @@ svg {
   display: flex;
   overflow-y: auto;
   flex-wrap: wrap;
+  animation: slideTags 2s 1;
+  /* height: 100%; */
+  height:136px;
 }
+@keyframes slideTags {
+  0%{
+    height:0px;
+  }
+  100%{
+    height:136px;
+  }
+}
+
 .tag {
-  min-width: 59px;
+  /* min-width: 59px; */
   height: 31px;
   background: var(--font-color);
-
+  padding: 5px;
   text-align: center;
   margin: 7px;
   border-radius: 7px;
   cursor: pointer;
-  padding: 1px;
+  
   color: var(--primary_color);
   font-weight: bold;
 }
@@ -376,10 +388,10 @@ svg {
   display: flex;
 }
 .tagActive {
-  min-width: 82px;
-  height: 29px;
+  padding: 5px;
+  background: var(--login_form_color);
+  color: var(--secondary_color);
   text-align: center;
-  background: #9e9ea3;
   margin: 14px;
   font-weight: bold;
   border-radius: 11px;
@@ -391,6 +403,14 @@ svg {
 .tagActive span {
   height: 24px;
   width: 16px;
-  margin-left: 2px;
+  margin-left: 12px;
   cursor: pointer;
+  color: var(--font-color);
+}
+.shady{
+  height: 36px;
+    position: relative;
+    top: -36px;
+    
+    background: linear-gradient(0deg, var(--primary_color), transparent);
 }

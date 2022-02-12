@@ -189,7 +189,7 @@ const Errorpage = () => {
         </svg>
         <div className="error_page">
           <div className="page_not_found">
-            <p>PAGE NOT FOUND!</p>
+            <p>OOPS! You are lost</p>
             <i class="fa fa-frown"></i>
           </div>
           <button

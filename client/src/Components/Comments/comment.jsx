@@ -38,7 +38,7 @@ const Comment = ({ comm, user }) => {
   useEffect(() => {
     //Getting replies according to comment id
     const fetchReply = async () => {
-      let data = await getReplyByCommentId(comm._id);
+      let data = await getReplyByCommentId(comm?._id);
       setReplies(data);
     };
     fetchReply();
@@ -46,9 +46,9 @@ const Comment = ({ comm, user }) => {
   useEffect(() => {
     //Getting comment according to comment id
     const fetchData = async () => {
-      let data = await getComment(comm._id);
-      if (data.likeUsers.includes(user._id)) setLike(true);
-      else if (data.dislikeUsers.includes(user._id)) setDislike(true);
+      let data = await getComment(comm?._id);
+      if (data.likeUsers.includes(user?._id)) setLike(true);
+      else if (data.dislikeUsers.includes(user?._id)) setDislike(true);
       setLoader(false);
       setComment(data);
       setLoader(false);
@@ -59,7 +59,7 @@ const Comment = ({ comm, user }) => {
   useEffect(() => {
     //Updating a comment according to comment id
     const updateComm = async (comment) => {
-      await updateComment(comm._id, comment);
+      await updateComment(comm?._id, comment);
     };
     updateComm(comment);
   }, [comment]);
@@ -80,9 +80,9 @@ const Comment = ({ comm, user }) => {
         "noOfLikes": comment.noOfLikes + 1,
         "noOfDislikes": max(0, comment.noOfDislikes - 1),
         "dislikeUsers": comment.dislikeUsers.filter(
-          (curruser) => curruser !== user._id
+          (curruser) => curruser !== user?._id
         ),
-        "likeUsers": [...comment.likeUsers, user._id],
+        "likeUsers": [...comment.likeUsers, user?._id],
       });
     } else {
       if (like === true) {
@@ -92,7 +92,7 @@ const Comment = ({ comm, user }) => {
           ...comment,
           "noOfLikes": max(0, comment.noOfLikes - 1),
           "likeUsers": comment.likeUsers.filter(
-            (cuurUser) => cuurUser !== user._id
+            (cuurUser) => cuurUser !== user?._id
           ),
         });
       } else {
@@ -101,7 +101,7 @@ const Comment = ({ comm, user }) => {
         setComment({
           ...comment,
           "noOfLikes": comment.noOfLikes + 1,
-          "likeUsers": [...comment.likeUsers, user._id],
+          "likeUsers": [...comment.likeUsers, user?._id],
         });
       }
     }
@@ -118,9 +118,9 @@ const Comment = ({ comm, user }) => {
         "noOfLikes": max(0, comment.noOfLikes - 1),
         "noOfDislikes": comment.noOfDislikes + 1,
         "likeUsers": comment.likeUsers.filter(
-          (currUser) => currUser !== user._id 
+          (currUser) => currUser !== user?._id 
         ),
-        "dislikeUsers": [...comment.dislikeUsers, user._id],
+        "dislikeUsers": [...comment.dislikeUsers, user?._id],
       });
     } else {
       if (dislike === true) {
@@ -130,7 +130,7 @@ const Comment = ({ comm, user }) => {
           ...comment,
           "noOfDislikes": max(0, comment.noOfDislikes - 1),
           "dislikeUsers": comment.dislikeUsers.filter(
-            (currUser) => currUser !== user._id
+            (currUser) => currUser !== user?._id
           ),
         });
       } else {
@@ -139,7 +139,7 @@ const Comment = ({ comm, user }) => {
         setComment({
           ...comment,
           "noOfDislikes": comment.noOfDislikes + 1,
-          "dislikeUsers": [...comment.dislikeUsers, user._id],
+          "dislikeUsers": [...comment.dislikeUsers, user?._id],
         });
       }
     }
@@ -182,8 +182,8 @@ const Comment = ({ comm, user }) => {
   }
   //Deleting...
   const delet = async () => {
-    await deleteReplyByCommentId(comment._id);
-    await deleteComment(comment._id);
+    await deleteReplyByCommentId(comment?._id);
+    await deleteComment(comment?._id);
     swal("", "Comment and its Replies deleted successfully", "success");
     await sleep(3000);
   };
@@ -193,10 +193,10 @@ const Comment = ({ comm, user }) => {
     <>
       <div className={`${style.individualCom}`}>
         <div className={`${style.commentHeaderInd}`}>
-          <div>{comment.username}
+          <div>{comment?.username}
           <Moment fromNow className={`${style.moment}`}>{comment.createdDate}</Moment> 
           </div>
-          <div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>
+         { comm?.username===user?.username&&<div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
           {show&&<div className={`${style.updel}`} >
             <div className={`${style.update}`} onClick={()=>onOpenModal()}>Update</div>
             <div className={`${style.delete}`} onClick={deleteComm}>Delete</div>
@@ -204,7 +204,7 @@ const Comment = ({ comm, user }) => {
         </div>
         <textarea
           className={`${style.commentBody}`}
-          value={comm.description}
+          value={comm?.description}
           readOnly
         />
         <div className={`${style.commentFooter}`}>
@@ -214,7 +214,7 @@ const Comment = ({ comm, user }) => {
             ) : (
               <AiFillLike onClick={() => toggleLike()} />
             )}
-            {comment.noOfLikes}
+            {comment?.noOfLikes}
           </div>
           <div className={`${style.dislike}`}>
             {dislike === false ? (
@@ -222,7 +222,7 @@ const Comment = ({ comm, user }) => {
             ) : (
               <AiFillDislike onClick={() => toggleDislike()} />
             )}
-            {comment.noOfDislikes}
+            {comment?.noOfDislikes}
           </div>
           {activeReply ? (
             <FaCommentAlt
@@ -235,7 +235,7 @@ const Comment = ({ comm, user }) => {
               onClick={() => toggleReply()}
             />
           )}
-          {replies.length}
+          {replies?.length}
         </div>
       </div>
       {activeReply && <Replies user={user} comment={comm} rep={replies} />}

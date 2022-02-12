@@ -29,8 +29,9 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background: black;
-    color:white;
+    background: var(--font-color);
+    color:var(--primary_color);
+    font-weight: 400;
     opacity:0.9;
 }
 .update_btn:hover{
