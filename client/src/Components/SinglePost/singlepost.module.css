@@ -64,11 +64,18 @@
 .edit_update{
     position: absolute;
     right: 113px;
+    /* font-size:70px; */
 }
 .edit_update a svg{
     height: 32px;
     fill: #76b8ef;
     margin-right: 14px;
+    cursor: pointer;
+    
+}
+.edit_update a,.delete{
+    margin-right: 20px;
+    font-size: 29px;
     cursor: pointer;
 }
 .delete svg {
@@ -87,12 +94,15 @@
     position: absolute;
     right: 14px;
     display: flex;
+
 }
 .like,.dislike{
     margin-right: 14px;
-    font-size: 16px;
+    font-size: 29px;
     cursor: pointer;
     color: var(--font-color);
+    display: flex;
+    flex-direction: column;
 }
 @media only screen and (max-width: 750px) {
     .first_inner_container{

@@ -52,6 +52,7 @@
 
 .formpng {
   display: flex;
+  height:62vh;
 }
 .login_png {
   height: 100%;
@@ -79,6 +80,9 @@
   width: 50%;
   display: flex;
   flex-direction: column;
+}
+.form_inner_inner img{
+  height:82%;
 }
 .formpng .form_inner_inner {
   margin-top: 55px;
@@ -188,7 +192,9 @@
     margin-top: 0px;
     width: 100%;
   }
-
+ .form_inner_inner img{
+   display: none;
+ }
   .login {
     height: 37px;
     font-size: 14px;

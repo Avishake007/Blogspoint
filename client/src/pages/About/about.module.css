@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,700&display=swap');
 .container{
     background: var(--primary_color);
-    height:85vh;
+    height:82vh;
     width: 100%;
     display:flex;
    
@@ -43,13 +43,33 @@
     height: 88%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .about_section img{
-    height: 90%;
-    width: 55%;
+    height: 80%;
+    width: 40%;
     background: var(--login_form_color);
     /* margin-top: 23px; */
     z-index: 1;
+}
+.user_pic .update{
+    height: 10%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--font-color);
+    margin-top: 9px;
+    color: var(--primary_color);
+    font-weight: 700;
+    border-radius: 21px;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 1s ease-out;
+}
+.user_pic .update:hover{
+    opacity: 1;
 }
 .info{
     /* background: var(--primary_color); */
@@ -94,15 +114,19 @@
 .your_post_btn:hover{
     opacity: 1;
 }
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 950px){
+    .container>p{
+        height: 9vh;
+    }
     .about_section{
         flex-direction: column;
         margin-bottom: 30px;
     }
     .about_section img{
-        border-radius: 50%;
-        height:90%;
-        width: 85%;
+        /* border-radius: 50%; */
+        height: 68%;
+    width: 68%;
+    
     }
     .detail{
         justify-content: center;

@@ -11,7 +11,7 @@
 
 .container {
   background: var(--linear_gradient_color);
-  height: 85vh;
+  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -151,6 +151,10 @@
   margin-bottom: 14px;
   overflow: hidden;
 }
+.post:hover{
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 19%);
+    z-index: 2;
+}
 .read_me {
   background: var(--font-color) !important;
   color: var(--primary_color) !important;
@@ -242,6 +246,10 @@
 }
 .blogger {
   width: 50%;
+}
+.blogger svg{
+  height: 100%;
+  width: 100%;
 }
 .allPosts p {
   color: white;

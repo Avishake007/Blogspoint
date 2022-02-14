@@ -1,0 +1,24 @@
+.welcome_page{
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--linear_gradient_color);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--secondary_color);
+}
+.welcome_page a{
+    text-decoration: none;
+    background: var(--font-color);
+    /* width: 222px; */
+    padding: 9px;
+    color: var(--primary_color);
+    border-radius: 34px;
+    opacity: 0.9;
+    font-size:24px;
+}
+.welcome_page:hover{
+    opacity:1;
+}

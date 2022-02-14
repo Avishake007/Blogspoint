@@ -10,11 +10,12 @@ dotenv.config({ path: "./config.env" });
 require("./db/conn");
 //Getting the port number from config.env
 const PORT = process.env.PORT;
+
 //MiddleWare
 // Middleware : It allows us to show the required page to the authenticate user only
 app.use(cookieParser());
 app.use(express.json());
-
+app.use("/uploads", express.static("uploads"));
 //Importing Routes
 const userRoute = require("./routes/userRoutes");
 const postRoute = require("./routes/postRoutes");
