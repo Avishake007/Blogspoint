@@ -5,9 +5,10 @@ import styles from "./updateReply.module.css";
 import swal from 'sweetalert';
 import { toast } from 'react-toastify';
 import { updateReply } from '../../methods/crud/reply';
+import Spinner from '../Spinner/spin';
 const UpdateReply = ({open,onCLoseModal,rep}) => {
   const [reply,_reply]=useState(rep);
-  
+  const [update,_update]=useState(false);
   const handleInputs=(e)=>{
     let name,value;
     name=e.target.name;
@@ -21,14 +22,24 @@ const UpdateReply = ({open,onCLoseModal,rep}) => {
   //Saving a valid reply into the database
   const saveReply = async (e) => {
     e.preventDefault();
-    if (reply?.description !== "") {
+    if (reply?.description !== ""&&rep?.description!==reply?.description) {
+      _update(true);
       await updateReply(reply?._id,reply);
       swal("", "Reply updated successfully", "success");
       sleep(3000);
       onCLoseModal();
+      _update(false);
     } else {
+      if(reply?.description==="")
       setTimeout(
         toast.error("Please do not keep the description empty", {
+          position: "top-center",
+        }),
+        3000
+      );
+      else
+      setTimeout(
+        toast.error("Original and Updated reply should be different", {
           position: "top-center",
         }),
         3000
@@ -46,7 +57,7 @@ const UpdateReply = ({open,onCLoseModal,rep}) => {
         />
       </div>
       <div className={`${styles.update_btn_section}`}>
-        <div className={`${styles.update_btn}`} onClick={saveReply}>Update Reply</div>
+        <div className={`${styles.update_btn}`} onClick={saveReply}>{update?<div style={{display:"flex"}}>Updating Your Reply <Spinner/></div>:"Update Your Reply"}</div>
       </div>
     </div>
   </Modal>;

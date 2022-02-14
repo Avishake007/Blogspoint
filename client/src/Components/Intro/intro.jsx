@@ -7,13 +7,14 @@ import styles from "../../pages/Home/home.module.css";
 import Blogger from "../../assest/svgs/Blogger/blogger";
 
 const Intro = ({authenticate}) => {
- 
+  const userData=JSON.parse(localStorage.getItem("userLogin"));
+  const name=userData?.name||"Blogger"
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.part}`}>
         {/* About BLogspoint */}
         <div className={`${styles.first}`}>
-          <p>Hey Blogger ,</p>
+          <p>Hey {name} ,</p>
 
           <p>
             Welcome to BlogsPoint - a place where you learn new things , share your knowledge to the world in the form of a blog. So 

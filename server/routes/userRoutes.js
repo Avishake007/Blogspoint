@@ -1,15 +1,18 @@
 //Third Party import
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const { response } = require("express");
 require("../db/conn");
 //Importing authenticate middleware
 const authenticate = require("../middleware/authenticate");
 //Importing User schema
 const User = require("../model/userSchema");
+const upload = require("../utils/multer");
 //Post the User informations into the database after validating it
 router.post("/signup", async (req, res) => {
   const {
     username,
+    profilePic,
     name,
     state,
     city,
@@ -45,6 +48,7 @@ router.post("/signup", async (req, res) => {
     }
     const user = new User({
       username,
+      profilePic,
       name,
       state,
       city,
@@ -100,12 +104,12 @@ router.get("/authenticate", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
 //Updating User's information
-router.post('/update/:id',async (request, response) => {
+router.post('/update/:id',upload.single("profilePic"),async (request, response,next) => {
       try {
           const user = await User.findById(request.params.id);
-          console.log(request.params.id)
-          await User.findByIdAndUpdate( request.params.id, { $set: request.body })
-  
+          await User.findByIdAndUpdate( request.params.id, { profilePic: request.file.path })
+          console.log(JSON.parse(JSON.stringify(request.body)))
+          console.log(request.file)
           response.status(200).json('User updated successfully');
       } catch (error) {
           response.status(500).json(error);
@@ -116,5 +120,6 @@ router.get("/logout", (req, res) => {
   res.clearCookie("jwtoken", { path: "/" });
 
   res.status(200).send("Logout");
+
 });
 module.exports=router;

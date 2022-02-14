@@ -8,6 +8,7 @@ const Logout = () => {
     const { dispatch } = useContext(UserContext);
     //UseHistory Declarations
     const history = useHistory();
+    const userData = JSON.parse(localStorage.getItem("userLogin"));
     //UseEffect Declarations
     useEffect(() => {
         fetch('/user/logout', {
@@ -19,17 +20,18 @@ const Logout = () => {
             credentials: "include"
         }).then((res) => {
             dispatch({ type: 'USER', payload: false })
-            localStorage.setItem("userLogin",JSON.stringify(null));
-            // window.location.reload(false);
+            
             history.push('/signin', { replace: false });
+            localStorage.setItem("userLogin",JSON.stringify(null));
             if (!res.status === 200) {
                 const error = new Error(res.error);
                 throw error;
             }
         }).catch((err) => {
-            console.log(err);
+            console.log(err)
         })
     });
+    if (userData==null) {history.push("/signin")}
     return (
         <>
             <div className={`${styles.logout}`}>

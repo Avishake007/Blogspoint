@@ -86,7 +86,7 @@ const Login = () => {
       localStorage.setItem("userLogin",JSON.stringify(true));
       swal("Welcome!", "Login Successful", "success");
       await sleep(3000);
-      history.push("/");
+      history.push("/welcomePage");
     }
   };
   //Provides delay for ms milliseconds
@@ -99,7 +99,7 @@ const Login = () => {
 
   }, []);
 
-  if(userData!==null) history.push("/")
+  if(userData!==null) history.push("/about")
   return (
     <>
       <ToastContainer />

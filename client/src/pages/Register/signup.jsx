@@ -12,7 +12,7 @@ import swal from "sweetalert";
 //StyleSheets imports
 import styles from "./signup.module.css";
 //Local imports
-import Registersvg from "./register.jsx";
+import Register from "../../assest/svgs/Register/register.svg";
 import {
   validateName,
   validateCity,
@@ -32,6 +32,7 @@ const Signup = () => {
   const [showPassword2, setShowPassword2] = useState(false);
   const [user, setUser] = useState({
     username: "",
+    profilePic:"uploads/defaultpic.png",
     name: "",
     state: "",
     city: "",
@@ -106,6 +107,7 @@ const Signup = () => {
     //Object DeStructuring
     const {
       username,
+      profilePic,
       name,
       state,
       city,
@@ -122,6 +124,7 @@ const Signup = () => {
       },
       body: JSON.stringify({
         username,
+        profilePic,
         name,
         state,
         city,
@@ -503,7 +506,7 @@ const Signup = () => {
               </div>
               {/* Section for already Login User */}
               <div className={`${styles.form_inner_inner}`}>
-                <Registersvg />
+                <img src={Register} alt="register_pic"/>
                 <div className={`${styles.has_account}`}>
                   Already have an account ?
                   <Link

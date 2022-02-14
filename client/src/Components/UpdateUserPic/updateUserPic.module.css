@@ -1,0 +1,39 @@
+.update_img{
+    height: 58vh;
+    width: 38vw;
+    /* background: white; */
+    background: var(--primary_color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.update_img img{
+    height: 72%;
+    width: 90%;
+    margin-top: 13px;
+}
+.update_img input{
+    margin-top: 14px;
+    color:var(--secondary_color);
+    cursor: pointer;
+}
+.update_img input:focus-visible{
+    outline:none;
+}
+.update_img button{
+    height: 9%;
+    margin-top: 13px;
+    background: var(--font-color);
+    border: 0;
+    outline: none;
+    width: 69%;
+    font-weight: 600;
+    opacity: 0.9;
+    color: var(--primary_color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update_img button:hover{
+    opacity: 1;
+}

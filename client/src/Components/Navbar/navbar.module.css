@@ -25,10 +25,12 @@
     justify-content: space-between;
     width: 100%;
 }
-.navbar img{
-    height: 4rem;
-    margin-left: 14px;
+.userpic img{
+    margin:0;
+    height:100%;
+    width:100%;
 }
+
 .links{
     display: flex;
 }
@@ -152,7 +154,7 @@ button:focus{
     }
     .non_activeLinks{
         /* animation: closeNav 1s 1; */
-        right:-50%;
+        left:-50%;
     }
     /* @keyframes closeNav {
         0%{
@@ -165,14 +167,14 @@ button:focus{
     .small_device .activeLinks{
         animation: showNav 1s 1;
       
-        right:0px;
+        left:0px;
     }
     @keyframes showNav {
         0%{
-            right:-50%;
+            left:-50%;
         }
         100%{
-            right:0%;
+            left:0%;
         }
     }
     .small_device .non_activeLinks{
@@ -229,7 +231,7 @@ button:focus{
         width:34px;
         height:34px;
         position: absolute;
-        right:6px;
+        left:6px;
         top:6px;
         cursor: pointer;
         margin-top: 15px;

@@ -1,5 +1,6 @@
 .tags_modal{
-    width: 40vw;
+    min-width: 40vw;
+    max-width:70vw;
     /* height: 80vh; */
     margin-top: 30px;
     max-height: 80vh;

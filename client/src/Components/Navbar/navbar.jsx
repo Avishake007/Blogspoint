@@ -39,7 +39,7 @@ const Navbar = () => {
         credentials: "include",
       });
 
-      if (!res.status === 200) {
+      if (res.status === 401) {
         const error = new Error(res.error);
         throw error;
       }
@@ -49,7 +49,8 @@ const Navbar = () => {
     
     } catch (err) {
     _flag(false);
-      console.log(err);
+      if(err?.response?.status===401)
+      alert("Error : Unauthorised User");
      
     }
     _flag2(true);
