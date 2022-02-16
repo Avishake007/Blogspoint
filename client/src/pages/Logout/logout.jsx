@@ -19,11 +19,13 @@ const Logout = () => {
             },
             credentials: "include"
         }).then((res) => {
-            dispatch({ type: 'USER', payload: false })
             
-            history.push('/signin', { replace: false });
+            dispatch({ type: 'USER', payload: false })
             localStorage.setItem("userLogin",JSON.stringify(null));
-            if (!res.status === 200) {
+           console.log("logout")
+            history.push('/signin', { replace: true });
+           
+            if (res.status !== 200) {
                 const error = new Error(res.error);
                 throw error;
             }
@@ -31,7 +33,7 @@ const Logout = () => {
             console.log(err)
         })
     });
-    if (userData==null) {history.push("/signin")}
+    if (userData===null) {history.push("/signin")}
     return (
         <>
             <div className={`${styles.logout}`}>

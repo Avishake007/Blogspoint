@@ -15,6 +15,7 @@ import Loader from "../Skeleton Loader/Replies/reply"
 import UpdateReply from "../UpdateReply/updateReply";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import swal from "sweetalert";
+import { getUserDetails } from "../../methods/crud/user";
 const Reply = ({ reply, user }) => {
   const [singleReply, _SingleReply] = useState(reply);
   const [like, setLike] = useState(false);
@@ -22,11 +23,19 @@ const Reply = ({ reply, user }) => {
   const [loader,_loader]=useState(true);
   const [show,_show]=useState(false);
   const [open,_open]=useState(false);
+  const [userData,_userData]=useState({});
   useEffect(() => {
     if (reply?.likeUsers?.includes(user._id)) setLike(true);
     else if (reply?.dislikeUsers?.includes(user._id)) setDislike(true);
     _loader(false)
   }, []);
+  useEffect(()=>{
+    const fetchData=async ()=>{
+      const data=await getUserDetails(reply.userId);
+      _userData(data);
+    }
+    fetchData()
+  },[])
   //Updating a reply
   useEffect(() => {
     const update = async (reply) => {
@@ -155,8 +164,10 @@ const Reply = ({ reply, user }) => {
     <>
     <div className={`${styles.reply}`}>
       <div className={`${styles.replyTop}`}>
-        <div>{reply.username}
-        <Moment fromNow className={`${styles.moment}`}>{reply.createdDate}</Moment>
+        <div>
+          <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Replyer Pic"/>
+          {reply?.username}
+        <Moment fromNow className={`${styles.moment}`}>{reply?.createdDate}</Moment>
 
         </div>
         

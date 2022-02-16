@@ -7,6 +7,7 @@ const Reply = () => {
     <div className={`${styles.reply}`}>
     <div className={`${styles.replyTop}`}>
       <div className={`${styles.userDate}`}>
+      <div className={`${styles.skeleton} ${styles.skeleton_img}`}></div>
           <div className={`${styles.skeleton} ${styles.skeleton_text}`}></div>
           <div className={`${styles.skeleton} ${styles.skeleton_text}`}></div>
       </div>

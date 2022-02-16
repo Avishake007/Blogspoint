@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { AiOutlineCamera } from 'react-icons/ai';
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
 import swal from 'sweetalert';
@@ -47,9 +48,15 @@ const UpdateUserPic = ({open,onCLoseModal,user}) => {
   return (
     <Modal open={open} onClose={onCLoseModal} center >
             <div className={styles.update_img}>
-                <img src={selectedImg} alt="" />
-            <input type="file" name="profilePic" id="" onChange={imageUpload}  />
-            <button onClick={updateUserPic}>{update?<div style={{display:"flex"}}>Uploading Your Image <Spinner/></div>:"Upload Your Image"}</button>
+              
+                <img src={selectedImg} alt="Profile Pic" />
+                <form action="/" method="post" enctype="multipart/form-data" onSubmit={updateUserPic}>
+                <label for="profilePic">
+                    <AiOutlineCamera className={styles.camera}/>
+              </label>
+            <input type="file" name="profilePic" id="profilePic" onChange={imageUpload}  />
+            <button >{update?<div style={{display:"flex"}}>Uploading Your Image <Spinner/></div>:"Upload Your Image"}</button>
+            </form>
             </div>
             
   </Modal>

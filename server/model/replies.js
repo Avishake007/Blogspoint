@@ -10,6 +10,10 @@ const replySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId:{
+    type:String,
+    required:true
+  },
   username: {
     type: String,
     required: true,

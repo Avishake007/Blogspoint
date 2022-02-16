@@ -34,16 +34,23 @@ const SinglePost = ({ flaged, user, match }) => {
     noOfDislikes: 0,
     isUpdated: false,
   });
- 
+
   const [loader, setLoader] = useState(true);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
+  const [desc, _desc] = useState([]);
+  const [srcDoc, _srcDoc] = useState("");
   //UseEffect Declarations
   useEffect(() => {
     const fetchData = async () => {
       let data = await getPost(match.params.id);
       setPost(data);
-
+      _srcDoc(
+        `<html>
+        <body>${data?.description}</body>
+        <style>body{color:var(--secondary_color)}</style>
+        </html>`
+      );
       if (data.likeUsers.includes(user?._id)) setLike(true);
       else if (data.dislikeUsers.includes(user?._id)) setDislike(true);
       setLoader(false);
@@ -63,7 +70,11 @@ const SinglePost = ({ flaged, user, match }) => {
     }).then((willDelete) => {
       if (willDelete) {
         delet();
-        swal("", "Post with its comments and replies deleted successfully", "success");
+        swal(
+          "",
+          "Post with its comments and replies deleted successfully",
+          "success"
+        );
         history.push("/");
       } else {
         swal("Your Post is safe!");
@@ -76,11 +87,11 @@ const SinglePost = ({ flaged, user, match }) => {
   }
   const delet = async () => {
     await deleteReplyByPostId(post?._id);
-   
+
     await deleteCommentByPostId(post?._id);
-    
+
     await deletePost(post?._id);
-   
+
     await sleep(3000);
   };
   //Updating a Post
@@ -103,12 +114,12 @@ const SinglePost = ({ flaged, user, match }) => {
 
       setPost({
         ...post,
-        "noOfLikes": post?.noOfLikes + 1,
-        "noOfDislikes": max(0, post?.noOfDislikes - 1),
-        "dislikeUsers": post?.dislikeUsers.filter(
+        noOfLikes: post?.noOfLikes + 1,
+        noOfDislikes: max(0, post?.noOfDislikes - 1),
+        dislikeUsers: post?.dislikeUsers.filter(
           (curruser) => curruser !== user?._id
         ),
-        "likeUsers": [...post?.likeUsers, user?._id],
+        likeUsers: [...post?.likeUsers, user?._id],
       });
     } else {
       if (like === true) {
@@ -116,8 +127,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          "noOfLikes": max(0, post?.noOfLikes - 1),
-          "likeUsers": post?.likeUsers.filter(
+          noOfLikes: max(0, post?.noOfLikes - 1),
+          likeUsers: post?.likeUsers.filter(
             (cuurUser) => cuurUser !== user?._id
           ),
         });
@@ -126,8 +137,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          "noOfLikes": post?.noOfLikes + 1,
-          "likeUsers": [...post?.likeUsers, user?._id],
+          noOfLikes: post?.noOfLikes + 1,
+          likeUsers: [...post?.likeUsers, user?._id],
         });
       }
     }
@@ -141,12 +152,10 @@ const SinglePost = ({ flaged, user, match }) => {
 
       setPost({
         ...post,
-        "noOfLikes": max(0, post?.noOfLikes - 1),
-        "noOfDislikes": post?.noOfDislikes + 1,
-        "likeUsers": post?.likeUsers.filter(
-          (currUser) => currUser !== user?._id
-        ),
-        "dislikeUsers": [...post?.dislikeUsers, user?._id],
+        noOfLikes: max(0, post?.noOfLikes - 1),
+        noOfDislikes: post?.noOfDislikes + 1,
+        likeUsers: post?.likeUsers.filter((currUser) => currUser !== user?._id),
+        dislikeUsers: [...post?.dislikeUsers, user?._id],
       });
     } else {
       if (dislike === true) {
@@ -154,8 +163,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          "noOfDislikes": max(0, post?.noOfDislikes - 1),
-          "dislikeUsers": post?.dislikeUsers.filter(
+          noOfDislikes: max(0, post?.noOfDislikes - 1),
+          dislikeUsers: post?.dislikeUsers.filter(
             (currUser) => currUser !== user?._id
           ),
         });
@@ -164,8 +173,8 @@ const SinglePost = ({ flaged, user, match }) => {
 
         setPost({
           ...post,
-          "noOfDislikes": post?.noOfDislikes + 1,
-          "dislikeUsers": [...post?.dislikeUsers, user?._id],
+          noOfDislikes: post?.noOfDislikes + 1,
+          dislikeUsers: [...post?.dislikeUsers, user?._id],
         });
       }
     }
@@ -183,69 +192,78 @@ const SinglePost = ({ flaged, user, match }) => {
   if (loader) return <Loader />;
   return (
     <>
-    <div className={`${styles.first_second}`}>
-      <div className={`${styles.first_inner_container}`}>
-        <div className={`${styles.title}`}>
-          <p>{post?.title}</p>
-          {post?.isUpdated === true && <span>(edited)</span>}
+      <div className={`${styles.first_second}`}>
+        <div className={`${styles.first_inner_container}`}>
+          <div className={`${styles.title}`}>
+            <p>{post?.title}</p>
+            {post?.isUpdated === true && <span>(edited)</span>}
+          </div>
+        </div>
+        <div className={`${styles.second_inner_container}`}>
+          <p>{post?.username}</p>
+          <p>
+            <label htmlFor="Created_date">Created Date : </label>
+            {new Date(post?.createdDate).toDateString()}
+          </p>
+          {flaged === true && user.username === post?.username && (
+            <div className={`${styles.edit_update}`}>
+              <Link to={`/update/${post?._id}`}>
+                <AiFillEdit />
+              </Link>
+
+              <div className={`${styles.delete}`}>
+                <MdDelete onClick={() => deleteBlog()} />
+              </div>
+            </div>
+          )}
+          {flaged === true && user.username !== post?.username && (
+            <div className={`${styles.like_dislike}`}>
+              <div className={`${styles.like}`}>
+                {like === false ? (
+                  <AiOutlineLike onClick={() => toggleLike()} />
+                ) : (
+                  <AiFillLike onClick={() => toggleLike()} />
+                )}
+                {post?.noOfLikes}
+              </div>
+              <div className={`${styles.dislike}`}>
+                {dislike === false ? (
+                  <AiOutlineDislike onClick={() => toggleDislike()} />
+                ) : (
+                  <AiFillDislike onClick={() => toggleDislike()} />
+                )}
+                {post?.noOfDislikes}
+              </div>
+            </div>
+          )}
+          {flaged === true && user.username === post?.username && (
+            <div className={`${styles.like_dislike}`}>
+              <div className={`${styles.like}`}>
+                <AiOutlineLike onClick={() => showError()} />
+                {post?.noOfLikes}
+              </div>
+              <div className={`${styles.dislike}`}>
+                <AiOutlineDislike onClick={() => showError()} />
+                {post?.noOfDislikes}
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      <div className={`${styles.second_inner_container}`}>
-        <p>{post?.username}</p>
-        <p>
-          <label htmlFor="Created_date">Created Date : </label>
-          {new Date(post?.createdDate).toDateString()}
-        </p>
-        {flaged === true && user.username === post?.username && (
-          <div className={`${styles.edit_update}`}>
-            <Link to={`/update/${post?._id}`}>
-              <AiFillEdit />
-            </Link>
-
-            <div className={`${styles.delete}`}>
-              <MdDelete onClick={() => deleteBlog()} />
-            </div>
-          </div>
-        )}
-        {flaged === true && user.username !== post?.username && (
-          <div className={`${styles.like_dislike}`}>
-            <div className={`${styles.like}`}>
-              {like === false ? (
-                <AiOutlineLike onClick={() => toggleLike()} />
-              ) : (
-                <AiFillLike onClick={() => toggleLike()} />
-              )}
-              {post?.noOfLikes}
-            </div>
-            <div className={`${styles.dislike}`}>
-              {dislike === false ? (
-                <AiOutlineDislike onClick={() => toggleDislike()} />
-              ) : (
-                <AiFillDislike onClick={() => toggleDislike()} />
-              )}
-              {post?.noOfDislikes}
-            </div>
-          </div>
-        )}
-        {flaged === true && user.username === post?.username && (
-          <div className={`${styles.like_dislike}`}>
-            <div className={`${styles.like}`}>
-              <AiOutlineLike onClick={() => showError()} />
-              {post?.noOfLikes}
-            </div>
-            <div className={`${styles.dislike}`}>
-              <AiOutlineDislike onClick={() => showError()} />
-              {post?.noOfDislikes}
-            </div>
-          </div>
-        )}
-      </div>
-      </div>
-      <textarea
+      {/* <textarea
         className={`${styles.third_inner_container}`}
         name="description"
         readOnly
         value={post?.description}
+      /> */}
+      <iframe
+        srcDoc={srcDoc}
+        title="output"
+        sandbox="allow-scripts"
+        frameBorder="0"
+        width="100%"
+        height="100%"
+        className={`${styles.third_inner_container}`}
       />
       {post?.categories.length ? (
         <div
@@ -254,7 +272,9 @@ const SinglePost = ({ flaged, user, match }) => {
         >
           Tags :
           {post?.categories.map((tag, index) => (
-            <div className="tag_input" key={index}>{tag}</div>
+            <div className="tag_input" key={index}>
+              {tag}
+            </div>
           ))}
         </div>
       ) : null}

@@ -23,6 +23,7 @@ import Loader from "../Skeleton Loader/Comments/comment";
 import Moment from "react-moment";
 import UpdateComment from "../UpdateComment/updateComment";
 import swal from "sweetalert";
+import { getUserDetails } from "../../methods/crud/user";
 
 const Comment = ({ comm, user }) => {
   //UseState Declarations
@@ -34,6 +35,7 @@ const Comment = ({ comm, user }) => {
   const [activeReply, setActiveReply] = useState(false);
   const [replies, setReplies] = useState([]);
   const [open,_open]=useState(false);
+  const [commenter,_commenter]=useState({});
   //UseEffect Declarations
   useEffect(() => {
     //Getting replies according to comment id
@@ -63,6 +65,13 @@ const Comment = ({ comm, user }) => {
     };
     updateComm(comment);
   }, [comment]);
+  useEffect(()=>{
+    const fetchData=async()=>{
+      const data=await getUserDetails(comm?.userId);
+      _commenter(data);
+    }
+    fetchData()
+  },[])
   //Finding the maximum between a and b
   const max = (a, b) => {
     if (a > b) return a;
@@ -117,10 +126,10 @@ const Comment = ({ comm, user }) => {
         ...comment,
         "noOfLikes": max(0, comment.noOfLikes - 1),
         "noOfDislikes": comment.noOfDislikes + 1,
-        "likeUsers": comment.likeUsers.filter(
+        "likeUsers": comment?.likeUsers.filter(
           (currUser) => currUser !== user?._id 
         ),
-        "dislikeUsers": [...comment.dislikeUsers, user?._id],
+        "dislikeUsers": [...comment?.dislikeUsers, user?._id],
       });
     } else {
       if (dislike === true) {
@@ -128,8 +137,8 @@ const Comment = ({ comm, user }) => {
 
         setComment({
           ...comment,
-          "noOfDislikes": max(0, comment.noOfDislikes - 1),
-          "dislikeUsers": comment.dislikeUsers.filter(
+          "noOfDislikes": max(0, comment?.noOfDislikes - 1),
+          "dislikeUsers": comment?.dislikeUsers.filter(
             (currUser) => currUser !== user?._id
           ),
         });
@@ -192,9 +201,12 @@ const Comment = ({ comm, user }) => {
   return (
     <>
       <div className={`${style.individualCom}`}>
+     
+      
         <div className={`${style.commentHeaderInd}`}>
-          <div>{comment?.username}
-          <Moment fromNow className={`${style.moment}`}>{comment.createdDate}</Moment> 
+          <div>
+          <img src={`http://localhost:5000/${commenter?.profilePic}`} alt="Commenter Pic"/>{comment?.username}
+          <Moment fromNow className={`${style.moment}`}>{comment?.createdDate}</Moment> 
           </div>
          { comm?.username===user?.username&&<div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
           {show&&<div className={`${style.updel}`} >

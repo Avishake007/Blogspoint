@@ -8,12 +8,13 @@ const Comment = () => {
     <div className={`${style.individualCom}`}>
         <div className={`${style.commentHeaderInd}`}>
           <div className={`${style.userDate}`}>
+            <div className={`${style.skeleton} ${style.skeleton_img}`}></div>
           <div className={`${style.skeleton} ${style.skeleton_text}`}>
           
           </div>
           <div className={`${style.skeleton} ${style.skeleton_text}`}>
-          
           </div>
+          
           </div>
           <div className={`${style.three_dots}`}><BsThreeDotsVertical /></div>
          
@@ -23,6 +24,7 @@ const Comment = () => {
          
           readOnly
         />
+        
         <div className={`${style.commentFooter}`}>
           <div className={`${style.like}`}>
             

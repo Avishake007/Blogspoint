@@ -16,7 +16,16 @@
     position: relative;
     height: 100%;
   }
-  
+
+  .wrapperClassName {
+    height:75%;
+    width:80%;
+  } 
+  .notranslate {
+    background: white;
+    padding: 8px;
+    /* color: var(--secondary_color); */
+  } 
   .writeFormGroup{
     /* margin-left: 150px; */
     display: flex;

@@ -12,16 +12,42 @@
     width: 90%;
     margin-top: 13px;
 }
-.update_img input{
-    margin-top: 14px;
-    color:var(--secondary_color);
+.update_img form{
+    width: 90%;
+    height: 24%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.update_img label{
+    height: 40%;
+}
+.camera{
+    font-size: 49px;
+    background: var(--font-color);
+    border-radius: 30%;
+    padding: 7px;
+    color: var(--primary_color);
+    /* color: var(--secondary_color); */
     cursor: pointer;
+    opacity: 0.9;
+}
+.update_img svg:hover{
+    opacity: 1;
+}
+.update_img input{
+    /* margin-top: 14px;
+    color:var(--secondary_color);
+    cursor: pointer; */
+    display:none;
 }
 .update_img input:focus-visible{
     outline:none;
 }
+
 .update_img button{
-    height: 9%;
+    height: 40%;
     margin-top: 13px;
     background: var(--font-color);
     border: 0;
