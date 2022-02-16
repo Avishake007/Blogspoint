@@ -46,17 +46,22 @@
     color: var(--font-color);
 }
 .third_inner_container{
-    height: 45vh;
-    background: transparent;
+    height: 50vh;
+    /* background: transparent;
     border: 2px solid transparent;
-    color: var(--secondary_color);
+    color: var(--secondary_color); */
+    background: #ccc1c1;
     padding: 14px;
     width: 100%;
-    font-size: 20px;
+    margin-top: 20px;
+    /* font-size: 20px;
     overflow-y: auto;
     outline: none;
-    resize: none;
+    resize: none; */
     /* text-transform: capitalize; */
+}
+.third_inner_container html{
+    color: var(--secondary_color);
 }
 .third_inner_container::first-letter{
     text-transform:capitalize;

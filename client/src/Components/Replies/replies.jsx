@@ -15,6 +15,7 @@ const Replies = ({ user, comment, rep }) => {
   const [reply, setReply] = useState({
     postId:comment.postId,
     commentId: comment?._id,
+    userId:user?._id,
     username: user?.username,
     description: "",
 

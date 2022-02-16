@@ -9,7 +9,7 @@
     
 }
 .replyTop{
-    height: 20%;
+    height: 30%;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -18,6 +18,13 @@
     font-family: 'Indie Flower', cursive;
     color:var(--font-color);
     
+}
+.replyTop img{
+  height: 100%;
+    width: 17%;
+    border-radius: 50%;
+    margin-right: 14px;
+    color:var(--secondary_color);
 }
 .moment{
     margin-left: 23px;
@@ -51,7 +58,7 @@
     opacity: 0.8;
   }
 .replyCenter{
-    height: 60%;
+    height: 50%;
     width: 100%;
     resize: none;
     background: var(--login_form_color);

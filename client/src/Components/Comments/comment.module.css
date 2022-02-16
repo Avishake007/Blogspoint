@@ -7,12 +7,19 @@
   color: var(--secondary-color);
 }
 .commentHeaderInd {
-  height: 20%;
+  height: 30%;
   color: var(--font-color);
   font-family: "Indie Flower", cursive;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+}
+.commentHeaderInd img{
+  height: 100%;
+    width: 20%;
+    border-radius: 50%;
+    margin-right: 14px;
+    color:var(--secondary_color);
 }
 .moment{
   margin-left: 23px;
@@ -50,7 +57,7 @@
   resize: none;
   outline: none;
   border: 0;
-  height: 60%;
+  height: 50%;
   background: var(--login_form_color);
   color: var(--secondary_color);
 }

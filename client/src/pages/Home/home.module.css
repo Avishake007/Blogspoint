@@ -150,11 +150,32 @@
   padding: 8px;
   margin-bottom: 14px;
   overflow: hidden;
+  display: flex;
 }
 .post:hover{
   box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 19%);
     z-index: 2;
 }
+.profilePic{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+}
+.profilePic img{
+  height: 64%;
+  width: 44%;
+  border-radius: 50%;
+  color:var(--secondary_color);
+}
+
+.postDetails{
+  width: 70%;
+  height: 100%;
+}
+
 .read_me {
   background: var(--font-color) !important;
   color: var(--primary_color) !important;

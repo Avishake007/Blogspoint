@@ -1,5 +1,9 @@
 //Third Party imports
 import React, { useState, useEffect } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
 import { useHistory } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,7 +31,9 @@ const Write = () => {
     dislikeUsers:[]
   });
   //Check whether the user is authenticated
-  const [userData,_userData] =useState(null);
+  const [userData,_userData] =useState(JSON.parse(localStorage.getItem("userLogin")));
+  const [editorState, _editorState] = useState(EditorState.createEmpty());
+ 
   //useEffect Declarations
   useEffect(async() => {
     document.title = "Write - BlogsPoint";
@@ -36,7 +42,6 @@ const Write = () => {
       username: `${userData?.username}`,
       userId: `${userData?._id}`,
     });
-    _userData(JSON.parse(localStorage.getItem("userLogin")))
     _loader(false)
   }, []);
  
@@ -54,7 +59,7 @@ const Write = () => {
   //Saves or publishes the post
   const savePost = async (e) => {
     e.preventDefault();
-    if (post?.title !== "" && post?.description !== "") {
+    if (post?.title !== "" && post?.description !== ""&&post?.description!="<p></p>") {
       console.log(post);
       await createPost(post);
 
@@ -92,6 +97,11 @@ const Write = () => {
       "categories": post?.categories.filter((_, index) => index !== delIndex),
     });
   };
+  const onEditorStateChange = (editorState) => {
+    setPost({...post,"description":draftToHtml(convertToRaw(editorState.getCurrentContent()))})
+    _editorState(editorState);
+    console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+  };
   if(loader) return <Loader/>
   else if(userData===null)history.push("/signin")
   return (
@@ -116,7 +126,7 @@ const Write = () => {
           </div>
           {/* Description Field */}
           <div className="writeFormGroup" id="field2">
-            <textarea
+            {/* <textarea
               className="writeText"
               placeholder="Tell your story..."
               type="text"
@@ -124,7 +134,14 @@ const Write = () => {
               onChange={handleInputs}
               name="description"
               autoFocus="off"
-            />
+            /> */}
+             <Editor
+        editorState={editorState}
+        toolbarClassName="toolbarClassName"
+        wrapperClassName="wrapperClassName"
+        editorClassName="editorClassName"
+        onEditorStateChange={onEditorStateChange}
+      />
           </div>
         </form>
       </div>

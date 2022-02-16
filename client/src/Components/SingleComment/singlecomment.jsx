@@ -12,6 +12,7 @@ const SingleComment = ({ match, userData }) => {
   //UseState Declarations
   const [comment, setComment] = useState({
     postId: match.params.id,
+    userId:userData._id,
     username: userData?.username,
     description: "",
     createdDate: new Date(),

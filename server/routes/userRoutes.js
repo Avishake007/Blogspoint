@@ -99,9 +99,27 @@ router.post("/signin", async (req, res) => {
     console.log(err);
   }
 });
+// Signing off the user
+router.get("/logout", (req, res) => {
+  console.log("Logout")
+  res.clearCookie("jwtoken", { path: "/" });
+
+  res.status(200).send("Logout");
+
+});
 // Checking whether the user is authenticated or not
 router.get("/authenticate", authenticate, (req, res) => {
   res.send(req.rootUser);
+});
+// Fetching the user details according to user id
+router.get("/:id", async (request, response) => {
+  try {
+    const user = await User.findById(request.params.id);
+
+    response.status(200).json(user);
+  } catch (error) {
+    response.status(500).json(error);
+  }
 });
 //Updating User's information
 router.post('/update/:id',upload.single("profilePic"),async (request, response,next) => {
@@ -117,6 +135,7 @@ router.post('/update/:id',upload.single("profilePic"),async (request, response,n
   });
 // Signing off the user
 router.get("/logout", (req, res) => {
+  console.log("Logout")
   res.clearCookie("jwtoken", { path: "/" });
 
   res.status(200).send("Logout");

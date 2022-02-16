@@ -52,9 +52,10 @@ const About = () => {
       _loader(false);
     
     } catch (err) {
-  
+      
       if(err?.response?.status===401)
       alert("Error : Unauthorised User");
+      history.push("/signin")
      
     }
  
@@ -81,7 +82,7 @@ const About = () => {
     fetchData(userData?._id)
   }, []);
     //Push the user to signin page if not login
-  if (userData==null) {history.push("/signin")}
+  if (userData===null) {history.push("/signin")}
   else if(loader)return <Loader/>
   return (
     <>
@@ -91,7 +92,7 @@ const About = () => {
         {/* Section which gives the information of a user */}
         <div className={`${styles.about_section}`}>
           <div className={`${styles.user_pic}`}>
-            <img src={`http://localhost:5000/${userData.profilePic}`} alt="Your Profile Pic" />
+            <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Your Profile Pic" />
             <div className={`${styles.update}`} onClick={()=>onOpenModalImg()}>Update Image</div>
            
           </div>

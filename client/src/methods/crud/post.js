@@ -28,7 +28,7 @@ export const getPostByUsername = async (id) => {
     console.log("Error while calling getPost API ", error);
   }
 };
-//Function to get a post according to user id
+//Function to get a post according to post id
 export const getPost = async (id) => {
   try {
     let response = await axios.get(`/post/${id}`);

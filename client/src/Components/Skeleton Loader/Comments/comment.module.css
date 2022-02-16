@@ -6,7 +6,7 @@
   padding: 14px;
 }
 .commentHeaderInd {
-  height: 20%;
+  height: 30%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
@@ -21,7 +21,7 @@
   resize: none;
   outline: none;
   border: 0;
-  height: 60%;
+  height: 50%;
   background: var(--login_form_color);
 }
 .commentFooter {
@@ -51,7 +51,12 @@
     opacity: .7;
     animation: skeleton-loading 1s linear infinite alternate;
   }
-  
+  .skeleton_img{
+    height: 100%;
+    width: 3%;
+    border-radius: 50%;
+    margin-right: 14px;
+  }
   .skeleton_text {
     width: 10%;
     height: 1.5rem;

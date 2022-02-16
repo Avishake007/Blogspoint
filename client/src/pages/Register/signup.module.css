@@ -120,7 +120,12 @@
 .col input {
   color: var(--secondary_color);
 }
-
+.col input[type="password"]{
+  border:0;
+}
+.form_name .col:nth-child(8){
+  border-bottom: 2px solid var(--font-color);
+}
 .form_check {
   margin-bottom: 7px;
   color: var(--secondary_color);
