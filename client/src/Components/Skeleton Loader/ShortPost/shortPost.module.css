@@ -1,0 +1,76 @@
+.post {
+    height: 100px;
+    background: var(--login_form_color);
+    padding: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    display: flex;
+  }
+  .profilePic{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%;
+  }
+  .profilePic div{
+    height: 64%;
+    width: 44%;
+    border-radius: 50%;
+  }
+  
+  .postDetails{
+    width: 70%;
+    height: 100%;
+  }
+  .username {
+    height: 24%;
+    
+  }
+  .upper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .description {
+    height: 60%;
+  }
+  .skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  .skeleton_img{
+    height: 100%;
+    width: 3%;
+    border-radius: 50%;
+    margin-right: 14px;
+  }
+  .skeleton_text {
+    width: 10%;
+    height: 14%;
+    margin-bottom: .25rem;
+    border-radius: .125rem;
+    /* margin: 14px; */
+  }
+  .skeleton_text_description{
+    width: 50%;
+    height: 19%;
+    margin-bottom: .25rem;
+    border-radius: .125rem;
+    /* margin-top: 14px; */
+  }
+  .skeleton_text_description:last-child {
+    margin-bottom: 0;
+    width: 80%;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #aaa2a2;
+    }
+  
+    100% {
+      background-color: #c0b6b6;
+    }
+  }
+  

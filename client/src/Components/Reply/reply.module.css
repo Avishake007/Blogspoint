@@ -34,7 +34,10 @@
   }
 .three_dots{
     cursor: pointer;
-  }
+    position: relative;
+    /* right: 0px; */
+    top: 29px;
+}
   .updel{
     position: absolute;
       right: 46px;

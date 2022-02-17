@@ -1,75 +1,26 @@
 //Third Party import
 const router = require("express").Router();
+const {
+  create_comment,
+  get_comment,
+  get_comment_by_postId,
+  update_comment,
+  delete_comment,
+  delete_comment_by_postId,
+} = require("../controllers/commentController");
 //Imorting Comment Schema
 const Comment = require("../model/comment");
 require("../db/conn");
 //Creating a comment
-router.post("/create", async (req, res) => {
-  try {
-    const comment = await new Comment(req.body);
-    comment.save();
-    res.status(200).json("Comment saved successfully");
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+router.post("/create", create_comment);
 //Fetching the comment details according to comment id
-router.get("/:id", async (request, response) => {
-  try {
-    const comment = await Comment.findById(request.params.id);
-
-    response.status(200).json(comment);
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.get("/:id", get_comment);
 //Fetching the comment according to post id
-router.get("/post/:id", async (request, response) => {
-  let comments;
-
-  try {
-    if (request.params.id) {
-      comments = await Comment.find({ postId: request.params.id });
-    }
-    response.status(200).json(comments);
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.get("/post/:id", get_comment_by_postId);
 //Updating a comment according to comment id
-router.put("/update/:id", async (request, response) => {
-  try {
-    const comment = await Comment.findById(request.params.id);
-
-    await Comment.findByIdAndUpdate(request.params.id, { $set: request.body });
-
-    response.status(200).json("comment updated successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.put("/update/:id", update_comment);
 //Deleting a comment according to comment id
-router.delete("/delete/:id", async (request, response) => {
-  try {
-    const comment = await Comment.findById(request.params.id);
-
-    await comment.delete();
-
-    response.status(200).json("Comment deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.delete("/delete/:id", delete_comment);
 //Deleting comment/s according to post id
-router.delete("/delete/post/:id", async (request, response) => {
-  try {
-    
-     await Comment.deleteMany({ postId: request.params.id });
-
-
-    response.status(200).json("Comment deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.delete("/delete/post/:id", delete_comment_by_postId);
 module.exports = router;

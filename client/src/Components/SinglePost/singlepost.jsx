@@ -45,12 +45,7 @@ const SinglePost = ({ flaged, user, match }) => {
     const fetchData = async () => {
       let data = await getPost(match.params.id);
       setPost(data);
-      _srcDoc(
-        `<html>
-        <body>${data?.description}</body>
-        <style>body{color:var(--secondary_color)}</style>
-        </html>`
-      );
+      _srcDoc(data?.description);
       if (data.likeUsers.includes(user?._id)) setLike(true);
       else if (data.dislikeUsers.includes(user?._id)) setDislike(true);
       setLoader(false);

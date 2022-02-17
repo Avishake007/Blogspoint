@@ -1,74 +1,26 @@
+const {
+  create_reply,
+  get_reply,
+  update_reply,
+  delete_reply,
+  delete_replies_by_commentId,
+  delete_replies_by_postId,
+} = require("../controllers/replyController");
+
 //Third Party import
 const router = require("express").Router();
-//Importing Reply Schema
-const Reply = require("../model/replies");
+
 require("../db/conn");
 //Creating a reply
-router.post("/create", async (req, res) => {
-  try {
-    const reply = await new Reply(req.body);
-    reply.save();
-    res.status(200).json("Reply saved successfully");
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+router.post("/create", create_reply);
 //Fetching replies according to comment id
-router.get("/comment/:id", async (request, response) => {
-  let replies;
-
-  try {
-    if (request.params.id) {
-      replies = await Reply.find({ commentId: request.params.id });
-    }
-    response.status(200).json(replies);
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.get("/comment/:id", get_reply);
 //Updating a reply according to reply id
-router.post("/update/:id", async (request, response) => {
-  try {
-    const reply = await Reply.findById(request.params.id);
-
-    await Reply.findByIdAndUpdate(request.params.id, { $set: request.body });
-
-    response.status(200).json("reply updated successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.post("/update/:id", update_reply);
 //Deleting a reply according to reply id
-router.delete("/delete/:id", async (request, response) => {
-  try {
-    const reply = await Reply.findById(request.params.id);
-
-    await reply.delete();
-
-    response.status(200).json("Reply deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.delete("/delete/:id", delete_reply);
 //Deleting reply/s according to comment id
-router.delete("/delete/comment/:id", async (request, response) => {
-  try {
-   await Reply.deleteMany({ commentId: request.params.id });
-
-    response.status(200).json("Reply deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.delete("/delete/comment/:id", delete_replies_by_commentId);
 //Deleting reply/s according to post id
-router.delete("/delete/post/:id", async (request, response) => {
-  try {
-    await Reply.deleteMany({ postId: request.params.id });
-
-
-    response.status(200).json("Reply deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
-});
+router.delete("/delete/post/:id", delete_replies_by_postId);
 module.exports = router;

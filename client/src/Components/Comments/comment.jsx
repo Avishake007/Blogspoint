@@ -163,6 +163,10 @@ const Comment = ({ comm, user }) => {
     if(show)_show(false)
     else _show(true)
   }
+  const closeUpDel=()=>{
+    if(show)
+    _show((prev)=>prev=false)
+  }
   const onOpenModal=()=>{
     _open((prev)=>(prev=true))
   }
@@ -200,7 +204,8 @@ const Comment = ({ comm, user }) => {
   if (loader) return <Loader />;
   return (
     <>
-      <div className={`${style.individualCom}`}>
+    { comm?.username===user?.username&&<div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
+      <div className={`${style.individualCom}`} onClick={closeUpDel}>
      
       
         <div className={`${style.commentHeaderInd}`}>
@@ -208,7 +213,7 @@ const Comment = ({ comm, user }) => {
           <img src={`http://localhost:5000/${commenter?.profilePic}`} alt="Commenter Pic"/>{comment?.username}
           <Moment fromNow className={`${style.moment}`}>{comment?.createdDate}</Moment> 
           </div>
-         { comm?.username===user?.username&&<div className={`${style.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
+         
           {show&&<div className={`${style.updel}`} >
             <div className={`${style.update}`} onClick={()=>onOpenModal()}>Update</div>
             <div className={`${style.delete}`} onClick={deleteComm}>Delete</div>
