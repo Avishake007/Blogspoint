@@ -128,6 +128,10 @@ const Reply = ({ reply, user }) => {
     if(show)_show(false)
     else _show(true)
   }
+  const closeUpDel=()=>{
+    if(show)
+    _show((prev)=>prev=false)
+  }
   const onOpenModal=()=>{
     _open((prev)=>(prev=true))
   }
@@ -162,7 +166,8 @@ const Reply = ({ reply, user }) => {
   if(loader)return <Loader/>
   return (
     <>
-    <div className={`${styles.reply}`}>
+     {reply?.username===user?.username&&<div className={`${styles.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
+    <div className={`${styles.reply}`} onClick={closeUpDel}>
       <div className={`${styles.replyTop}`}>
         <div>
           <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Replyer Pic"/>
@@ -171,7 +176,7 @@ const Reply = ({ reply, user }) => {
 
         </div>
         
-        {reply?.username===user?.username&&<div className={`${styles.three_dots}`}><BsThreeDotsVertical onClick={()=>showUpDel()}/></div>}
+       
           {show&&<div className={`${styles.updel}`} >
             <div className={`${styles.update}`} onClick={()=>onOpenModal()}>Update</div>
             <div className={`${styles.delete}`} onClick={()=>deleteRep()}>Delete</div>

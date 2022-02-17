@@ -60,7 +60,7 @@ const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap)
   }
   //Updating a Post information to database
   const updateBlogPost = async () => {
-    if (post?.title !== "" && post?.description !== ""&&post?.description!=="<p></p>") {
+    if (post?.title !== "" && post?.description !== ""&&post?.description?.length>8) {
       await updatePost(match.params.id, post);
       swal("Post updated successfully", "", "success");
       await sleep(3000);

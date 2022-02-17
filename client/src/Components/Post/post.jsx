@@ -4,16 +4,21 @@ import { Link } from "react-router-dom";
 import { getUserDetails } from "../../methods/crud/user";
 //Importing Stylesheets
 import styles from "../../pages/Home/home.module.css";
+//Local Imports
+import Loader from "../Skeleton Loader/ShortPost/shortPost";
 const Post = ({ post ,authenticate}) => {
   const [user,_user]=useState({});
+  const [loader,_loader]=useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      let data = await getUserDetails(post.userId);
+      let data = await getUserDetails(post?.userId);
       _user(data);
+      _loader(false);
     };
     fetchData();
     
   },[])
+  if(loader)return <Loader/>
   return (
     <Link
           style={{ textDecoration: "none", color: "inherit" }}

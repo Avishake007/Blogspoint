@@ -89,7 +89,7 @@ const LoginUser = ({location,userData}) => {
                  {userData?.profilePic==="uploads/defaultpic.png"?userData?.name?.charAt(0):<img src={`http://localhost:5000/${userData.profilePic}`} alt="Your Profile Logo" style={{borderRadius:"50%"}}/>}
                 </div>
               </li>
-              {showLogOutBtn&&<li className={` ${styles.nav_item}`} >
+              {showLogOutBtn&&<li className={` ${styles.nav_item}`} style={{position: "absolute", top: "67px",right: "15px"}}>
                 <NavLink
                   className={`${styles.logout}`}
                   id="logout"
