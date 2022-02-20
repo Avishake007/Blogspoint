@@ -11,7 +11,7 @@
     background: var(--login_form_color);
     width: 70%;
     margin-bottom: 14px;
-    height:8vh;
+    /* height:8vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
 
 .replyArea{
     background: var(--login_form_color);
-    resize:none;
+    /* resize:none; */
     width: 100%;
     height: 100%;
     outline: none;
