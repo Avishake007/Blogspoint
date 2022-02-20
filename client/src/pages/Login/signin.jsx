@@ -90,6 +90,36 @@ const Login = () => {
       history.push("/welcomePage");
     }
   };
+  const validateGoogleLogin = async (userEmail) => {
+    var email = userEmail;
+    const res = await fetch("/user/google/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+    const data = res.json();
+    if (res.status === 400 || !data) {
+      setTimeout(swal("Login failed", "Invalid Credentials ", "error"), 10000);
+    } else if (email === "") {
+      setTimeout(
+        toast.error("Please fill the required fields", {
+          position: "top-center",
+        }),
+        3000
+      );
+    } else {
+      
+      dispatch({ type: "USER", payload: true });
+      localStorage.setItem("userLogin",JSON.stringify(true));
+      swal("Welcome!", "Login Successful", "success");
+      await sleep(3000);
+      history.push("/welcomePage");
+    }
+  };
   //Provides delay for ms milliseconds
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -102,6 +132,7 @@ const Login = () => {
   const googleSuccess=(req)=>{
     console.log(req)
     console.log("Success")
+    validateGoogleLogin(req?.profileObj?.email)
   }
   const googleError=(err)=>{
     console.log(err)

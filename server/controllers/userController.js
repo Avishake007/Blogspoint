@@ -90,6 +90,37 @@ exports.user_signin = async (req, res) => {
     console.log(err);
   }
 };
+exports.user_google_signin = async (req, res) => {
+  const { email} = req.body;
+
+  try {
+    let token;
+    if (!email) {
+      return res.status(res.json({ error: "Please fill the data" }));
+    }
+    const userLogin = await User.findOne({ email: email });
+
+    if (userLogin) {
+      // const isMatch = await bcrypt.compare(password, userLogin.password);
+      token = await userLogin.generateAuthToken();
+
+      res.cookie("jwtoken", token, {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
+      // if (isMatch) {
+      //   return res.json({ message: "Successful Login" });
+      // } else {
+      //   return res.status(400).json({ error: "Invalid Credentials" });
+      // }
+      return res.json({ message: "Successful Login" });
+    } else {
+      return res.status(400).json({ error: "Invalid Credentials" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 exports.user_logout = (req, res) => {
   console.log("Logout");
   res.clearCookie("jwtoken", { path: "/" });

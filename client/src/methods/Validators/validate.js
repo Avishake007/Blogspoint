@@ -30,9 +30,11 @@ export const validateUsername = (value) => {
   if (isEmpty(value))
     return [false, "Name field should not contain only space"];
   if (value.length < 3) return [false, "Username must be of length 3"];
+  if(value[0] < "a" || value[0] > "z")
+  return [false,"Username must start with a lower case character"]
   for (var i = 0; i < value.length; i++) {
-    if (value[i] < "a" || value[i] > "z")
-      return [false, "Username must contain only lowercase alphabets"];
+    if ((value[i] < "a" || value[i] > "z")&&(value[i]<"0"||value[i]>"9"))
+      return [false, "Username must contain lowercase alphabets or digits"];
   }
   return [true, "Succesful"];
 };
