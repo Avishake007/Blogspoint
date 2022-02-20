@@ -3,7 +3,7 @@
     background: var(--login_form_color);
     width: 70%;
     margin-bottom: 14px;
-    height: 15vh;
+    /* height: 15vh; */
     padding: 5px;
     color:var(--secondary_color);
     
@@ -63,7 +63,7 @@
 .replyCenter{
     height: 50%;
     width: 100%;
-    resize: none;
+    /* resize: none; */
     background: var(--login_form_color);
     border: 0;
     outline: none;

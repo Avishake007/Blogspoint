@@ -7,6 +7,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
+import { GoogleLogin } from 'react-google-login';
 //StyleSheet import
 import styles from "./login.module.css";
 //Local imports
@@ -98,7 +99,14 @@ const Login = () => {
     document.title = "Signin Page - Blogspoint";
 
   }, []);
-
+  const googleSuccess=(req)=>{
+    console.log(req)
+    console.log("Success")
+  }
+  const googleError=(err)=>{
+    console.log(err)
+    console.log("Error")
+  }
   if(userData!==null) history.push("/about")
   return (
     <>
@@ -109,6 +117,18 @@ const Login = () => {
             <p className={`${styles.reg}`}>Login</p>
             <div className={`${styles.formpng}`}>
               <div className={`${styles.form_inner_inner}`}>
+              <GoogleLogin
+            clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <button className={styles.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}  variant="contained">
+                Sign In With Google
+              </button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleError}
+            cookiePolicy="single_host_origin"
+          />
+          <p style={{textAlign:"center"}}>OR</p>
                 <form action="login" method="POST">
                   <div className={`${styles.form_row}`}>
                     <i

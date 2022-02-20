@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import swal from "sweetalert";
+import GoogleLogin from "react-google-login";
 //StyleSheets imports
 import styles from "./signup.module.css";
 //Local imports
@@ -23,6 +24,7 @@ import {
   validateConfirmPassword,
   validateUsername,
 } from "../../methods/Validators/validate";
+import GoogleFormFillUp from "../../Components/GoogleFormFillUpModal/form";
 
 const Signup = () => {
   //UseHistory Declarations
@@ -30,6 +32,7 @@ const Signup = () => {
   //UseStates Declarations
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [googleDetails,_googleDetails]=useState({});;
   const [user, setUser] = useState({
     username: "",
     profilePic:"uploads/defaultpic.png",
@@ -61,6 +64,7 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
+  const [open,_open]=useState(false);
   const userData=JSON.parse(localStorage.getItem("userLogin"))
   //Function to get the fields of register and provide validation
   const handleInputs = (e) => {
@@ -159,6 +163,23 @@ const Signup = () => {
     if (showPassword2 === true) setShowPassword2(false);
     else setShowPassword2(true);
   };
+  const googleSuccess=(req)=>{
+    console.log(req)
+    console.log("Success");
+    _googleDetails(req?.profileObj);
+    onOpenModal();
+  }
+  const googleError=(err)=>{
+    console.log(err)
+    console.log("Error")
+  }
+  //Function to change the state of open
+  const onOpenModal=()=>{
+    _open((prev)=>(prev=true))
+  }
+  const onCLoseModal=()=>{
+    _open((prev)=>(prev=false));
+  }
   //UseEffect Declarations
   useEffect(() => {
     document.title = "Signup Page - Blogspoint";
@@ -173,6 +194,18 @@ const Signup = () => {
             <p className={`${styles.reg}`}>Register</p>
             <div className={`${styles.formpng}`}>
               <div className={`${styles.form_inner_inner}`}>
+              <GoogleLogin
+            clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <button className={styles.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}  variant="contained">
+                Sign Up With Google
+              </button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleError}
+            cookiePolicy="single_host_origin"
+          />
+           <p style={{textAlign:"center"}}>OR</p>
                 <form action="login" method="POST" onSubmit={postData}>
                   <div className={`${styles.form_row}`}>
                     <i
@@ -521,6 +554,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <GoogleFormFillUp open={open} onCLoseModal={onCLoseModal} user={googleDetails} />
     </>
   );
 };

@@ -10,9 +10,9 @@
     color: var(--secondary_color);
 }
 .commentArea{
-    height: 18vh;
+    /* height: 18vh; */
     width: 100%;
-    resize: none;
+    /* resize: none; */
     background: var(--login_form_color);
     border: 0;
     padding: 10px;

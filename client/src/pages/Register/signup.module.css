@@ -71,7 +71,7 @@
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
-  height: 11%;
+  height: 9%;
 }
 .email {
   widows: 60%;
@@ -85,7 +85,19 @@
   height:82%;
 }
 .formpng .form_inner_inner {
-  margin-top: 55px;
+  margin-top: 11px;
+}
+.googleButton{
+  font-size: 20px;
+  background: var(--font-color);
+  padding: 6px;
+  border:2px solid var(--font-color);
+  border-radius: 22px;
+  color: var(--primary_color);
+  opacity: 0.9;
+}
+.googleButton:hover{
+opacity:1;
 }
 .stu_prof {
   height: 100%;
@@ -113,19 +125,16 @@
 .col {
   width: 100%;
   display: flex;
-  border-bottom: var();
+  border-bottom: 2px solid var(--font-color);
 
   margin-right: 14px;
 }
 .col input {
   color: var(--secondary_color);
+  border: 0;
 }
-.col input[type="password"]{
-  border:0;
-}
-.form_name .col:nth-child(8){
-  border-bottom: 2px solid var(--font-color);
-}
+
+
 .form_check {
   margin-bottom: 7px;
   color: var(--secondary_color);
@@ -192,6 +201,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .form_row{
+    height:7%;
+  }
+  .googleButton{
+    font-size: 15px;
   }
   .formpng .form_inner_inner {
     margin-top: 0px;

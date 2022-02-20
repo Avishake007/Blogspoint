@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 .individualCom {
-  height: 19vh;
+  /* height: 19vh; */
   background: var(--login_form_color);
   margin-top: 14px;
   padding: 14px;
@@ -56,7 +56,7 @@
 }
 .commentBody {
   width: 100%;
-  resize: none;
+  /* resize: none; */
   outline: none;
   border: 0;
   height: 50%;
