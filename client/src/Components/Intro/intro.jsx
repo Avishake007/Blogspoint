@@ -8,7 +8,7 @@ import Blogger from "../../assest/svgs/Blogger/blogger";
 
 const Intro = ({authenticate}) => {
   const userData=JSON.parse(localStorage.getItem("userLogin"));
-  const name=userData?.name||"Blogger"
+  const name=userData?.name?.split(" ")[0]||"Blogger"
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.part}`}>

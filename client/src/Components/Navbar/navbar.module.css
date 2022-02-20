@@ -78,7 +78,7 @@
     position: fixed;
     cursor: pointer;
     height: 32px;
-    z-index:300;
+    z-index:3000;
 }
 .toggle svg{
     /* height:100%; */

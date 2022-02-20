@@ -164,9 +164,9 @@ const Signup = () => {
     else setShowPassword2(true);
   };
   const googleSuccess=(req)=>{
-    console.log(req)
+    console.log(req?.profileObj)
     console.log("Success");
-    _googleDetails(req?.profileObj);
+    _googleDetails((prev)=>prev=req?.profileObj);
     onOpenModal();
   }
   const googleError=(err)=>{

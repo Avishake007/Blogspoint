@@ -7,6 +7,7 @@ const {
   user_logout,
   get_user_details,
   update_user,
+  user_google_signin,
 } = require("../controllers/userController");
 require("../db/conn");
 //Importing authenticate middleware
@@ -16,6 +17,8 @@ const upload = require("../utils/multer");
 router.post("/signup", user_signup);
 //Checking whether the email and its password matches for a particular user or not
 router.post("/signin", user_signin);
+//Signin through Google
+router.post("/google/signin",user_google_signin);
 // Signing off the user
 router.get("/logout", user_logout);
 // Checking whether the user is authenticated or not
