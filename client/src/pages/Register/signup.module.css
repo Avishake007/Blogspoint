@@ -5,7 +5,7 @@
   font-size: 4rem;
   justify-content: center;
   align-items: flex-end;
-  height: 85vh;
+  height: 83vh;
   background: var(--linear_gradient_color);
 }
 .form_outer {
@@ -192,6 +192,16 @@ opacity:1;
 }
 .login:hover {
   background-position: left bottom;
+}
+.col select{
+  border: 0;
+    background: var(--login_form_color);
+    color: var(--secondary_color);
+    font-size: 14px;
+}
+.col select:focus-visible{
+  border: 0;
+  outline: none;
 }
 @media only screen and (max-width: 700px) {
   .form_inner {

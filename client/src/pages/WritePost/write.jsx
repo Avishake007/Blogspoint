@@ -59,7 +59,7 @@ const Write = () => {
   //Saves or publishes the post
   const savePost = async (e) => {
     e.preventDefault();
-    if (post?.title !== "" && post?.description !== ""&&post?.description!="<p></p>") {
+    if (post?.title !== "" && post?.description !== ""&&post?.description?.length>8) {
       console.log(post);
       await createPost(post);
 

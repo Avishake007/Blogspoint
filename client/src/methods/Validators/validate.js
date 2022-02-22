@@ -30,10 +30,13 @@ export const validateUsername = (value) => {
   if (isEmpty(value))
     return [false, "Name field should not contain only space"];
   if (value.length < 3) return [false, "Username must be of length 3"];
-  if(value[0] < "a" || value[0] > "z")
-  return [false,"Username must start with a lower case character"]
+  if (value[0] < "a" || value[0] > "z")
+    return [false, "Username must start with a lower case character"];
   for (var i = 0; i < value.length; i++) {
-    if ((value[i] < "a" || value[i] > "z")&&(value[i]<"0"||value[i]>"9"))
+    if (
+      (value[i] < "a" || value[i] > "z") &&
+      (value[i] < "0" || value[i] > "9")
+    )
       return [false, "Username must contain lowercase alphabets or digits"];
   }
   return [true, "Succesful"];
@@ -42,37 +45,24 @@ export const validateUsername = (value) => {
 export const validateCity = (value) => {
   if (isEmpty(value))
     return [false, "City field should not contain only space"];
-  if (value[0] < "A" || value > "Z")
-    return [false, "City should start with capital letter"];
-  const cityState = cityApi();
-  for (var i = 0; i < cityState.length; i++) {
-    if (cityState[i].name === value) return [true, "Successful"];
-  }
-  return [false, "Invalid City Name"];
+  if (value === "Select") return [false, "Please select your city"];
+  return [true, "Successful"];
 };
 //Function to validate state
 export const validateState = (value, city) => {
   if (isEmpty(value))
     return [false, "State field should not contain only space"];
-  if (value[0] < "A" || value > "Z")
-    return [false, "State should start with capital letter"];
-  const cityState = cityApi();
-  var index = -1;
-  for (var i = 0; i < cityState.length; i++) {
-    if (cityState[i].state === value && cityState[i].name === city)
-      return [true, "Successful"];
-    if (cityState[i].name === city) index = i;
-  }
-  if (index === -1) return [false, "Invalid State Name"];
-  return [false, `${city} belongs to state ${cityState[index].state}`];
+  if (value === "Select") return [false, "Please select your state"];
+
+  return [true, "Successful"];
 };
 //Function to validate Student/Professional
 export const validateStuProf = (value) => {
   if (isEmpty(value))
     return [false, "Student/Professional field should not contain only space"];
-  if (value === "Student" || value === "Professional")
+    if (value === "Select") return [false, "Please select your designation"];
     return [true, "Successful"];
-  return [false, "Field will take either Student or Professional as input"];
+  
 };
 //Function to validate email
 export const validateEmail = (value) => {
