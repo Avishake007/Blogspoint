@@ -103,12 +103,11 @@ const GoogleFormFillUp = ({ open, onCLoseModal, user }) => {
     }
   };
   useEffect(() => {
-      console.log("User : ",user)
     var password = passwordGenerator();
-    _userData({ ..._userData,   profilePic: "uploads/defaultpic.png",name:user?.name,email:user?.email,password: password, confirmpassword: password });
+    _userData({ ..._userData,   state:"Select",profilePic: "uploads/defaultpic.png",name:user?.name,email:user?.email,password: password, confirmpassword: password });
     var cityStates = cityApi();
     var stateArr = new Array();
-    console.log(cityStates);
+    // console.log(cityStates);
     for (var i = 0; i < cityStates.length; i++) {
       if (!stateArr.includes(cityStates[i].state))
         stateArr.push(cityStates[i].state);
@@ -138,7 +137,7 @@ const GoogleFormFillUp = ({ open, onCLoseModal, user }) => {
           <input
             type="text"
             className={styles.form_control}
-            value={userData.username}
+            value={userData?.username}
             onChange={handleInputs}
             placeholder="Enter your username"
             name="username"
@@ -173,9 +172,9 @@ const GoogleFormFillUp = ({ open, onCLoseModal, user }) => {
         <div>
           <label for="city">City  : </label>
           <select name="city" id="city" className={styles.form_control} onChange={handleInputs}>
-            {userData?.state==="Select"?<option value="Choose">Choose Your state first</option>:
+            {(userData?.state=="Select")?<option value="Choose">Choose Your state first</option>:
             <option value="Select">Select Your city</option>}
-            {cities?.map((val, key) => (
+            {userData?.state!=="Select"&&cities?.map((val, key) => (
               <option value={val}>{val}</option>
             ))}
           </select>
@@ -183,8 +182,9 @@ const GoogleFormFillUp = ({ open, onCLoseModal, user }) => {
         <div>
           <label for="stuprof">Designation  : </label>
           <select name="stuprof" id="stuprof" className={styles.form_control} onChange={handleInputs}>
-            <option value="student">Student</option>
-            <option value="professional">Professional</option>
+          <option value="Select">Select Your Designation</option>
+            <option value="Student">Student</option>
+            <option value="Professional">Professional</option>
           </select>
         </div>
         <div>

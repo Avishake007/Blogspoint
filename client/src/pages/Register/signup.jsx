@@ -25,6 +25,7 @@ import {
   validateUsername,
 } from "../../methods/Validators/validate";
 import GoogleFormFillUp from "../../Components/GoogleFormFillUpModal/form";
+import { cityApi } from "../../methods/Api/api";
 
 const Signup = () => {
   //UseHistory Declarations
@@ -32,12 +33,14 @@ const Signup = () => {
   //UseStates Declarations
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
-  const [googleDetails,_googleDetails]=useState({});;
+  const [googleDetails, _googleDetails] = useState({});
+  const [states, _states] = useState([]);
+  const [cities, _cities] = useState([]);
   const [user, setUser] = useState({
     username: "",
-    profilePic:"uploads/defaultpic.png",
+    profilePic: "uploads/defaultpic.png",
     name: "",
-    state: "",
+    state: "Select",
     city: "",
     stuprof: "",
     email: "",
@@ -64,14 +67,23 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
-  const [open,_open]=useState(false);
-  const userData=JSON.parse(localStorage.getItem("userLogin"))
+  const [open, _open] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("userLogin"));
   //Function to get the fields of register and provide validation
   const handleInputs = (e) => {
     const { name, value } = e.target;
 
     var isValid;
     setUser({ ...user, [name]: value });
+    if (name === "state") {
+      var arr = new Array();
+      var cityStates = cityApi();
+      for (var i = 0; i < cityStates.length; i++) {
+        if (cityStates[i].state === value) arr.push(cityStates[i].name);
+      }
+      console.log(arr);
+      _cities(arr.sort());
+    }
     if (name === "username") {
       isValid = validateUsername(value);
     } else if (name === "name") isValid = validateName(value);
@@ -163,28 +175,42 @@ const Signup = () => {
     if (showPassword2 === true) setShowPassword2(false);
     else setShowPassword2(true);
   };
-  const googleSuccess=(req)=>{
-    console.log(req?.profileObj)
+  const googleSuccess = (req) => {
+    console.log(req?.profileObj);
     console.log("Success");
-    _googleDetails((prev)=>prev=req?.profileObj);
+    _googleDetails((prev) => (prev = req?.profileObj));
     onOpenModal();
-  }
-  const googleError=(err)=>{
-    console.log(err)
-    console.log("Error")
-  }
+  };
+  const googleError = (err) => {
+    console.log(err);
+    console.log("Error");
+  };
   //Function to change the state of open
-  const onOpenModal=()=>{
-    _open((prev)=>(prev=true))
-  }
-  const onCLoseModal=()=>{
-    _open((prev)=>(prev=false));
-  }
+  const onOpenModal = () => {
+    _open((prev) => (prev = true));
+  };
+  const onCLoseModal = () => {
+    _open((prev) => (prev = false));
+  };
   //UseEffect Declarations
   useEffect(() => {
     document.title = "Signup Page - Blogspoint";
   }, []);
-  if(userData!==null)history.push("/")
+  useEffect(() => {
+    console.log("User : ", user);
+    setUser({...user,"state":"Select"})
+    var cityStates = cityApi();
+    var stateArr = new Array();
+    console.log(cityStates);
+    for (var i = 0; i < cityStates.length; i++) {
+      if (!stateArr.includes(cityStates[i].state))
+        stateArr.push(cityStates[i].state);
+    }
+
+    _states(stateArr.sort());
+    // _cities(cityObj)
+  }, []);
+  if (userData !== null) history.push("/");
   return (
     <>
       <ToastContainer />
@@ -194,18 +220,25 @@ const Signup = () => {
             <p className={`${styles.reg}`}>Register</p>
             <div className={`${styles.formpng}`}>
               <div className={`${styles.form_inner_inner}`}>
-              <GoogleLogin
-            clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <button className={styles.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}  variant="contained">
-                Sign Up With Google
-              </button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
-           <p style={{textAlign:"center"}}>OR</p>
+                <GoogleLogin
+                  clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <button
+                      className={styles.googleButton}
+                      color="primary"
+                      fullWidth
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      variant="contained"
+                    >
+                      Sign Up With Google
+                    </button>
+                  )}
+                  onSuccess={googleSuccess}
+                  onFailure={googleError}
+                  cookiePolicy="single_host_origin"
+                />
+                <p style={{ textAlign: "center" }}>OR</p>
                 <form action="login" method="POST" onSubmit={postData}>
                   <div className={`${styles.form_row}`}>
                     <i
@@ -283,21 +316,67 @@ const Signup = () => {
                       )}
                     </div>
                   </div>
+                 
+                  <div className={`${styles.form_row}`}>
+                    <i class="fas fa-city"></i>
+                    <div className={`${styles.form_name}`}>
+                      {/* State */}
+                      <div className={`${styles.col}`}>
+                        <select
+                          name="state"
+                          id="state"
+                          className={styles.form_control}
+                          onChange={handleInputs}
+                        >
+                          <option value="Select">Select your state</option>
+                          {states?.map((val, key) => (
+                            <option value={val}>{val}</option>
+                          ))}
+                        </select>
+
+                        {error.state === 1 && (
+                          <i
+                            class="fas fa-exclamation-circle"
+                            style={{ color: "#f60000" }}
+                          ></i>
+                        )}
+                        {error.state === 0 && (
+                          <i
+                            class="fas fa-check-circle"
+                            style={{ color: "var(--correct-answer)" }}
+                          ></i>
+                        )}
+                      </div>
+                      {error.state === 1 && (
+                        <div className={`${styles.errorMessage}`}>
+                          {errorMessage.state}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div className={`${styles.form_row}`}>
                     <i class="fas fa-city"></i>
                     <div className={`${styles.form_name}`}>
                       {/* City */}
                       <div className={`${styles.col}`}>
-                        <input
-                          type="text"
-                          className={`${styles.form_control}`}
-                          value={user.city}
-                          onChange={handleInputs}
-                          placeholder="Enter your city name"
+                        <select
                           name="city"
-                          autoComplete="off"
-                          required
-                        />
+                          id="city"
+                          className={styles.form_control}
+                          onChange={handleInputs}
+                        >
+                          {user?.state == "Select" ? (
+                            <option value="Choose">
+                              Choose Your state first
+                            </option>
+                          ) : (
+                            <option value="Select">Select Your city</option>
+                          )}
+                          {user?.state !== "Select" &&
+                            cities?.map((val, key) => (
+                              <option value={val}>{val}</option>
+                            ))}
+                        </select>
                         {error.city === 1 && (
                           <i
                             class="fas fa-exclamation-circle"
@@ -320,41 +399,6 @@ const Signup = () => {
                     </div>
                   </div>
                   <div className={`${styles.form_row}`}>
-                    <i class="fas fa-city"></i>
-                    <div className={`${styles.form_name}`}>
-                      {/* State */}
-                      <div className={`${styles.col}`}>
-                        <input
-                          type="text"
-                          className={`${styles.form_control}`}
-                          value={user.state}
-                          onChange={handleInputs}
-                          placeholder="Enter your state"
-                          name="state"
-                          autoComplete="off"
-                          required
-                        />
-                        {error.state === 1 && (
-                          <i
-                            class="fas fa-exclamation-circle"
-                            style={{ color: "#f60000" }}
-                          ></i>
-                        )}
-                        {error.state === 0 && (
-                          <i
-                            class="fas fa-check-circle"
-                            style={{ color: "var(--correct-answer)" }}
-                          ></i>
-                        )}
-                      </div>
-                      {error.state === 1 && (
-                        <div className={`${styles.errorMessage}`}>
-                          {errorMessage.state}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className={`${styles.form_row}`}>
                     <i
                       className={`fa fa-user ${styles.fa_user}`}
                       aria-hidden="true"
@@ -362,16 +406,18 @@ const Signup = () => {
                     <div className={`${styles.form_name}`}>
                       {/* Student / Professional */}
                       <div className={`${styles.col}`}>
-                        <input
-                          type="text"
-                          className={`${styles.form_control}`}
-                          value={user.stuprof}
-                          onChange={handleInputs}
-                          placeholder="Are you a student or Professional ?"
+                        <select
                           name="stuprof"
-                          autoComplete="off"
-                          required
-                        />
+                          id="stuprof"
+                          className={styles.form_control}
+                          onChange={handleInputs}
+                        >
+                          <option value="Select">
+                            Select Your Designation
+                          </option>
+                          <option value="Student">Student</option>
+                          <option value="Professional">Professional</option>
+                        </select>
                         {error.stuprof === 1 && (
                           <i
                             class="fas fa-exclamation-circle"
@@ -539,7 +585,7 @@ const Signup = () => {
               </div>
               {/* Section for already Login User */}
               <div className={`${styles.form_inner_inner}`}>
-                <img src={Register} alt="register_pic"/>
+                <img src={Register} alt="register_pic" />
                 <div className={`${styles.has_account}`}>
                   Already have an account ?
                   <Link
@@ -554,7 +600,11 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      <GoogleFormFillUp open={open} onCLoseModal={onCLoseModal} user={googleDetails} />
+      <GoogleFormFillUp
+        open={open}
+        onCLoseModal={onCLoseModal}
+        user={googleDetails}
+      />
     </>
   );
 };
