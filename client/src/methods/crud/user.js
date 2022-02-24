@@ -11,6 +11,14 @@ export const getUserDetails = async (id) => {
   }
 };
 //Function to update a particular user's information
+export const updateUserInformation = async (id, user) => {
+  try {
+    return await axios.post(`/user/update/info/${id}`, user);
+  } catch (error) {
+    console.log("Error while calling updatePost API ", error);
+  }
+};
+//Function to update a particular user's information
 export const updateUserInfo = async (id, formData,user) => {
   try {
     return await axios.post(`/user/update/${id}`, formData,user);

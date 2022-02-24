@@ -8,6 +8,7 @@ const {
   get_user_details,
   update_user,
   user_google_signin,
+  update_user_info,
 } = require("../controllers/userController");
 require("../db/conn");
 //Importing authenticate middleware
@@ -29,4 +30,5 @@ router.get("/authenticate", authenticate, (req, res) => {
 router.get("/:id", get_user_details);
 //Updating User's information
 router.post("/update/:id", upload.single("profilePic"), update_user);
+router.post("/update/info/:id", update_user_info);
 module.exports = router;

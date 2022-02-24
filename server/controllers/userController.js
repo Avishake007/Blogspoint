@@ -136,6 +136,17 @@ exports.get_user_details = async (request, response) => {
     response.status(500).json(error);
   }
 };
+exports.update_user_info = async (request, response) => {
+  try {
+    const user = await User.findById(request.params.id);
+
+    await User.findByIdAndUpdate(request.params.id, { $set: request.body });
+
+    response.status(200).json("User updated successfully");
+  } catch (error) {
+    response.status(500).json(error);
+  }
+};
 exports.update_user = async (request, response, next) => {
   try {
     const user = await User.findById(request.params.id);
