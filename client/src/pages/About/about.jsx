@@ -14,9 +14,11 @@ import styles from "./about.module.css";
 import { getPostByUsername } from "../../methods/crud/post";
 import YourPostModal from "../../Components/YourPostModal/YourPostModal";
 import { Button } from "antd";
+import {RiEdit2Fill} from "react-icons/ri";
 import { updateUserInfo } from "../../methods/crud/user";
 import UpdateUserPic from "../../Components/UpdateUserPic/updateUserPic";
 import Loader from  "../../Components/Loader/loader";
+import UpdateUserDetails from "../../Components/UpdateUserDetailsModal/UpdateUserDetails";
 const About = () => {
   //UseState Declarations
   const history = useHistory();
@@ -24,12 +26,19 @@ const About = () => {
   const [posts, setPosts] = useState([]);
   const [open, _open] =useState(false);
   const [openImg,_openImg]=useState(false);
+  const [openUpdate,_openUpdate]=useState(false);
   const[loader,_loader]=useState(true);
   const onOpenModalImg=()=>{
     _openImg((prev)=>(prev=true))
   }
   const onCLoseModalImg=()=>{
     _openImg((prev)=>(prev=false));
+  }
+  const onOpenModalUpdate=()=>{
+    _openUpdate((prev)=>(prev=true))
+  }
+  const onCLoseModalUpdate=()=>{
+    _openUpdate((prev)=>(prev=false));
   }
    //Checking for user authentication
    const userAuthenticate = async () => {
@@ -92,7 +101,10 @@ const About = () => {
         {/* Section which gives the information of a user */}
         <div className={`${styles.about_section}`}>
           <div className={`${styles.user_pic}`}>
-            <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Your Profile Pic" />
+            <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Your Profile Pic" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }}/>
             <div className={`${styles.update}`} onClick={()=>onOpenModalImg()}>Update Image</div>
            
           </div>
@@ -126,15 +138,19 @@ const About = () => {
               <label htmlFor="no_of_blogs">No of Blogs : </label>
               <p>{posts?.length}</p>
             </div>
-            <div className={`${styles.detail}`} style={{justifyContent:"center"}}>
+            <div className={`${styles.detail}`} style={{justifyContent:"space-evenly"}}>
+            <RiEdit2Fill style={{fontSize: "40px",cursor: "pointer",fill: "var(--font-color)"}} onClick={onOpenModalUpdate}/>
               <Button className={`${styles.your_post_btn}`} onClick={onOpenModal}>Your Posts</Button>
               
             </div>
           </div>
+          
         </div>
+        
       </div>
       <YourPostModal open={open} onCLoseModal={onCLoseModal} posts={posts}/>
       <UpdateUserPic open={openImg} onCLoseModal={onCLoseModalImg} user={userData}/>
+      <UpdateUserDetails open={openUpdate} onCLoseModal={onCLoseModalUpdate} user={userData}/>
     </>
   );
 };

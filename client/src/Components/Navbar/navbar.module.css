@@ -112,7 +112,7 @@ button:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
+    background: var(--secondary_color);
     color: white;
     font-size: 26px;
     border-radius: 50%;

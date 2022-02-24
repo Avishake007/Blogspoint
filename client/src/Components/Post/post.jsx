@@ -26,7 +26,10 @@ const Post = ({ post ,authenticate}) => {
         >
     <div className={`${styles.post}`}>
       <div className={styles.profilePic}>
-      <img src={`http://localhost:5000/${user?.profilePic}`} alt="UserProfilePic" />
+      <img src={`http://localhost:5000/${user?.profilePic}`} alt="UserProfilePic" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }}/>
       </div>
    
       <div className={styles.post.Details}>

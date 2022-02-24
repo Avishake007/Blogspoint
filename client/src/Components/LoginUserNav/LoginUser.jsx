@@ -86,7 +86,14 @@ const LoginUser = ({location,userData}) => {
                   className={`${styles.userpic}`}
                   onClick={toggleLogoutBtn}
                 >
-                 {userData?.profilePic==="uploads/defaultpic.png"?userData?.name?.charAt(0):<img src={`http://localhost:5000/${userData.profilePic}`} alt="Your Profile Logo" style={{borderRadius:"50%"}}/>}
+                 {userData?.profilePic==="uploads/defaultpic.png"?userData?.name?.charAt(0):<img  src={`http://localhost:5000/${userData.profilePic}`} alt="Not Found" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }} alt="Your Profile Logo" style={{borderRadius:"50%"}}/>}
+                 {/* <img class="avatar" src={`http://localhost:5000/${userData.profilePic}`} alt="Not Found" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }}/> */}
                 </div>
               </li>
               {showLogOutBtn&&<li className={` ${styles.nav_item}`} style={{position: "absolute", top: "67px",right: "15px"}}>
