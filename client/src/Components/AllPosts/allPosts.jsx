@@ -41,7 +41,7 @@ const AllPosts = ({ authenticate }) => {
       setLoader(false);
     };
     fetchData();
-  }, []);
+  },[search]);
 
   //Function to filter by username
   const filterByUsername = (e) => {
@@ -143,10 +143,7 @@ const AllPosts = ({ authenticate }) => {
         {/* All Posts Section */}
         <div className={`${styles.outer_cover}`}>
           <p>Posts so far : </p>
-          <div className={`${styles.inner_}`}>
-            <div className={`${styles.inner_cover}`}>
-              {/* Search bar */}
-              <div className={`${styles.searchbox}`}>
+          <div className={`${styles.searchbox}`}>
                 <input
                   type="search"
                   name="search"
@@ -182,7 +179,6 @@ const AllPosts = ({ authenticate }) => {
                     )}
                 </div>
               )}
-
               <div className={`${styles.activeTags}`}>
                 {activeTags?.map((tag, _) => (
                   <div className={`${styles.tagActive}`}>
@@ -193,6 +189,14 @@ const AllPosts = ({ authenticate }) => {
                   </div>
                 ))}
               </div>
+          <div className={`${styles.inner_}`}>
+         
+            <div className={`${styles.inner_cover}`}>
+              {/* Search bar */}
+             
+             
+
+              
               {/* Posts Section */}
               {posts?.length ? (
                 posts?.map((post, _) => (

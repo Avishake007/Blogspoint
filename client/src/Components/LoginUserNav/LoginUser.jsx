@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import { FaUserAlt} from "react-icons/fa";
 import {RiCloseFill, RiLogoutBoxFill, RiPagesFill} from "react-icons/ri";
 import {AiFillHome} from "react-icons/ai";
+import {shuffle} from "lodash";
 import styles from "../Navbar/navbar.module.css";
 import Logo from "../Navbar/logo.png";
-const LoginUser = ({location,userData}) => {
+const LoginUser = ({location,userData,colors,fontColor}) => {
     const [showNav,_showNav]=useState(false);
     const [showLinks,_showLinks]=useState(false);
     const [showLogOutBtn,_showLogOutBtn]=useState(false);
+    const [color,_color]=useState();
+ 
     const toggleNav=()=>{
         if(!showNav)
         _showNav(true);
@@ -25,6 +28,9 @@ const LoginUser = ({location,userData}) => {
           else
           _showLogOutBtn(true)
       }
+      useEffect(()=>{
+        _color(shuffle(colors).pop())
+      },[])
   return (
    <>
     <a className="" href="/">
@@ -84,6 +90,7 @@ const LoginUser = ({location,userData}) => {
               <li className={` ${styles.nav_item}`}>
                 <div
                   className={`${styles.userpic}`}
+                  style={{background:`${color}`,color:`${fontColor}`}}
                   onClick={toggleLogoutBtn}
                 >
                  {userData?.profilePic==="uploads/defaultpic.png"?userData?.name?.charAt(0):<img  src={`http://localhost:5000/${userData.profilePic}`} alt="Not Found" onError={({ currentTarget }) => {
@@ -112,7 +119,9 @@ const LoginUser = ({location,userData}) => {
                 <div
                   className={`${styles.userpic}`}
                   id="logout"
+                  style={{background:{color},color:`${fontColor}`}}
                   onClick={()=>toggleNav()}
+                  
                 >
                  {userData?.profilePic==="uploads/defaultpic.png"?userData?.name?.charAt(0):<img src={`http://localhost:5000/${userData.profilePic}`} alt="Your Profile Logo" style={{borderRadius:"50%"}}/>}
                 </div>
