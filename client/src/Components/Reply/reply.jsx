@@ -170,7 +170,10 @@ const Reply = ({ reply, user }) => {
     <div className={`${styles.reply}`} onClick={closeUpDel}>
       <div className={`${styles.replyTop}`}>
         <div>
-          <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Replyer Pic"/>
+          <img src={`http://localhost:5000/${userData?.profilePic}`} alt="Replyer Pic" onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }}/>
           {reply?.username}
         <Moment fromNow className={`${styles.moment}`}>{reply?.createdDate}</Moment>
 

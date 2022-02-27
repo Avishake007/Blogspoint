@@ -41,7 +41,7 @@ const Comment = ({ comm, user }) => {
     //Getting replies according to comment id
     const fetchReply = async () => {
       let data = await getReplyByCommentId(comm?._id);
-      setReplies(data);
+      setReplies(data?.replies);
     };
     fetchReply();
   });
@@ -49,10 +49,10 @@ const Comment = ({ comm, user }) => {
     //Getting comment according to comment id
     const fetchData = async () => {
       let data = await getComment(comm?._id);
-      if (data.likeUsers.includes(user?._id)) setLike(true);
-      else if (data.dislikeUsers.includes(user?._id)) setDislike(true);
+      if (data?.comment?.likeUsers.includes(user?._id)) setLike(true);
+      else if (data?.comment?.dislikeUsers.includes(user?._id)) setDislike(true);
       setLoader(false);
-      setComment(data);
+      setComment(data?.comment);
       setLoader(false);
     };
 
@@ -210,7 +210,10 @@ const Comment = ({ comm, user }) => {
       
         <div className={`${style.commentHeaderInd}`}>
           <div>
-          <img src={`http://localhost:5000/${commenter?.profilePic}`} alt="Commenter Pic"/>{comment?.username}
+          <img src={`http://localhost:5000/${commenter?.profilePic}`} alt="Commenter Pic"onError={({ currentTarget }) => {
+    currentTarget.onerror = null; // prevents looping
+    currentTarget.src="http://localhost:5000/uploads/defaultpic.png";
+  }}/>{comment?.username}
           <Moment fromNow className={`${style.moment}`}>{comment?.createdDate}</Moment> 
           </div>
          
