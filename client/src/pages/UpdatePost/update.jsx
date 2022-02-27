@@ -37,9 +37,9 @@ const UpdatePage = ({ match }) => {
     document.title = "Update Page - Blogspoint";
     const fetchData = async () => {
       let data = await getPost(match.params.id);
-      setPost(data);
+      setPost(data?.post);
       setLoader(false);
-      const blocksFromHtml = htmlToDraft(data?.description);
+      const blocksFromHtml = htmlToDraft(data?.post?.description);
 const { contentBlocks, entityMap } = blocksFromHtml;
 const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
  _editorState(EditorState.createWithContent(contentState));
@@ -112,7 +112,7 @@ const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap)
             <input
               className="writeInput"
               placeholder="Title"
-              value={post.title}
+              value={post?.title}
               onChange={(e) => handleInputs(e)}
               name="title"
               type="text"
@@ -146,8 +146,8 @@ const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap)
       </div>
       {/* Tags Section */}
       <div className="tag_field">
-        {post.categories.length ? (
-          post.categories.map((tag, index) => (
+        {post?.categories.length ? (
+          post?.categories.map((tag, index) => (
             <div className="tag_input">
               {tag}
               <span>

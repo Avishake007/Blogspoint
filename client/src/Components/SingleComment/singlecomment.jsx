@@ -12,7 +12,7 @@ const SingleComment = ({ match, userData }) => {
   //UseState Declarations
   const [comment, setComment] = useState({
     postId: match.params.id,
-    userId:userData._id,
+    userId:userData?._id,
     username: userData?.username,
     description: "",
     createdDate: new Date(),
@@ -26,7 +26,7 @@ const SingleComment = ({ match, userData }) => {
   useEffect(() => {
     const fetchComment = async () => {
       let data = await getCommentByPostId(match.params.id);
-      setComments(data);
+      setComments(data?.comments);
     };
     fetchComment();
   });
@@ -46,9 +46,10 @@ const SingleComment = ({ match, userData }) => {
     e.preventDefault();
     if (comment?.description !== "") {
       await createComment(comment);
+      setComment({ ...comment, description: "" });
       swal("", "Comment created successfully", "success");
       sleep(3000);
-      setComment({ ...comment, description: "" });
+     
     } else {
       setTimeout(
         toast.error("Please do not keep the description empty", {

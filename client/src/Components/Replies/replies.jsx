@@ -29,7 +29,7 @@ const Replies = ({ user, comment, rep }) => {
   useEffect(() => {
     const fetchReply = async () => {
       let data = await getReplyByCommentId(comment?._id);
-      setReplies(data);
+      setReplies(data?.replies);
     };
     fetchReply();
   });

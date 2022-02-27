@@ -35,9 +35,9 @@ const AllPosts = ({ authenticate }) => {
   useEffect(() => {
     const fetchData = async () => {
       let data = await getAllPosts(search); // params in url
-      setPosts(data);
-      setAuto_posts(data);
-      setFilterPosts(data);
+      setPosts(data?.posts);
+      setAuto_posts(data?.posts);
+      setFilterPosts(data?.posts);
       setLoader(false);
     };
     fetchData();

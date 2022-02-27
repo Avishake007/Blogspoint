@@ -91,7 +91,7 @@ exports.user_signin = async (req, res) => {
   }
 };
 exports.user_google_signin = async (req, res) => {
-  const { email} = req.body;
+  const { email } = req.body;
 
   try {
     let token;
@@ -128,35 +128,69 @@ exports.user_logout = (req, res) => {
   res.status(200).send("Logout");
 };
 exports.get_user_details = async (request, response) => {
+  const { id } = request.params;
   try {
     const user = await User.findById(request.params.id);
-
-    response.status(200).json(user);
+    if (user)
+      response.status(200).json({
+        message: `User with id ${id} is found`,
+        user: user,
+      });
+    else
+      response.status(404).json({
+        message: `User with id ${id} not found`,
+        user: null,
+      });
   } catch (error) {
-    response.status(500).json(error);
+    response.status(500).json({
+      message: error.message,
+      user: null,
+    });
   }
 };
 exports.update_user_info = async (request, response) => {
+  const { id } = request.params;
   try {
-    const user = await User.findById(request.params.id);
-
-    await User.findByIdAndUpdate(request.params.id, { $set: request.body });
-
-    response.status(200).json("User updated successfully");
+    const user = await User.findByIdAndUpdate(id, { $set: request.body });
+    if (user)
+      response.status(200).json({
+        message: `User with id ${id} is updated`,
+        updatedUser: user,
+      });
+    else
+      response.status(404).json({
+        message: `User with id ${id} is not updated`,
+        updatedUser: null,
+      });
   } catch (error) {
-    response.status(500).json(error);
+    response.status(500).json({
+      message: error.message,
+      updatedUser: null,
+    });
   }
 };
 exports.update_user = async (request, response, next) => {
+  const { id } = request.params;
   try {
-    const user = await User.findById(request.params.id);
-    await User.findByIdAndUpdate(request.params.id, {
+    const user = await User.findByIdAndUpdate(id, {
       profilePic: request.file.path,
     });
-    console.log(JSON.parse(JSON.stringify(request.body)));
-    console.log(request.file);
-    response.status(200).json("User updated successfully");
+    // console.log(JSON.parse(JSON.stringify(request.body)));
+    // console.log(request.file);
+    if (user)
+      response.status(200).json({
+        message: `User with id ${id} is updated`,
+        updatedUser: user,
+      });
+    else
+      response.status(404).json({
+        message: `User with id ${id} is not updated`,
+        updatedUser: null,
+      });
   } catch (error) {
-    response.status(500).json(error);
+    response.status(500).json({
+      message: error.message,
+      updatedUser: null,
+    });
   }
 };

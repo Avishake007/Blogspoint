@@ -77,7 +77,7 @@ const About = () => {
   //Get all the posts of the login user
   const fetchData = async (userID) => {
     let data = await getPostByUsername(userID); // params in url
-    setPosts(data);
+    setPosts(data?.posts);
   };
   const onOpenModal=()=>{
     _open((prev)=>(prev=true))

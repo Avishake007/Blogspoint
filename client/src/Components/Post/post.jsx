@@ -12,7 +12,7 @@ const Post = ({ post ,authenticate}) => {
   useEffect(() => {
     const fetchData = async () => {
       let data = await getUserDetails(post?.userId);
-      _user(data);
+      _user(data?.user);
       _loader(false);
     };
     fetchData();

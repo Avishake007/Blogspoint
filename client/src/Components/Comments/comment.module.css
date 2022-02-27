@@ -16,7 +16,7 @@
 }
 .commentHeaderInd img{
   height: 100%;
-    width: 20%;
+    width: 40px;
     border-radius: 50%;
     margin-right: 14px;
     color:var(--secondary_color);

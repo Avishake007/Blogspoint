@@ -37,17 +37,17 @@ const SinglePost = ({ flaged, user, match }) => {
 
   const [loader, setLoader] = useState(true);
   const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
-  const [desc, _desc] = useState([]);
+  const [dislike, setDislike] = useState(false)
   const [srcDoc, _srcDoc] = useState("");
   //UseEffect Declarations
   useEffect(() => {
     const fetchData = async () => {
       let data = await getPost(match.params.id);
-      setPost(data);
-      _srcDoc(data?.description);
-      if (data.likeUsers.includes(user?._id)) setLike(true);
-      else if (data.dislikeUsers.includes(user?._id)) setDislike(true);
+      console.log(data)
+      setPost(data?.post);
+      _srcDoc(data?.post?.description);
+      if (data?.post?.likeUsers?.includes(user?._id)) setLike(true);
+      else if (data.post?.dislikeUsers?.includes(user?._id)) setDislike(true);
       setLoader(false);
     };
 
