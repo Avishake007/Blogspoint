@@ -1,6 +1,13 @@
+/**
+ * @Api_Name Post Api
+ */
 // Third Party import
 import axios from "axios";
-//Function to create a post
+/**
+ * @Function_Name createPost
+ * @Func It creates post by posting it in the database under post scheme
+ * @Return_Type void
+ */
 export const createPost = async (post) => {
   try {
     return await axios.post(`post/create`, post);
@@ -8,7 +15,11 @@ export const createPost = async (post) => {
     console.log("Error while calling createPost API ", error);
   }
 };
-//Function to get all posts
+/**
+ * @Function_Name getAllPosts
+ * @Func It fetches the posts of all user from the database
+ * @Return_Type void
+ */
 export const getAllPosts = async (param) => {
   try {
     let response = await axios.get(`/post${param}`);
@@ -18,7 +29,11 @@ export const getAllPosts = async (param) => {
     console.log("Error while calling getPosts API ", error);
   }
 };
-//Get post by Username
+/**
+ * @Function_Name getPostByUsername
+ * @Func It fetches the post from the database according to username
+ * @Return_Type void
+ */
 export const getPostByUsername = async (id) => {
   try {
     let response = await axios.get(`/post/user/${id}`);
@@ -28,7 +43,11 @@ export const getPostByUsername = async (id) => {
     console.log("Error while calling getPost API ", error);
   }
 };
-//Function to get a post according to post id
+/**
+ * @Function_Name getPost
+ * @Func It fetches the post from the database according to post id
+ * @Return_Type void
+ */
 export const getPost = async (id) => {
   try {
     let response = await axios.get(`/post/${id}`);
@@ -38,7 +57,11 @@ export const getPost = async (id) => {
   }
 };
 
-//Function to update a particular user's post
+/**
+ * @Function_Name updatePost
+ * @Func It updates/edits a user's post
+ * @Return_Type void
+ */
 export const updatePost = async (id, post) => {
   try {
     return await axios.post(`/post/update/${id}`, post);
@@ -46,7 +69,11 @@ export const updatePost = async (id, post) => {
     console.log("Error while calling updatePost API ", error);
   }
 };
-//Function to delete a user's post
+/**
+ * @Function_Name deletePost
+ * @Func It deletes the post from the database
+ * @Return_Type void
+ */
 export const deletePost = async (id) => {
   try {
     return await axios.delete(`/post/delete/${id}`);

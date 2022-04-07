@@ -11,16 +11,46 @@ const {
 const router = require("express").Router();
 
 require("../db/conn");
-//Creating a reply
+/**
+ * DESC: CREATE USER'S REPLY
+ * METHOD: POST
+ * CONTROLLER:replyController.create_reply
+ * ENDPOINT: /reply/
+ */
 router.post("/create", create_reply);
-//Fetching replies according to comment id
+/**
+ * DESC: GETTING USER'S REPLIES THROUGH COMMENT ID
+ * METHOD: GET
+ * CONTROLLER:replyController.get_reply
+ * ENDPOINT: /reply/
+ */
 router.get("/comment/:id", get_reply);
-//Updating a reply according to reply id
+/**
+ * DESC: UPDATING A USER'S REPLY THROUGH REPLY ID
+ * METHOD: POST
+ * CONTROLLER:replyController.update_reply
+ * ENDPOINT: /reply/
+ */
 router.post("/update/:id", update_reply);
-//Deleting a reply according to reply id
+/**
+ * DESC: DELETING A USER'S REPLY THROUGH REPLY ID
+ * METHOD: DELETE
+ * CONTROLLER:replyController.delete_reply
+ * ENDPOINT: /reply/
+ */
 router.delete("/delete/:id", delete_reply);
-//Deleting reply/s according to comment id
+/**
+ * DESC: DELETING REPLIES THROUGH COMMENT ID 
+ * METHOD: DELETE
+ * CONTROLLER:replyController.delete_replies_by_commentId
+ * ENDPOINT: /reply/
+ */
 router.delete("/delete/comment/:id", delete_replies_by_commentId);
-//Deleting reply/s according to post id
+/**
+ * DESC: DELETING REPLIES THROUGH POST ID
+ * METHOD: DELETE
+ * CONTROLLER:replyController.delete_replies_by_postId
+ * ENDPOINT: /reply/
+ */
 router.delete("/delete/post/:id", delete_replies_by_postId);
 module.exports = router;

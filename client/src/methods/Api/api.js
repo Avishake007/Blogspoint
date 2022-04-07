@@ -1,3 +1,7 @@
+/**
+ * @Api_Name cityApi
+ * @Desc It contains the details of name and state
+ */
 export const cityApi=()=>{
     const cityState=[
         {

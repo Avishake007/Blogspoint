@@ -99,7 +99,8 @@
   justify-content: center;
   align-items: center;
 }
-.first svg,.second svg {
+.first svg,
+.second svg {
   height: 80%;
   width: 100%;
 }
@@ -152,11 +153,12 @@
   overflow: hidden;
   display: flex;
 }
-.post:hover{
-  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 19%);
-    z-index: 2;
+.post:hover {
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 19%);
+  z-index: 2;
 }
-.profilePic{
+.profilePic {
   width: 20%;
   height: 100%;
   display: flex;
@@ -164,14 +166,14 @@
   align-items: center;
   margin-right: 5%;
 }
-.profilePic img{
+.profilePic img {
   height: 64%;
   width: 44%;
   border-radius: 50%;
-  color:var(--secondary_color);
+  color: var(--secondary_color);
 }
 
-.postDetails{
+.postDetails {
   width: 70%;
   height: 100%;
 }
@@ -268,7 +270,7 @@
 .blogger {
   width: 50%;
 }
-.blogger svg{
+.blogger svg {
   height: 100%;
   width: 100%;
 }
@@ -282,7 +284,7 @@
   padding: 14px;
   min-height: 509px;
   border-radius: 14px;
-  overflow:hidden;
+  overflow: hidden;
 }
 .inner_ {
   height: 421px;
@@ -377,7 +379,7 @@
 }
 .allTags {
   position: relative;
-  
+
   width: 100;
   /* background: var(--login_form_color); */
   margin-bottom: 14px;
@@ -390,11 +392,11 @@
   /* height:136px; */
 }
 @keyframes slideTags {
-  0%{
-    height:0%;
+  0% {
+    height: 0%;
   }
-  100%{
-    height:100%;
+  100% {
+    height: 100%;
   }
 }
 
@@ -407,7 +409,7 @@
   margin: 7px;
   border-radius: 7px;
   cursor: pointer;
-  
+
   color: var(--primary_color);
   font-weight: bold;
 }
@@ -438,10 +440,10 @@
   cursor: pointer;
   color: var(--font-color);
 }
-.shady{
+.shady {
   height: 36px;
-    position: relative;
-    top: -36px;
-    
-    background: linear-gradient(0deg, var(--primary_color), transparent);
+  position: relative;
+  top: -36px;
+
+  background: linear-gradient(0deg, var(--primary_color), transparent);
 }

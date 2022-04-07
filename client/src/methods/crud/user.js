@@ -1,7 +1,14 @@
+/**
+ * @APi_Name User Api
+ */
 // Third Party import
 import axios from "axios";
 
-//Function to get a user according to user id
+/**
+ * @Function_Name getUserDetails
+ * @Func It fetches a user's detail according to user's id
+ * @Return_Type void
+ */
 export const getUserDetails = async (id) => {
   try {
     let response = await axios.get(`/user/${id}`);
@@ -10,7 +17,11 @@ export const getUserDetails = async (id) => {
     console.log("Error while calling getUser API ", error);
   }
 };
-//Function to update a particular user's information
+/**
+ * @Function_Name updateUserInformation
+ * @Func It updates a user's information
+ * @Return_Type void
+ */
 export const updateUserInformation = async (id, user) => {
   try {
     return await axios.post(`/user/update/info/${id}`, user);
@@ -18,10 +29,14 @@ export const updateUserInformation = async (id, user) => {
     console.log("Error while calling updatePost API ", error);
   }
 };
-//Function to update a particular user's information
-export const updateUserInfo = async (id, formData,user) => {
+/**
+ * @Function_Name updateUserInfo
+ * @Func It update's a user's pic
+ * @Return_Type void
+ */
+export const updateUserInfo = async (id, formData, user) => {
   try {
-    return await axios.post(`/user/update/${id}`, formData,user);
+    return await axios.post(`/user/update/${id}`, formData, user);
   } catch (error) {
     console.log("Error while calling updatePost API ", error);
   }

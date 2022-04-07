@@ -1,3 +1,7 @@
+/**
+ * @Component_name All Posts
+ * @Desc It shows the post details of all users
+ */
 //Third Part imports
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -15,38 +19,75 @@ import Post from "../Post/post";
 
 const AllPosts = ({ authenticate }) => {
   /**
-   * UseStates Declarations
+   * @UseStates_Declarations
+   */
+  /**
+   * @State_Name Loader
+   * @Func It shows the loading Page until the page is fully loaded
+   * @Type Boolean
    */
   const [loader, setLoader] = useState(true);
+  /**
+   * @State_Name Posts
+   * @Func It stores the post details of all the users
+   * @Type Array
+   */
   const [posts, setPosts] = useState([]);
+  /**
+   * @State_Name FilterPosts
+   * @Func It stores the filtered post details
+   * @Type Array
+   */
   const [fliterPosts, setFilterPosts] = useState([]);
-
+  /**
+   * @State_Name ShowTags
+   * @Func It decides whether to show tags or not
+   * @Type Boolean
+   */
   const [showTags, setShowTags] = useState(false);
-  const [all_posts, setAuto_posts] = useState([]);
+  /**
+   * @State_Name AllPosts
+   * @Func It stores all the posts
+   * @Type Array
+   */
+  const [all_posts, setAllPosts] = useState([]);
+  /**
+   * @State_Name ActiveTags
+   * @Func It stores all the active tags
+   */
   const [activeTags, setActiveTags] = useState([]);
 
   /**
-   * Locations Declarations
+   * @Location_Declaration
    */
   const { search } = useLocation();
   /**
-   * UseEffect Declarations
+   * @UseEffect_Declaration
    */
   useEffect(() => {
+    /**
+     * @Function_Name Fetch Data
+     * @Desc It fetches all posts stores it in posts,allPosts,filterPosts and toggles the value of loader to false
+     * @Return_Type void
+     */
     const fetchData = async () => {
       let data = await getAllPosts(search); // params in url
       setPosts(data?.posts);
-      setAuto_posts(data?.posts);
+      setAllPosts(data?.posts);
       setFilterPosts(data?.posts);
       setLoader(false);
     };
     fetchData();
-  },[search]);
+  }, [search]);
 
-  //Function to filter by username
+  /**
+   * @Function_Name FilterByUsername
+   * @Desc It filters all the post according the username
+   * @Return_Type void
+   */
   const filterByUsername = (e) => {
     var curr_username = e.target.value + "";
-
+    //It stores the filtered posts to filter posts state
     setFilterPosts(
       all_posts.filter((post) => {
         return (
@@ -54,7 +95,7 @@ const AllPosts = ({ authenticate }) => {
         );
       })
     );
-
+    //If curr_username is empty then store all the posts in posts state else store the filtered post to all posts
     if (!curr_username) setPosts(all_posts);
     else
       setPosts(
@@ -66,14 +107,19 @@ const AllPosts = ({ authenticate }) => {
       );
   };
 
-  //Function to filter posts by tags
+  /**
+   * @Function_Name FilterByTags
+   * @Desc It filters all the post according the active tags
+   * @Return_Type void
+   */
   const filterByTags = (tag) => {
+    //It stores the filtered post to filterPosts state
     setFilterPosts(
       fliterPosts.filter((post) => {
         return post?.categories.includes(tag) === true;
       })
     );
-
+    //It stores the filtered posts to posts state
     setPosts(
       fliterPosts.filter((post) => {
         return post?.categories.includes(tag) === true;
@@ -81,28 +127,34 @@ const AllPosts = ({ authenticate }) => {
     );
   };
 
-  //Function to include a tag in the activeTags State
+  /**
+   * @Function_Name ActiveTags
+   * @Desc It stores the active tags to active tags state if not present
+   * @Return_Type void
+   */
   const activeTag = (tag) => {
     if (activeTags.includes(tag) === false) setActiveTags([...activeTags, tag]);
     filterByTags(tag);
   };
 
-  //Function to toggle tags state between true and false
+  /**
+   * @Function_Name FilterByUsername
+   * @Desc It toggles showTags state and filter posts according to tags
+   * @Return_Type void
+   */
   const toggleTags = () => {
-    var filteredPosts = [];
+    //Toggles showTags feature
     if (showTags === true) setShowTags(false);
     else setShowTags(true);
-
-    posts.map((post) => {
-      for (var i = 0; i < post?.categories?.length; i++) {
-        if (filteredPosts.includes(post?.categories[i]) === false)
-          filteredPosts.push(post?.categories[i]);
-      }
-    });
   };
-  //Function to filter by a tag
+  /**
+   * @Function_Name RemoveFilter
+   * @Desc It removes the filtered property of tags in post when you click on the cross icon of active tag
+   * @Return_Type void
+   */
   const removeFilter = (tag) => {
     var filteredPosts = [];
+    //Remove the non active filter tag from the filtered posts
     all_posts?.map((post) => {
       let flag = 1;
       for (var i = 0; i < activeTags?.length; i++) {
@@ -121,12 +173,15 @@ const AllPosts = ({ authenticate }) => {
     setFilterPosts(filteredPosts);
     if (activeTags?.length === 1) setPosts(all_posts);
   };
-  //Function to delete a tag by index
+  /***
+   * @Function_Name removeTags
+   * @Desc Removes the tags from active state through its id and then calls the removeFilter function
+   */
   const removeTags = (_) => {
     setActiveTags(activeTags.filter((tag, index) => index !== _));
     removeFilter(activeTags[_]);
   };
-  //Loader Functionality
+  //Shows loader Page when the page is loading
   if (loader) <Loader />;
   return (
     <>
@@ -143,60 +198,56 @@ const AllPosts = ({ authenticate }) => {
         {/* All Posts Section */}
         <div className={`${styles.outer_cover}`}>
           <p>Posts so far : </p>
+          {/* Search bar */}
           <div className={`${styles.searchbox}`}>
-                <input
-                  type="search"
-                  name="search"
-                  id="search"
-                  placeholder="Search by username..."
-                  onChange={filterByUsername}
-                />
-                {/* Tags  */}
-                <div className={`${styles.tags}`} onClick={() => toggleTags()}>
-                  Tags{" "}
-                  <span>
-                    {showTags === false ? (
-                      <IoMdArrowDropdownCircle />
-                    ) : (
-                      <IoMdArrowDropupCircle />
-                    )}
-                  </span>
-                </div>
+            <input
+              type="search"
+              name="search"
+              id="search"
+              placeholder="Search by username..."
+              onChange={filterByUsername}
+            />
+            {/* Tags  */}
+            <div className={`${styles.tags}`} onClick={() => toggleTags()}>
+              Tags{" "}
+              <span>
+                {showTags === false ? (
+                  <IoMdArrowDropdownCircle />
+                ) : (
+                  <IoMdArrowDropupCircle />
+                )}
+              </span>
+            </div>
+          </div>
+          {showTags === true && (
+            <div className={`${styles.allTags}`}>
+              {all_posts?.length &&
+                all_posts?.map((post, _) =>
+                  post?.categories.map((tag) => (
+                    <div
+                      className={`${styles.tag}`}
+                      name={tag}
+                      onClick={() => activeTag(tag)}
+                    >
+                      {tag}
+                    </div>
+                  ))
+                )}
+            </div>
+          )}
+          // Active Tags
+          <div className={`${styles.activeTags}`}>
+            {activeTags?.map((tag, _) => (
+              <div className={`${styles.tagActive}`}>
+                {tag}
+                <span onClick={() => removeTags(_)}>
+                  <ImCross />
+                </span>
               </div>
-              {showTags === true && (
-                <div className={`${styles.allTags}`}>
-                  {all_posts?.length &&
-                    all_posts?.map((post, _) =>
-                      post?.categories.map((tag) => (
-                        <div
-                          className={`${styles.tag}`}
-                          name={tag}
-                          onClick={() => activeTag(tag)}
-                        >
-                          {tag}
-                        </div>
-                      ))
-                    )}
-                </div>
-              )}
-              <div className={`${styles.activeTags}`}>
-                {activeTags?.map((tag, _) => (
-                  <div className={`${styles.tagActive}`}>
-                    {tag}
-                    <span onClick={() => removeTags(_)}>
-                      <ImCross />
-                    </span>
-                  </div>
-                ))}
-              </div>
+            ))}
+          </div>
           <div className={`${styles.inner_}`}>
-         
             <div className={`${styles.inner_cover}`}>
-              {/* Search bar */}
-             
-             
-
-              
               {/* Posts Section */}
               {posts?.length ? (
                 posts?.map((post, _) => (
@@ -209,7 +260,6 @@ const AllPosts = ({ authenticate }) => {
                   No data is available for selected category
                 </div>
               )}
-              
             </div>
           </div>
           <div className={`${styles.shady}`}></div>

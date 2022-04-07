@@ -1,8 +1,16 @@
-import { cityApi } from "../Api/api";
+/**
+ * @Function_Name isEmpty
+ * @Func It checks whether the value is empty or not
+ * @Return_Type void
+ */
 const isEmpty = (value) => {
   return value.trim() === "";
 };
-//Function to validate name
+/**
+ * @Function_Name validateName
+ * @Func It validates user's name
+ * @Return_Type void
+ */
 export const validateName = (value) => {
   if (isEmpty(value))
     return [false, "Name field should not contain only space"];
@@ -25,7 +33,11 @@ export const validateName = (value) => {
   }
   return [true, "Succesful"];
 };
-//Function to validate username
+/**
+ * @Function_Name validateUsername
+ * @Func It validates a user's username
+ * @Return_Type void
+ */
 export const validateUsername = (value) => {
   if (isEmpty(value))
     return [false, "Name field should not contain only space"];
@@ -41,14 +53,22 @@ export const validateUsername = (value) => {
   }
   return [true, "Succesful"];
 };
-//Function to validate city
+/**
+ * @Function_Name validateCity
+ * @Func It validates a user's city
+ * @Return_Type void
+ */
 export const validateCity = (value) => {
   if (isEmpty(value))
     return [false, "City field should not contain only space"];
   if (value === "Select") return [false, "Please select your city"];
   return [true, "Successful"];
 };
-//Function to validate state
+/**
+ * @Function_Name validateState
+ * @Func It validates a user's state
+ * @Return_Type void
+ */
 export const validateState = (value, city) => {
   if (isEmpty(value))
     return [false, "State field should not contain only space"];
@@ -56,15 +76,22 @@ export const validateState = (value, city) => {
 
   return [true, "Successful"];
 };
-//Function to validate Student/Professional
+/**
+ * @Function_Name validateStuProf
+ * @Func It validates user's designation
+ * @Return_Type void
+ */
 export const validateStuProf = (value) => {
   if (isEmpty(value))
     return [false, "Student/Professional field should not contain only space"];
-    if (value === "Select") return [false, "Please select your designation"];
-    return [true, "Successful"];
-  
+  if (value === "Select") return [false, "Please select your designation"];
+  return [true, "Successful"];
 };
-//Function to validate email
+/**
+ * @Function_Name validateEmail
+ * @Func It validates a user's email
+ * @Return_Type void
+ */
 export const validateEmail = (value) => {
   if (isEmpty(value)) {
     return [false, "Email field should not contain only space"];
@@ -83,11 +110,13 @@ export const validateEmail = (value) => {
   if (indexOfDot === -1) return [false, "Email must contain '.'"];
   if (value[0] === "@" || value[0] === ".")
     return [false, "Email must not start with '@ or '.'"];
-
-  // if(value[indexOfDot-1]!='@')
   return [true, "Successful"];
 };
-//Function to validate password
+/**
+ * @Function_Name validatePassword
+ * @Func It validates a user's password
+ * @Return_Type void
+ */
 export const validatePassword = (value) => {
   if (isEmpty(value))
     return [false, "Password field should not contain only space"];
@@ -115,7 +144,11 @@ export const validatePassword = (value) => {
     return [false, "Password should contain atleast one special character"];
   return [true, "Successful"];
 };
-//Function to validate confirm password
+/**
+ * @Function_Name validateConfirmPassword
+ * @Func It validates a user's confirm password
+ * @Return_Type void
+ */
 export const validateConfirmPassword = (value, password) => {
   var isValid = validatePassword(password);
   if (!isValid[0]) {

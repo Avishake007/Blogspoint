@@ -1,13 +1,13 @@
-/*
-  This is a Login Page
-  Here we check whether a particular user is authenticate or not
-*/
+/**
+ * @Page SignIn Page
+ * @Desc It log in's the user into the website
+ */
 //Third Party import
 import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from "react-google-login";
 //StyleSheet import
 import styles from "./login.module.css";
 //Local imports
@@ -19,26 +19,50 @@ import loginSvg from "../../assest/images/login.png";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 const Login = () => {
-  //UseContext Declarations
+  /**
+   * @Context_Declaration
+   */
   const { dispatch } = useContext(UserContext);
-  //UseHistory Declarations
+  /**
+   * @History_Declaration
+   */
   const history = useHistory();
-  //UseStates Declaration
+  /**
+   * @State_Declaration
+   */
+  /**
+   * @State_Name userLogin
+   * @Func It shows the user login details of a user
+   * @Type Object
+   */
   const [userLogin, setuserLogin] = useState({ email: "", password: "" });
+  /**
+   * @State_Name error
+   * @Func Stores the presence of an error in a particular field
+   * @Type Object
+   */
   const [error, setError] = useState({
     email: -1,
     password: -1,
   });
+  /**
+   * @State_Name errorMessage
+   * @Func Stores the error message of email and passord if it has error
+   * @Type Object
+   */
   const [errorMessage, setErrorMessage] = useState({
     email: "",
     password: "",
   });
-  const userData=JSON.parse(localStorage.getItem("userLogin"))
-  //Function to get the email and password field and provide validation
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
+  //Stores UserDetails in userData
+  const userData = JSON.parse(localStorage.getItem("userLogin"));
+  /**
+   * @Function_Name validateUserDetails
+   * @Desc Vaildates each field in the login form
+   * @Return_Type void
+   */
+  const validateUserDetails = (name, value) => {
     var isValid;
-    setuserLogin({ ...userLogin, [name]: value });
     if (name === "email") {
       isValid = validateEmail(value);
     } else if (name === "password") {
@@ -56,8 +80,30 @@ const Login = () => {
       setErrorMessage({ ...errorMessage, [name]: "" });
     }
   };
-  //Logins the registered user
-  const validateLogin = async (e) => {
+  /**
+   * @Function_Name handleInputs
+   * @Desc Stores user login details in userLogin state
+   * @Return_Type void
+   */
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setuserLogin({ ...userLogin, [name]: value });
+    validateUserDetails(name, value);
+  };
+  /**
+   * @Function_Name sleep
+   * @Desc Provides delay for ms milliseconds
+   * @Return_Type Promise
+   */
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  /**
+   * @Function_Name siginInUser
+   * @Desc It login's the regsitered user into the website
+   * @Return_Type void
+   */
+  const signInUser = async (e) => {
     e.preventDefault();
     var email = userLogin.email;
     var password = userLogin.password;
@@ -82,15 +128,19 @@ const Login = () => {
         3000
       );
     } else {
-      
       dispatch({ type: "USER", payload: true });
-      localStorage.setItem("userLogin",JSON.stringify(true));
+      localStorage.setItem("userLogin", JSON.stringify(true));
       swal("Welcome!", "Login Successful", "success");
       await sleep(3000);
       history.push("/welcomePage");
     }
   };
-  const validateGoogleLogin = async (userEmail) => {
+  /**
+   * @Function_Name signInWithGoogle
+   * @Desc Login's a registered user through google
+   * @Return_Type void
+   */
+  const signInWithGoogle = async (userEmail) => {
     var email = userEmail;
     const res = await fetch("/user/google/signin", {
       method: "POST",
@@ -112,33 +162,38 @@ const Login = () => {
         3000
       );
     } else {
-      
       dispatch({ type: "USER", payload: true });
-      localStorage.setItem("userLogin",JSON.stringify(true));
+      localStorage.setItem("userLogin", JSON.stringify(true));
       swal("Welcome!", "Login Successful", "success");
       await sleep(3000);
       history.push("/welcomePage");
     }
   };
-  //Provides delay for ms milliseconds
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  //UseEffect Declaration
+  /**
+   * @Function_Name googleSuccess
+   * @Desc Calls the signWithGoogle function if google's signIn succeeds
+   * @Return_Type void
+   */
+  const googleSuccess = (req) => {
+    signInWithGoogle(req?.profileObj?.email);
+  };
+  /**
+   * @Function_Name googleError
+   * @Desc Shows error if signin's fails
+   * @Return_Type void
+   */
+  const googleError = (err) => {
+    alert(err);
+  };
+
+  /**
+   * @UseEffect_Declaration
+   */
   useEffect(() => {
     document.title = "Signin Page - Blogspoint";
-
   }, []);
-  const googleSuccess=(req)=>{
-    console.log(req)
-    console.log("Success")
-    validateGoogleLogin(req?.profileObj?.email)
-  }
-  const googleError=(err)=>{
-    console.log(err)
-    console.log("Error")
-  }
-  if(userData!==null) history.push("/about")
+
+  if (userData !== null) history.push("/about");
   return (
     <>
       <ToastContainer />
@@ -148,18 +203,27 @@ const Login = () => {
             <p className={`${styles.reg}`}>Login</p>
             <div className={`${styles.formpng}`}>
               <div className={`${styles.form_inner_inner}`}>
-              <GoogleLogin
-            clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <button className={styles.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}  variant="contained">
-                Sign In With Google
-              </button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
-          <p style={{textAlign:"center"}}>OR</p>
+                {/* Login's to the website through Google */}
+                <GoogleLogin
+                  clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <button
+                      className={styles.googleButton}
+                      color="primary"
+                      fullWidth
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      variant="contained"
+                    >
+                      Sign In With Google
+                    </button>
+                  )}
+                  onSuccess={googleSuccess}
+                  onFailure={googleError}
+                  cookiePolicy="single_host_origin"
+                />
+                <p style={{ textAlign: "center" }}>OR</p>
+                {/* Login's to the website by inputing details in login form */}
                 <form action="login" method="POST">
                   <div className={`${styles.form_row}`}>
                     <i
@@ -250,7 +314,7 @@ const Login = () => {
                     <button
                       type="submit"
                       className={`btn btn-success ${styles.login}`}
-                      onClick={validateLogin}
+                      onClick={signInUser}
                     >
                       LogIn
                     </button>
@@ -280,6 +344,5 @@ const Login = () => {
       </div>
     </>
   );
-
 };
 export default Login;
