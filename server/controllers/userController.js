@@ -108,11 +108,6 @@ exports.user_google_signin = async (req, res) => {
         expires: new Date(Date.now() + 25892000000),
         httpOnly: true,
       });
-      // if (isMatch) {
-      //   return res.json({ message: "Successful Login" });
-      // } else {
-      //   return res.status(400).json({ error: "Invalid Credentials" });
-      // }
       return res.json({ message: "Successful Login" });
     } else {
       return res.status(400).json({ error: "Invalid Credentials" });
@@ -175,8 +170,6 @@ exports.update_user = async (request, response, next) => {
     const user = await User.findByIdAndUpdate(id, {
       profilePic: request.file.path,
     });
-    // console.log(JSON.parse(JSON.stringify(request.body)));
-    // console.log(request.file);
     if (user)
       response.status(200).json({
         message: `User with id ${id} is updated`,

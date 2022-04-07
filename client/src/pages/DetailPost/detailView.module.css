@@ -1,8 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
-.container{
-    height: 100%;
-    background: var(--primary_color);
-    /* padding:18px; */
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap");
+.container {
+  height: 100%;
+  background: var(--primary_color);
 }
-
-

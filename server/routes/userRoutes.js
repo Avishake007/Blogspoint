@@ -1,6 +1,6 @@
 //Third Party import
 const router = require("express").Router();
-
+//Local Imports
 const {
   user_signup,
   user_signin,
@@ -13,22 +13,63 @@ const {
 require("../db/conn");
 //Importing authenticate middleware
 const authenticate = require("../middleware/authenticate");
+//Importing multer from utils to handle images
 const upload = require("../utils/multer");
-//Post the User informations into the database after validating it
+/**
+ * DESC: SIGNUP'S A USER INTO THE WEBSITE
+ * METHOD: POST
+ * CONTROLLER:userController.user_signup
+ * ENDPOINT: /user/
+ */
 router.post("/signup", user_signup);
-//Checking whether the email and its password matches for a particular user or not
+/**
+ * DESC: SIGNIN'S A USER INTO THE WEBSITE
+ * METHOD: POST
+ * CONTROLLER:userController.user_signin
+ * ENDPOINT: /user/
+ */
 router.post("/signin", user_signin);
-//Signin through Google
+/**
+ * DESC: SIGNIN'S A USER INTO THE WEBSITE THROUGH GOOGLE
+ * METHOD: POST
+ * CONTROLLER:userController.user_google_signin
+ * ENDPOINT: /user/
+ */
 router.post("/google/signin",user_google_signin);
-// Signing off the user
+/**
+ * DESC: LOG'S OUT OF THE WEBSITE 
+ * METHOD: GET
+ * CONTROLLER:userController.user_logout
+ * ENDPOINT: /user/
+ */
 router.get("/logout", user_logout);
-// Checking whether the user is authenticated or not
+/**
+ * DESC: CHECKS WHETHER THE USER IS AUTHENTICATED
+ * METHOD: GET
+ * ENDPOINT: /user/
+ */
 router.get("/authenticate", authenticate, (req, res) => {
   res.send(req.rootUser);
 });
-// Fetching the user details according to user id
+/**
+ * DESC: FETCHES USER DETAILS 
+ * METHOD: GET
+ * CONTROLLER:userController.get_user_details
+ * ENDPOINT: /user/
+ */
 router.get("/:id", get_user_details);
-//Updating User's information
+/**
+ * DESC: UPDATES USER'S PROFILE PIC
+ * METHOD: POST
+ * CONTROLLER:userController.update_user
+ * ENDPOINT: /user/
+ */
 router.post("/update/:id", upload.single("profilePic"), update_user);
+/**
+ * DESC: UPDATES USER'S INFORMATION
+ * METHOD: POST
+ * CONTROLLER:userController.update_user_info
+ * ENDPOINT: /user/
+ */
 router.post("/update/info/:id", update_user_info);
 module.exports = router;

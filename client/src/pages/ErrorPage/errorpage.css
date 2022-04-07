@@ -3,7 +3,7 @@
 }
 .errorpage {
   background: var(--linear_gradient_color);
-  height:85vh !important;
+  height: 85vh !important;
 }
 #Vector,
 #Vector_23,
@@ -134,9 +134,9 @@
 }
 .backbtn {
   background: var(--font-color) !important;
- 
-  border:0;
+
+  border: 0;
 }
-.backbtn a{
+.backbtn a {
   color: var(--primary_color) !important;
 }

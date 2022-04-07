@@ -1,6 +1,6 @@
 /**
- * This is a Register Page
- * This page is used for the registration of a user into BLogspoint
+ * @Page Register Page
+ * @Desc This page is used for signing up or registering of new users
  */
 //Third Party imports
 import React, { useEffect, useState } from "react";
@@ -28,14 +28,48 @@ import GoogleFormFillUp from "../../Components/GoogleFormFillUpModal/form";
 import { cityApi } from "../../methods/Api/api";
 
 const Signup = () => {
-  //UseHistory Declarations
+  /**
+   * @location_Declaration
+   */
   const history = useHistory();
-  //UseStates Declarations
+  /**
+   * @State_Declaration
+   */
+  /**
+   * @State_Name showPassword1
+   * @Func Shows/Hides the password entered by the user
+   * @Type Boolean
+   */
   const [showPassword1, setShowPassword1] = useState(false);
+  /**
+   * @State_Name showPassword2
+   * @Func Shows/Hides the confirm password entered by the user
+   * @Type Boolean
+   */
   const [showPassword2, setShowPassword2] = useState(false);
+  /**
+   * @State_Name googleDetails
+   * @Func Stores the details of the user who has signed up through google
+   * @Type Object
+   */
   const [googleDetails, _googleDetails] = useState({});
+  /**
+   * @State_Name states
+   * @Func Stores all the states from the state-city api
+   * @Type Array
+   */
   const [states, _states] = useState([]);
+  /**
+   * @State_Name cities
+   * @Func Stores all the cities of a particular state
+   * @Type Array
+   */
   const [cities, _cities] = useState([]);
+  /**
+   * @State_Name user
+   * @Func Stores the details of a user who has entered their details in register form
+   * @Type Object
+   */
   const [user, setUser] = useState({
     username: "",
     profilePic: "uploads/defaultpic.png",
@@ -47,6 +81,11 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
+  /**
+   * @State_Name error
+   * @Func Stores the presence of an error for each individual field in the register form
+   * @Type Object
+   */
   const [error, setError] = useState({
     username: -1,
     name: -1,
@@ -57,6 +96,11 @@ const Signup = () => {
     password: -1,
     confirmpassword: -1,
   });
+  /**
+   * @State_Name errorMessage
+   * @Func Stores the error message for each individual field in the register form provided an error has occurred in that field
+   * @Type Object
+   */
   const [errorMessage, setErrorMessage] = useState({
     username: "",
     name: "",
@@ -67,21 +111,27 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
+  /**
+   * @State_Name open
+   * @Func Opens/Closes the register form when a user signups with google
+   * @Type Boolean
+   */
   const [open, _open] = useState(false);
+  //Stores the user Details in userData
   const userData = JSON.parse(localStorage.getItem("userLogin"));
-  //Function to get the fields of register and provide validation
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
-
+  /**
+   * @Function_Name validateUserDetails
+   * @Desc It validates all the fields
+   * @Return_Type void
+   */
+  const validateUserDetails = (name, value) => {
     var isValid;
-    setUser({ ...user, [name]: value });
     if (name === "state") {
       var arr = new Array();
       var cityStates = cityApi();
       for (var i = 0; i < cityStates.length; i++) {
         if (cityStates[i].state === value) arr.push(cityStates[i].name);
       }
-      console.log(arr);
       _cities(arr.sort());
     }
     if (name === "username") {
@@ -112,8 +162,22 @@ const Signup = () => {
       setErrorMessage({ ...errorMessage, [name]: "" });
     }
   };
+  /**
+   * @Function_Name handleInputs
+   * @Desc It stores the changes made in the fields to user satate
+   * @Return_Type void
+   */
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+    validateUserDetails(name, value);
+  };
 
-  //Passing the registration details to backend
+  /**
+   * @Function_Name postData
+   * @Desc Posting the user Details to mongodb via backend
+   * @Return_Type void
+   */
   const postData = async (e) => {
     //To prevent refreshing
     e.preventDefault();
@@ -165,51 +229,73 @@ const Signup = () => {
       history.push("/signin");
     }
   };
-  //Show or Hide password feature
+  /**
+   * @Function_Name toggleEyes1
+   * @Desc Toggles eyes of password field
+   * @Return_Type void
+   */
   const toggleEyes1 = () => {
     if (showPassword1 === true) setShowPassword1(false);
     else setShowPassword1(true);
   };
-  //Show or hide confirm password feature
+  /**
+   * @Function_Name togglesEyes2
+   * @Desc Toggles eyes of confirm password field
+   * @Return_Type void
+   */
   const toggleEyes2 = () => {
     if (showPassword2 === true) setShowPassword2(false);
     else setShowPassword2(true);
   };
+  /**
+   * @Function_Name googleSuccess
+   * @Desc Stores the user details to googleDetails state and calls onOpeneModal function
+   * @Return_Type void
+   */
   const googleSuccess = (req) => {
-    console.log(req?.profileObj);
-    console.log("Success");
     _googleDetails((prev) => (prev = req?.profileObj));
     onOpenModal();
   };
+  /**
+   * @Function_Name googleError
+   * @Desc Alert the user about the error that has occured while signingup with google
+   * @Return_Type void
+   */
   const googleError = (err) => {
-    console.log(err);
-    console.log("Error");
+    alert(err);
   };
-  //Function to change the state of open
+  /**
+   * @Function_Name onOpenModal
+   * @Desc It opens the register form modal
+   * @Return_Type void
+   */
   const onOpenModal = () => {
     _open((prev) => (prev = true));
   };
+  /**
+   * @Function_Name onCloseModal
+   * @Desc It closes the register form modal
+   * @Return_Type void
+   */
   const onCLoseModal = () => {
     _open((prev) => (prev = false));
   };
-  //UseEffect Declarations
+  /**
+   * @UseEffect_Declaration
+   */
   useEffect(() => {
     document.title = "Signup Page - Blogspoint";
-  }, []);
-  useEffect(() => {
-    console.log("User : ", user);
-    setUser({...user,"state":"Select"})
+    setUser({ ...user, state: "Select" });
     var cityStates = cityApi();
     var stateArr = new Array();
-    console.log(cityStates);
     for (var i = 0; i < cityStates.length; i++) {
       if (!stateArr.includes(cityStates[i].state))
         stateArr.push(cityStates[i].state);
     }
 
     _states(stateArr.sort());
-    // _cities(cityObj)
   }, []);
+
   if (userData !== null) history.push("/");
   return (
     <>
@@ -220,6 +306,7 @@ const Signup = () => {
             <p className={`${styles.reg}`}>Register</p>
             <div className={`${styles.formpng}`}>
               <div className={`${styles.form_inner_inner}`}>
+                {/* SigningUp with Google */}
                 <GoogleLogin
                   clientId="569525130247-sb80g53ts1n9coh360bnlna8cddh1ke5.apps.googleusercontent.com"
                   render={(renderProps) => (
@@ -239,6 +326,7 @@ const Signup = () => {
                   cookiePolicy="single_host_origin"
                 />
                 <p style={{ textAlign: "center" }}>OR</p>
+                {/* Signing Up through registration form */}
                 <form action="login" method="POST" onSubmit={postData}>
                   <div className={`${styles.form_row}`}>
                     <i
@@ -316,7 +404,7 @@ const Signup = () => {
                       )}
                     </div>
                   </div>
-                 
+
                   <div className={`${styles.form_row}`}>
                     <i class="fas fa-city"></i>
                     <div className={`${styles.form_name}`}>
@@ -404,7 +492,7 @@ const Signup = () => {
                       aria-hidden="true"
                     ></i>
                     <div className={`${styles.form_name}`}>
-                      {/* Student / Professional */}
+                      {/* Designation */}
                       <div className={`${styles.col}`}>
                         <select
                           name="stuprof"
@@ -600,6 +688,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      {/* Modal responsible for opening user details form after signingUp with Google */}
       <GoogleFormFillUp
         open={open}
         onCLoseModal={onCLoseModal}

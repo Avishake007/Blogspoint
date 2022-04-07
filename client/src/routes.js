@@ -35,12 +35,11 @@ const Routes = () => {
         <Logout />
       </Route>
       <Route>
-        <WelcomePage path="/welcomePage"/>
+        <WelcomePage path="/welcomePage" />
       </Route>
       <Route>
         <ErrorPage />
       </Route>
-     
     </Switch>
   );
 };
